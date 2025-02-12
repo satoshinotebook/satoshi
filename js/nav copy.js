@@ -1,9 +1,3 @@
-// Function to clean URL
-function getCleanUrl(path) {
-    // Remove /content/ and .html
-    return path.replace('/content/', '/').replace('.html', '');
-}
-
 // Main navigation loading function
 async function loadNavigation() {
     try {
@@ -331,11 +325,8 @@ async function handleNavigation(href) {
         // Wait for fade out
         await new Promise(resolve => setTimeout(resolve, 300));
         
-        // Convert clean URL to actual file path for fetching
-        const fetchPath = href.includes('.html') ? href : `/content${href}.html`;
-        
         // Fetch new content
-        const response = await fetch(fetchPath);
+        const response = await fetch(href);
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
@@ -344,9 +335,8 @@ async function handleNavigation(href) {
         const newContent = doc.querySelector('.page-content');
         
         if (newContent) {
-            // Update URL with clean version
-            const cleanUrl = href.replace('/content/', '/').replace('.html', '');
-            window.history.pushState({}, '', cleanUrl);
+            // Update URL without reload
+            window.history.pushState({}, '', href);
             document.title = doc.title;
             
             // Update content
@@ -358,7 +348,7 @@ async function handleNavigation(href) {
             }
             
             // Handle frosted glass effect
-            const isHomePage = cleanUrl === '/' || cleanUrl.endsWith('index');
+            const isHomePage = href === '/' || href.endsWith('index.html');
             if (isHomePage) {
                 container.classList.add('home');
                 container.style.background = 'none';
@@ -423,16 +413,19 @@ window.addEventListener('popstate', () => {
     handleNavigation(window.location.pathname);
 });
 
-// Update setActiveNavItem function
 function setActiveNavItem() {
+    console.log('Setting active nav item...');
     const currentPath = window.location.pathname;
     const currentPage = currentPath.split('/').pop();
-    
+    console.log('Current page:', currentPage);
+
     document.querySelectorAll('.dot-nav-item').forEach(item => {
-        const itemPath = getCleanUrl(item.getAttribute('href'));
+        const itemPath = item.getAttribute('href');
         const itemPage = itemPath.split('/').pop();
-        
+        console.log('Checking item:', itemPage);
+
         if (currentPage === itemPage) {
+            console.log('Match found! Setting active:', itemPage);
             item.classList.add('active');
             
             // Expand parent category
