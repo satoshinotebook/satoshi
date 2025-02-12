@@ -319,23 +319,35 @@ async function handleNavigation(href) {
         const container = document.querySelector('.page-container');
         const nav = document.querySelector('.dot-nav');
         
-        // Prevent multiple transitions from running
+        // Prevent multiple transitions
         if (container.classList.contains('transitioning')) return;
         
-        // Add transitioning class
         container.classList.add('transitioning');
-        
-        // Start fade out
         container.style.opacity = '0';
         
         // Wait for fade out
         await new Promise(resolve => setTimeout(resolve, 300));
         
-        // Convert clean URL to actual file path for fetching
-        const fetchPath = href.includes('.html') ? href : `/content${href}.html`;
+        // Determine the fetch path and clean URL
+        let fetchPath, cleanUrl;
+        
+        if (href.startsWith('/content/')) {
+            // If it's a content path, convert to clean URL
+            fetchPath = href;
+            cleanUrl = href.replace('/content/', '/').replace('.html', '');
+        } else {
+            // If it's already a clean URL, construct the fetch path
+            cleanUrl = href;
+            fetchPath = `/content${href}.html`;
+        }
         
         // Fetch new content
         const response = await fetch(fetchPath);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
@@ -345,7 +357,6 @@ async function handleNavigation(href) {
         
         if (newContent) {
             // Update URL with clean version
-            const cleanUrl = href.replace('/content/', '/').replace('.html', '');
             window.history.pushState({}, '', cleanUrl);
             document.title = doc.title;
             
@@ -376,7 +387,7 @@ async function handleNavigation(href) {
             // Update navigation
             setActiveNavItem();
             
-            // Ensure navigation links are properly initialized
+            // Initialize page navigation
             await new Promise(resolve => {
                 setTimeout(() => {
                     initializePageNavigation();
@@ -384,7 +395,7 @@ async function handleNavigation(href) {
                 }, 50);
             });
             
-            // Close mobile menu if open
+            // Handle mobile menu
             if (window.innerWidth <= 768) {
                 nav.classList.remove('open');
                 document.querySelector('.sidebar-overlay')?.classList.remove('active');
@@ -396,14 +407,14 @@ async function handleNavigation(href) {
             
             // Fade in
             container.style.opacity = '1';
-
-            // Scroll to top of the page after navigation
+            
+            // Scroll to top
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
             
-            // Remove transitioning class after animation
+            // Remove transitioning class
             setTimeout(() => {
                 container.classList.remove('transitioning');
             }, 300);
@@ -414,7 +425,10 @@ async function handleNavigation(href) {
         const container = document.querySelector('.page-container');
         container.style.opacity = '1';
         container.classList.remove('transitioning');
-        window.location.href = href; // Fallback to regular navigation
+        
+        // On error, redirect to the clean URL directly
+        const cleanUrl = href.replace('/content/', '/').replace('.html', '');
+        window.location.href = cleanUrl;
     }
 }
 
