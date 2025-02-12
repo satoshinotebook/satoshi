@@ -1,6 +1,3 @@
-# Specific routes first (more performant)
+# Direct serve of clean URLs (no redirects)
 /reality    /content/reality.html    200
 /scarcity   /content/scarcity.html   200
-
-# Then the general content directory handler
-/content/*  /:splat  301
