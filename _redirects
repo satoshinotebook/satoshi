@@ -1,10 +1,2 @@
-# Handle clean URLs
-/reality                     /content/reality.html                   200
-/scarcity                    /content/scarcity.html                 200
-/the-language-of-scarcity    /content/the-language-of-scarcity.html 200
-/the-arrow-of-time          /content/the-arrow-of-time.html         200
-
-# Add similar rules for all your content pages...
-
-# Prevent /content/ URLs from being accessed directly
-/content/*     /:splat     301
+# Single rule to handle all content pages
+/*    /content/:splat.html   200

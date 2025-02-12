@@ -319,48 +319,29 @@ async function handleNavigation(href) {
         const container = document.querySelector('.page-container');
         const nav = document.querySelector('.dot-nav');
         
-        // Prevent multiple transitions
         if (container.classList.contains('transitioning')) return;
-        
         container.classList.add('transitioning');
         container.style.opacity = '0';
         
-        // Wait for fade out
         await new Promise(resolve => setTimeout(resolve, 300));
         
-        // Determine the fetch path and clean URL
-        let fetchPath, cleanUrl;
+        // Always use the content path for fetching
+        const fetchPath = `/content${href}.html`;
         
-        if (href.startsWith('/content/')) {
-            // If it's a content path, convert to clean URL
-            fetchPath = href;
-            cleanUrl = href.replace('/content/', '/').replace('.html', '');
-        } else {
-            // If it's already a clean URL, construct the fetch path
-            cleanUrl = href;
-            fetchPath = `/content${href}.html`;
-        }
-        
-        // Fetch new content
         const response = await fetch(fetchPath);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
         
-        // Get the new content
         const newContent = doc.querySelector('.page-content');
         
         if (newContent) {
-            // Update URL with clean version
-            window.history.pushState({}, '', cleanUrl);
+            // Update URL (keep it clean)
+            window.history.pushState({}, '', href);
             document.title = doc.title;
             
-            // Update content
             const currentContent = document.querySelector('.page-content');
             if (currentContent) {
                 currentContent.replaceWith(newContent);
@@ -368,8 +349,7 @@ async function handleNavigation(href) {
                 container.appendChild(newContent);
             }
             
-            // Handle frosted glass effect
-            const isHomePage = cleanUrl === '/' || cleanUrl.endsWith('index');
+            const isHomePage = href === '/' || href.endsWith('index');
             if (isHomePage) {
                 container.classList.add('home');
                 container.style.background = 'none';
@@ -384,10 +364,8 @@ async function handleNavigation(href) {
                 container.style.borderLeft = '1px solid rgba(255, 255, 255, 0.1)';
             }
             
-            // Update navigation
             setActiveNavItem();
             
-            // Initialize page navigation
             await new Promise(resolve => {
                 setTimeout(() => {
                     initializePageNavigation();
@@ -395,40 +373,30 @@ async function handleNavigation(href) {
                 }, 50);
             });
             
-            // Handle mobile menu
             if (window.innerWidth <= 768) {
                 nav.classList.remove('open');
                 document.querySelector('.sidebar-overlay')?.classList.remove('active');
                 container.style.transform = 'none';
             }
             
-            // Ensure DOM is updated before fade in
             await new Promise(resolve => requestAnimationFrame(resolve));
-            
-            // Fade in
             container.style.opacity = '1';
             
-            // Scroll to top
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
             
-            // Remove transitioning class
             setTimeout(() => {
                 container.classList.remove('transitioning');
             }, 300);
         }
     } catch (error) {
         console.error('Navigation error:', error);
-        // Reset state on error
-        const container = document.querySelector('.page-container');
         container.style.opacity = '1';
         container.classList.remove('transitioning');
-        
-        // On error, redirect to the clean URL directly
-        const cleanUrl = href.replace('/content/', '/').replace('.html', '');
-        window.location.href = cleanUrl;
+        // On error, stay at the current URL
+        console.error(`Failed to load: ${href}`);
     }
 }
 
