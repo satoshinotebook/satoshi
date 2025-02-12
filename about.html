@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satoshi Notebook | About</title>
+    <link rel="stylesheet" href="css/shared.css">
+    <script src="js/nav.js"></script>
+    <script src="js/transitions.js"></script>
+    <script src="js/shared-layout.js"></script>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <style>
+        @keyframes rotateLogo {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo-container svg {
+            animation: rotateLogo 8s ease-in-out infinite;
+            transform-origin: center;
+            width: 180px;
+            height: 180px;
+        }
+
+        .notebook-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0rem;
+        }
+
+        .logo-container {
+            width: 180px;
+            height: 180px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .notebook-content {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .notebook-text {
+            text-align: center;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .title {
+            color: var(--accent);
+            font-size: 2rem;
+            letter-spacing: 0.1em;
+            text-transform: lowercase;
+            font-weight: 300;
+            margin: 1rem 0;
+        }
+
+        .title span {
+            opacity: 0.7;
+            color: var(--text-secondary);
+        }
+
+        .denominator {
+            color: var(--accent);
+            font-size: 0.75rem;
+            text-align: center;
+            margin-top: 0.5rem;
+            letter-spacing: 0.05em;
+            opacity: 0.8;
+        }
+
+        .satoshi-line {
+            stroke-width: 3;
+        }
+
+        .disclaimer {
+            border-left: 2px solid var(--accent);
+            padding-left: 1rem;
+            margin: 2rem 0;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .section-title {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin: 2rem 0 1rem 0;
+            text-transform: lowercase;
+        }
+
+        .donation-address {
+            font-family: monospace;
+            color: var(--accent);
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 159, 28, 0.1);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin: 1rem 0 2rem 0;
+            word-break: break-all;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .donation-address:hover {
+            background: rgba(255, 159, 28, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <div class="transition-container">
+        <div class="page-container home">
+            <div class="page-content">
+                <section class="landing-section">
+                    <div class="notebook-header">
+                        <div class="logo-container">
+                            <svg viewBox="0 0 100 100">
+                                <line x1="50" y1="17" x2="50" y2="25" class="satoshi-line" stroke="#ff9900" />
+                                <line x1="27" y1="36" x2="73" y2="36" class="satoshi-line" stroke="#ff9900" />
+                                <line x1="27" y1="52" x2="73" y2="52" class="satoshi-line" stroke="#ff9900" />
+                                <line x1="27" y1="68" x2="73" y2="68" class="satoshi-line" stroke="#ff9900" />
+                                <line x1="50" y1="79" x2="50" y2="87" class="satoshi-line" stroke="#ff9900" />
+                            </svg>
+                        </div>
+                        <h1 class="title">about satoshi<span>_</span>notebook</h1>
+                        <div class="denominator">∞/21,000,000</div>
+                    </div>
+                    <div class="notebook-content">
+                        <p class="notebook-text">
+                            the satoshi_notebook emerged from a simple idea: bitcoin's complexity shouldn't overshadow its beauty.
+                        </p>
+
+                        <div class="section-title">origin</div>
+                        <p class="notebook-text">
+                            this project began as personal notes - attempts to distill bitcoin's technical complexity into clear, meaningful insights. what started as a learning tool evolved into a minimalist guide for others exploring this revolutionary technology.
+                        </p>
+
+                        <div class="section-title">philosophy</div>
+                        <p class="notebook-text">
+                            we believe in simplicity without sacrifice. each page is crafted to bridge technical depth with philosophical understanding, helping newcomers grasp bitcoin's significance while respecting its technical foundations.
+                        </p>
+
+                        <div class="section-title">purpose</div>
+                        <p class="notebook-text">
+                            to create a clean, focused space for bitcoin learning. no distractions, no noise - just essential knowledge presented with clarity and purpose.
+                        </p>
+
+                        <div class="section-title">design</div>
+                        <p class="notebook-text">
+                            minimalism isn't just aesthetic - it's functional. our design strips away complexity to let bitcoin's ideas shine through. each element serves a purpose, just like bitcoin's code.
+                        </p>
+
+                        <div class="section-title">open source</div>
+                        <p class="notebook-text">
+                            true to bitcoin's spirit, this project is open source. contributions are welcome. together, we can build a better resource for bitcoin education.
+                        </p>
+
+                        <div class="section-title">support</div>
+                        <p class="notebook-text">
+                            if you find this notebook useful, please consider donating some bitcoin to help keep this notebook running and expanding:
+                        </p>
+                        <div class="donation-address">
+                            bc1qynz6j3ggww65qte227u2yfzpcr2ulr5n0plngw
+                        </div>
+
+                        <div class="disclaimer">
+                            important: this website provides educational content only. nothing here constitutes financial advice. all information is for general educational purposes. investments can carry significant risks. always conduct your own research before making investment decisions.
+                        </div>
+
+                        <p class="notebook-text">
+                            made with love, dedicated to satoshi nakamoto and the bitcoin community.
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

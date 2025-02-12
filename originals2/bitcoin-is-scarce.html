@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Satoshi Notebook | Bitcoin Is Scarce</title>
+ <link rel="stylesheet" href="/css/shared.css">
+ <script src="/js/nav.js"></script>
+ <script src="/js/transitions.js"></script>
+</head>
+<body>
+ <div class="page-container">
+ <div class="page-content">
+ <section class="content-section">
+   <h2>Bitcoin Is Scarce</h2>
+   <div class="concept-visualization">
+     <svg viewBox="0 0 100 100">
+       <!-- Outer circle representing the finite supply -->
+       <circle cx="50" cy="50" r="35" 
+               fill="none" 
+               stroke="#ff9900" 
+               stroke-width="2">
+         <animate attributeName="stroke-dasharray"
+                  values="0 220; 220 220"
+                  dur="3s"
+                  repeatCount="indefinite"/>
+       </circle>
+       
+       <!-- Supply completion arc -->
+       <path d="M 50 15 A 35 35 0 1 1 49.99 15" 
+             fill="none" 
+             stroke="#ff9900" 
+             stroke-width="2">
+         <animate attributeName="stroke-dasharray"
+                  values="0 220; 180 220"
+                  dur="10s"
+                  fill="freeze"/>
+       </path>
+       
+       <!-- Center number "21" -->
+       <text x="50" y="45" 
+             text-anchor="middle" 
+             fill="#ff9900" 
+             font-size="12"
+             opacity="0">21
+         <animate attributeName="opacity"
+                  values="0;1"
+                  dur="2s"
+                  fill="freeze"/>
+       </text>
+       
+       <!-- Moving dots representing mining -->
+       <circle r="1" fill="#ff9900">
+         <animateMotion
+           path="M 50,15 A 35,35 0 0,1 85,50"
+           dur="3s"
+           repeatCount="indefinite"/>
+       </circle>
+       
+       <circle r="1" fill="#ff9900">
+         <animateMotion
+           path="M 50,15 A 35,35 0 0,1 85,50"
+           dur="3s"
+           begin="1s"
+           repeatCount="indefinite"/>
+       </circle>
+       
+       <!-- Mathematical lock symbol -->
+       <path d="M 45,55 L 55,55 L 55,65 L 45,65 Z" 
+             fill="none" 
+             stroke="#ff9900" 
+             stroke-width="1"/>
+       <path d="M 47,55 L 47,52 A 3,3 0 0,1 53,52 L 53,55" 
+             fill="none" 
+             stroke="#ff9900" 
+             stroke-width="1"/>
+     </svg>
+   </div>
+
+   <p class="intro-text">
+     bitcoin achieves the impossible: absolute scarcity in the digital realm - where 21 million becomes an immutable constant of the universe, enforced by mathematical law.
+   </p>
+
+   <h3>The Invention of Scarcity</h3>
+   <div class="section-content">
+     <p>
+       before bitcoin, digital scarcity was impossible. anything digital could be copied infinitely, making true digital value impossible. bitcoin solved this through a revolutionary combination of cryptography, game theory, and distributed consensus.
+     </p>
+     <div class="highlight-box">
+       for the first time in history, we have an asset that is both digital and absolutely scarce - where the supply is not just limited, but mathematically guaranteed to never exceed 21 million units.
+     </div>
+   </div>
+
+   <h3>The Perfect Number: 21,000,000</h3>
+   <div class="section-content">
+     <p>
+       the 21 million supply cap is not just a number - it is a fundamental constant of the bitcoin universe. like the speed of light in physics, it represents an absolute limit that cannot be violated without breaking the system itself.
+     </p>
+     <div class="highlight-box">
+       • exactly 21 million bitcoin will ever exist<br>
+       • this limit is enforced by consensus rules<br>
+       • changing it would require rewriting bitcoin itself<br>
+       • the cap is written into bitcoin's genetic code<br>
+       • every node enforces this limit independently
+     </div>
+   </div>
+
+   <h3>Mathematical Guarantee</h3>
+   <div class="section-content">
+     <p>
+       bitcoin's scarcity isn't maintained by policy or promise - it is enforced by pure mathematics. the supply cap is woven into the very fabric of the protocol:
+     </p>
+     <div class="highlight-box">
+       • the issuance schedule is predetermined and immutable<br>
+       • new coins are created only through mining<br>
+       • the mining reward halves every 210,000 blocks<br>
+       • this creates a perfect asymptotic curve approaching 21 million<br>
+       • the final bitcoin will be mined around the year 2140
+     </div>
+   </div>
+
+   <h3>Beyond Human Control</h3>
+   <div class="section-content">
+     <p>
+       traditional forms of money are subject to human control and manipulation. their supply can be increased at will, diluting their scarcity. bitcoin transcends this entirely:
+     </p>
+     <div class="highlight-box">
+       no entity - no matter how powerful - can create bitcoin beyond the predetermined schedule. this makes bitcoin the first monetary system in history that is truly beyond human manipulation.
+     </div>
+   </div>
+
+   <h3>The Scarcity Revolution</h3>
+   <div class="section-content">
+     <p>
+       bitcoin's absolute scarcity represents a fundamental break from all previous forms of money. gold can be mined or asteroids harvested, fiat can be printed, but bitcoin's supply is forever fixed at 21 million.
+     </p>
+     <p>
+       this perfect, immutable scarcity creates a new paradigm in human value storage. for the first time, we have an asset whose supply schedule is completely predictable and absolutely unchangeable from now until the end of time - a true constant in an uncertain universe.
+     </p>
+   </div>
+ </section>
+ </div>
+ </div>
+</body>
+</html>

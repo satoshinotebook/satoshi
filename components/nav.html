@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satoshi Notebook</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Category Icon Styles */
+        .category-icon {
+            min-width: 20px;
+            height: 20px;
+            margin-right: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        
+        .category-icon * {
+            transition: all 0.3s ease;
+        }
+        
+        /* Expand Arrow Animation */
+        .expand-arrow {
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .category-toggle[aria-expanded="true"] .expand-arrow {
+            transform: rotate(-180deg);
+        }
+        
+        /* Category Toggle Hover Effects */
+        .category-toggle:hover .category-icon *,
+        .category-toggle[aria-expanded="true"] .category-icon * {
+            stroke: var(--accent);
+            stroke-width: 2.5;
+        }
+        
+        /* Category Items Transition */
+        .category-items {
+            padding-left: 2.5rem;
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+        }
+        
+        .category-toggle[aria-expanded="true"] + .category-items {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Category Toggle Layout */
+        .category-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: transparent;
+            border: 1px solid rgba(71, 67, 60, 0.2);
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 1rem;
+            width: 100%;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+        
+        .category-toggle:hover,
+        .category-toggle[aria-expanded="true"] {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        /* Enhanced Mobile Styles */
+        @media (max-width: 768px) {
+            .category-icon {
+                min-width: 18px;
+                height: 18px;
+                margin-right: 0.5rem;
+            }
+        
+            .category-items {
+                padding-left: 2rem;
+            }
+        
+            .category-toggle {
+                padding: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="dot-nav">
+        <button class="nav-logo hamburger-menu" aria-label="Toggle navigation menu">
+            <svg viewBox="0 0 100 100">
+                <line x1="50" y1="17" x2="50" y2="25" class="satoshi-line" />
+                <line x1="27" y1="36" x2="73" y2="36" class="satoshi-line" />
+                <line x1="27" y1="52" x2="73" y2="52" class="satoshi-line" />
+                <line x1="27" y1="68" x2="73" y2="68" class="satoshi-line" />
+                <line x1="50" y1="79" x2="50" y2="87" class="satoshi-line" />
+            </svg>
+        </button>
+
+        <div class="sidebar-header">
+            <a href="/" class="site-title">satoshi_notebook</a>
+        </div>
+
+        <div class="nav-content">
+          <!-- Part 1: What Is Reality -->
+<div class="category-group">
+  <button class="category-toggle" aria-expanded="false">
+      <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
+          <circle cx="12" cy="12" r="9" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+          <circle cx="12" cy="12" r="3" fill="#FF9F1C"/>
+      </svg>
+      <span class="category-name">part 1: what is reality</span>
+  </button>
+  <div class="category-items">
+    <a class="dot-nav-item" data-label="Reality" href="/content/reality.html"></a>
+    <a class="dot-nav-item" data-label="Scarcity" href="/content/scarcity.html"></a>
+    <a class="dot-nav-item" data-label="Exchange: The Language Of Scarcity" href="/content/the-language-of-scarcity.html"></a>
+    <a class="dot-nav-item" data-label="The Arrow Of Time" href="/content/the-arrow-of-time.html"></a>
+  </div>
+</div>
+
+<!-- Part 2: What Is Money -->
+<div class="category-group">
+  <button class="category-toggle" aria-expanded="false">
+      <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
+          <circle cx="12" cy="12" r="10" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+          <path d="M12 6L12 18M8 14L12 18L16 14" stroke="#FF9F1C" stroke-width="2"/>
+      </svg>
+      <span class="category-name">part 2: evolution of money</span>
+  </button>
+  <div class="category-items">
+    <a class="dot-nav-item" data-label="Money Is Interopability" href="/content/money-is-interopability.html"></a>
+    <a class="dot-nav-item" data-label="Money Is Energy" href="/content/money-is-energy.html"></a>
+    <a class="dot-nav-item" data-label="Properties Of Money" href="/content/properties-of-money.html"></a>
+    <a class="dot-nav-item" data-label="The Evolution Of Interopability" href="/content/evolution-of-interopability.html"></a>
+    <a class="dot-nav-item" data-label="The Universal Coincidence" href="/content/the-universal-coincidence.html"></a>
+  </div>
+</div>
+
+<!-- Part 3: Problems with Current Systems -->
+<div class="category-group">
+  <button class="category-toggle" aria-expanded="false">
+      <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
+          <path d="M12 4L4 20H20L12 4Z" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+          <line x1="12" y1="10" x2="12" y2="14" stroke="#FF9F1C" stroke-width="2"/>
+          <circle cx="12" cy="17" r="1" fill="#FF9F1C"/>
+      </svg>
+      <span class="category-name">part 3: problems with current systems</span>
+  </button>
+  <div class="category-items">
+    <a class="dot-nav-item" data-label="Legacy Money" href="/content/legacy-money.html"></a>
+    <a class="dot-nav-item" data-label="Flaws Of Modern Finance" href="/content/flaws-of-modern-finance.html"></a>
+    <a class="dot-nav-item" data-label="Inflation Is A Problem" href="/content/inflation-is-a-problem.html"></a>
+    <a class="dot-nav-item" data-label="Trust Is A Problem" href="/content/trust-is-a-problem.html"></a>
+    <a class="dot-nav-item" data-label="Broken Money" href="/content/broken-money.html"></a>
+    <a class="dot-nav-item" data-label="Decay" href="/content/decay.html"></a>
+  </div>
+</div>
+
+<!-- Part 4: Bitcoin Fundamentals -->
+<div class="category-group">
+  <button class="category-toggle" aria-expanded="false">
+      <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
+          <rect x="4" y="4" width="16" height="16" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+          <path d="M9 8h6a2 2 0 0 1 0 4H9h6a2 2 0 0 1 0 4H9" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+      </svg>
+      <span class="category-name">part 4: bitcoin fundamentals</span>
+  </button>
+  <div class="category-items">
+      <a class="dot-nav-item" data-label="Perfect Storage" href="/content/perfect-storage.html"></a>
+      <a class="dot-nav-item" data-label="Properties Of Truth" href="/content/properties-of-truth.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is The First Engineered Money" href="/content/bitcoin-is-the-first-engineered-money.html"></a>
+      <a class="dot-nav-item" data-label="How Bitcoin Works" href="/content/how-bitcoin-works.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is Mathematical Truth" href="/content/bitcoin-is-mathematical-truth.html"></a>
+      <a class="dot-nav-item" data-label="The Discovery" href="/content/the-discovery.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin's Immaculate Conception" href="/content/bitcoins-immaculate-conception.html"></a>
+      <a class="dot-nav-item" data-label="The Emergent Hyperspace" href="/content/the-emergent-hyperspace.html"></a>
+  </div>
+</div>
+
+<!-- Part 5: Properties of Bitcoin -->
+<div class="category-group">
+  <button class="category-toggle" aria-expanded="false">
+      <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
+          <rect x="3" y="3" width="7" height="7" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+          <rect x="14" y="3" width="7" height="7" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+          <rect x="3" y="14" width="7" height="7" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+          <rect x="14" y="14" width="7" height="7" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+      </svg>
+      <span class="category-name">part 5: properties of bitcoin</span>
+  </button>
+  <div class="category-items">
+      <a class="dot-nav-item" data-label="Bitcoin Is Sound Money" href="/content/bitcoin-is-sound-money.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is Indestructible" href="/content/bitcoin-is-indestructible.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin is Portable" href="/content/bitcoin-is-portable.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin is Divisible" href="/content/bitcoin-is-divisible.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin is Fungible" href="/content/bitcoin-is-fungible.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin is Transparent" href="/content/bitcoin-is-transparent.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin is Verifiable" href="/content/bitcoin-is-verifiable.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin is Scarce" href="/content/bitcoin-is-scarce.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin is Impartial" href="/content/bitcoin-is-impartial.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin is Immutable" href="/content/bitcoin-is-immutable.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin is Transferable" href="/content/bitcoin-is-transferable.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin is Weightless" href="/content/bitcoin-is-weightless.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is Pure" href="/content/bitcoin-is-pure.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is Orthogonal" href="/content/bitcoin-is-orthogonal.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is An Exit" href="/content/bitcoin-is-an-exit.html"></a>
+  </div>
+</div>
+
+<!-- Part 6: Value and Economics -->
+<div class="category-group">
+  <button class="category-toggle" aria-expanded="false">
+      <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
+          <path d="M4 18L8 14L12 16L20 6" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+      </svg>
+      <span class="category-name">part 6: value and economics</span>
+  </button>
+  <div class="category-items">
+      <a class="dot-nav-item" data-label="The Myth Of Intrinsic Value" href="/content/the-myth-of-intrinsic-value.html"></a>
+      <a class="dot-nav-item" data-label="Sublime Uselnessness" href="/content/sublime-uselessness.html"></a>
+      <a class="dot-nav-item" data-label="The Distortion Of Utility Assets" href="/content/the-distortion-of-utility-assets.html"></a>
+      <a class="dot-nav-item" data-label="Deflation: The Natural Order" href="/content/deflation-the-natural-order.html"></a>
+      <a class="dot-nav-item" data-label="Dematerialization" href="/content/dematerialization.html"></a>
+  </div>
+</div>
+
+<!-- Part 7: Social Impact -->
+<div class="category-group">
+  <button class="category-toggle" aria-expanded="false">
+      <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
+          <circle cx="12" cy="8" r="4" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+          <path d="M4 20C4 16.6863 7.58172 14 12 14C16.4183 14 20 16.6863 20 20" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+      </svg>
+      <span class="category-name">part 7: social impact</span>
+  </button>
+  <div class="category-items">
+      <a class="dot-nav-item" data-label="Bitcoin Simplifies Reality" href="/content/bitcoin-simplifies-reality.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Extends Time Preference" href="/content/bitcoin-extends-time-preference.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Enables Intentionality" href="/content/bitcoin-enables-intentionality.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Enables an Artisan Economy" href="/content/bitcoin-enables-an-artisan-economy.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Enables Optimism" href="/content/bitcoin-enables-optimism.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is Non-Violence" href="/content/bitcoin-is-non-violence.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is Clean Money" href="/content/bitcoin-is-clean-money.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is Good For The World" href="/content/bitcoin-is-good-for-the-world.html"></a>
+  </div>
+</div>
+
+<!-- Part 8: Future Implications -->
+<div class="category-group">
+  <button class="category-toggle" aria-expanded="false">
+      <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
+          <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+      </svg>
+      <span class="category-name">part 8: future implications</span>
+  </button>
+  <div class="category-items">
+      <a class="dot-nav-item" data-label="Bitcoin Is Final" href="/content/bitcoin-is-final.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is The Universal Reserve Asset" href="/content/bitcoin-is-the-universal-reserve-asset.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is The Money Of The Internet" href="/content/bitcoin-is-the-money-of-the-internet.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is The Currency Of Intelligence" href="/content/bitcoin-is-the-currency-of-intelligence.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is A Source Of Truth" href="/content/bitcoin-is-a-source-of-truth.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is Cosmically Rare" href="/content/bitcoin-is-cosmically-rare.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is A Great Filter" href="/content/bitcoin-is-a-great-filter.html"></a>
+  </div>
+</div>
+
+
+<!-- Part 9: Future Price Action -->
+<div class="category-group">
+  <button class="category-toggle" aria-expanded="false">
+      <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
+          <!-- Price chart icon -->
+          <path d="M3 3v18h18" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+          <path d="M5 14l4-4 4 4 6-6" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+      </svg>
+      <span class="category-name">part 9: future price action</span>
+  </button>
+  <div class="category-items">
+    <!-- Original navigation items preserved -->
+    <a class="dot-nav-item" data-label="Game Theory" href="/content/game-theory.html"></a>
+    <a class="dot-nav-item" data-label="Projections" href="/content/projections.html"></a>
+    <a class="dot-nav-item" data-label="Bitcoin Per Person" href="/content/bitcoin-per-person.html"></a>
+  </div>
+</div>
+
+<!-- Part 10: There Is No Second Best -->
+<div class="category-group">
+  <button class="category-toggle" aria-expanded="false">
+      <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
+          <!-- Trophy/crown icon -->
+          <path d="M12 2l3 5h5l-3 5 2 8h-14l2-8-3-5h5z" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+      </svg>
+      <span class="category-name">part 10: There Is No Second Best</span>
+  </button>
+  <div class="category-items">
+      <a class="dot-nav-item" data-label="What Are The Alternatives?" href="/content/what-are-the-alternatives.html"></a>
+      <a class="dot-nav-item" data-label="There is No Second Best" href="/content/there-is-no-second-best.html"></a>
+      <a class="dot-nav-item" data-label="The fallacy of other cryptocurrencies" href="/content/the-fallacy-of-other-cryptocurrencies.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Is Resilient" href="/content/bitcoin-is-resilient.html"></a>
+      <a class="dot-nav-item" data-label="Everything Is Going To Zero" href="/content/everything-is-going-to-zero.html"></a>
+  </div>
+</div>
+
+<!-- Part 11: Common Concerns-->
+<div class="category-group">
+  <button class="category-toggle" aria-expanded="false">
+      <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
+          <!-- Question mark icon -->
+          <circle cx="12" cy="12" r="9" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+          <path d="M12 17v-1m0-3.5a3 3 0 1 1 0-6" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+      </svg>
+      <span class="category-name">part 11: common concerns</span>
+  </button>
+  <div class="category-items">
+    <a class="dot-nav-item" data-label="The Voice Of Doubt" href="/content/the-voice-of-doubt.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin and Volatility" href="/content/bitcoin-and-volatility.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin and Crime" href="/content/bitcoin-and-crime.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin and Government Bans" href="/content/bitcoin-and-government-bans.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin and Quantum Computers" href="/content/bitcoin-and-quantum-computers.html"></a>
+      <a class="dot-nav-item" data-label="FAQ" href="/content/faq.html"></a>
+  </div>
+</div>
+
+<!-- Part 12: Getting Started With Bitcoin -->
+<div class="category-group">
+  <button class="category-toggle" aria-expanded="false">
+      <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
+          <!-- Rocket launch icon -->
+          <path d="M12 2L8 6v4l4 2 4-2V6z" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+          <path d="M8 10l-4 8h16l-4-8" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+      </svg>
+      <span class="category-name">part 12: getting started with bitcoin</span>
+  </button>
+  <div class="category-items">
+    <a class="dot-nav-item" data-label="How to Buy Bitcoin" href="/content/how-to-buy-bitcoin.html"></a>
+    <a class="dot-nav-item" data-label="How to Secure Your Bitcoin" href="/content/how-to-secure-your-bitcoin.html"></a>
+    <a class="dot-nav-item" data-label="Seed Phrases" href="/content/seed-phrases.html"></a>
+    <a class="dot-nav-item" data-label="Stay Humble and stack sats" href="/content/stay-humble-and-stack-sats.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Voices to follow" href="/content/bitcoin-voices-to-follow.html"></a>
+      <a class="dot-nav-item" data-label="Bitcoin Books to read" href="/content/bitcoin-books-to-read.html"></a>
+      
+  </div>
+</div>
+
+<!-- Part 13: Introspection -->
+<div class="category-group">
+  <button class="category-toggle" aria-expanded="false">
+      <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
+          <!-- Mind/thought icon -->
+          <circle cx="12" cy="12" r="5" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+          <path d="M12 2v5m0 10v5M2 12h5m10 0h5" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+      </svg>
+      <span class="category-name">part 13: satoshi's philosophy</span>
+  </button>
+  <div class="category-items">
+      <a class="dot-nav-item" data-label="Satoshi's Selflessness" href="/content/selflessness.html"></a>
+      <a class="dot-nav-item" data-label="Upgrade The World" href="/content/upgrade-the-world.html"></a>
+      <a class="dot-nav-item" data-label="Self Responsibility" href="/content/self-responsibility.html"></a>
+      <a class="dot-nav-item" data-label="Tell The Truth" href="/content/tell-the-truth.html"></a>
+      <a class="dot-nav-item" data-label="Longtermism" href="/content/longtermism.html"></a>
+      <a class="dot-nav-item" data-label="The Struggle of The Individual" href="/content/the-struggle-of-the-individual.html"></a>
+      <a class="dot-nav-item" data-label="Light The Path" href="/content/light-the-path.html"></a>
+      <a class="dot-nav-item" data-label="Seek Peace" href="/content/peace.html"></a>
+      <a class="dot-nav-item" data-label="Be Free" href="/content/freedom.html"></a>
+
+
+
+
+  </div>
+</div>
+</div>
+
+<!-- About section to add just before social-icons div -->
+<div class="about-section" style="padding: 1rem 0; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+  <a href="/about.html" style="color: var(--text-primary); text-decoration: none; font-size: 0.8rem; opacity: 0.8; transition: opacity 0.3s ease;">
+      about notebook
+  </a>
+</div>
+
+        <div class="social-icons">
+          <a href="https://instagram.com/satoshinotebook" class="social-icon" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" width="20" height="20">
+                  <rect x="2" y="2" width="20" height="20" rx="5" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+                  <circle cx="12" cy="12" r="5" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+                  <circle cx="18" cy="6" r="1.5" fill="#FF9F1C"/>
+              </svg>
+          </a>
+          <a href="https://x.com/satoshinotebook" class="social-icon" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" width="20" height="20">
+                  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+              </svg>
+          </a>
+          <a href="mailto:satoshinotebook@proton.me" class="social-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20">
+                  <rect x="2" y="4" width="20" height="16" rx="2" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+                  <path d="M22 6l-10 7L2 6" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+              </svg>
+          </a>
+      </div>
+
+        <div class="sidebar-footer">
+            <div class="donation-text">support the notebook:</div>
+            <div class="btc-address" onclick="navigator.clipboard.writeText('bc1qasq9wd7kajh503synuen5eya4ktpfrh8e8tgvj')" title="Click to copy">
+                bc1qynz6j3ggww65qte227u2yfzpcr2ulr5n0plngw
+            </div>
+        </div>
+    </nav>
+
+    <!-- Overlay for mobile -->
+    <div class="sidebar-overlay"></div>
+
+    <script>
+        window.addEventListener('load', function() {
+            // Set active nav item based on current page
+            const currentPath = window.location.pathname;
+            const normalizedPath = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
+            document.querySelectorAll('.dot-nav-item').forEach(item => {
+                const itemPath = item.getAttribute('href');
+                const normalizedItemPath = itemPath.endsWith('/') ? itemPath.slice(0, -1) : itemPath;
+                if (normalizedItemPath === normalizedPath) {
+                    item.classList.add('active');
+                    // Also expand the parent category
+                    const categoryGroup = item.closest('.category-group');
+                    if (categoryGroup) {
+                        const categoryToggle = categoryGroup.querySelector('.category-toggle');
+                        categoryToggle.setAttribute('aria-expanded', 'true');
+                        const categoryItems = categoryToggle.nextElementSibling;
+                        categoryItems.style.maxHeight = categoryItems.scrollHeight + 'px';
+                        categoryItems.style.opacity = '1';
+                    }
+                }
+            });
+            // Category toggle functionality
+            document.querySelectorAll('.category-toggle').forEach(button => {
+                button.addEventListener('click', function() {
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', !isExpanded);
+                    
+                    const categoryItems = this.nextElementSibling;
+                    if (isExpanded) {
+                        categoryItems.style.maxHeight = '0';
+                        categoryItems.style.opacity = '0';
+                    } else {
+                        categoryItems.style.maxHeight = categoryItems.scrollHeight + 'px';
+                        categoryItems.style.opacity = '1';
+                    }
+
+                    // Save state to localStorage
+                    const categoryId = this.querySelector('.category-name').textContent;
+                    localStorage.setItem(`category-${categoryId}`, !isExpanded);
+                });
+
+                // Initialize state from localStorage
+                const categoryId = button.querySelector('.category-name').textContent;
+                const isExpanded = localStorage.getItem(`category-${categoryId}`) === 'true';
+                if (isExpanded) {
+                    button.setAttribute('aria-expanded', 'true');
+                    const categoryItems = button.nextElementSibling;
+                    categoryItems.style.maxHeight = categoryItems.scrollHeight + 'px';
+                    categoryItems.style.opacity = '1';
+                }
+            });
+
+            // Mobile menu toggle
+            document.querySelector('.nav-logo').addEventListener('click', function() {
+                document.querySelector('.dot-nav').classList.toggle('collapsed');
+            });
+
+            // Handle mobile overlay
+            document.querySelector('.sidebar-overlay').addEventListener('click', function() {
+                document.querySelector('.dot-nav').classList.remove('open');
+                this.classList.remove('active');
+            });
+
+            // Handle clipboard copy for BTC address
+            document.querySelector('.btc-address').addEventListener('click', function() {
+                navigator.clipboard.writeText(this.textContent.trim()).then(() => {
+                    // Could add a visual feedback here
+                    console.log('Address copied to clipboard');
+                }).catch(err => {
+                    console.error('Failed to copy address:', err);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

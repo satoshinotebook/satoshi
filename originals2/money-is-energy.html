@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Satoshi Notebook | Money Is Energy</title>
+ <link rel="stylesheet" href="/css/shared.css">
+ <script src="/js/nav.js"></script>
+ <script src="/js/transitions.js"></script>
+</head>
+<body>
+ <div class="page-container">
+ <div class="page-content">
+ <section class="content-section">
+   <h2>Money Is Energy</h2>
+   <div class="concept-visualization">
+     <<svg viewBox="0 0 100 100">
+      <!-- Background energy field -->
+      <defs>
+          <radialGradient id="energyGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+              <stop offset="0%" style="stop-color:#ff9900;stop-opacity:0.2"/>
+              <stop offset="100%" style="stop-color:#ff9900;stop-opacity:0"/>
+          </radialGradient>
+      </defs>
+      
+      <!-- Energy field -->
+      <circle cx="50" cy="50" r="40" fill="url(#energyGlow)">
+          <animate attributeName="opacity"
+                  values="0.3;0.6;0.3"
+                  dur="4s"
+                  repeatCount="indefinite"/>
+      </circle>
+  
+      <!-- Orbital tracks -->
+      <g transform="translate(50,50)">
+          <!-- Multiple orbital paths -->
+          <circle cx="0" cy="0" r="30" fill="none" stroke="#ff9900" stroke-width="0.2" opacity="0.3"/>
+          <circle cx="0" cy="0" r="25" fill="none" stroke="#ff9900" stroke-width="0.2" opacity="0.3"/>
+          <circle cx="0" cy="0" r="20" fill="none" stroke="#ff9900" stroke-width="0.2" opacity="0.3"/>
+      </g>
+  
+      <!-- Energy particles -->
+      <g>
+          <!-- Outer orbit particles -->
+          <circle r="1.5" fill="#ff9900">
+              <animateMotion 
+                  path="M 0,30 A 30,30 0 1,1 0,-30 A 30,30 0 1,1 0,30"
+                  dur="3s"
+                  repeatCount="indefinite"/>
+              <animate attributeName="r"
+                       values="1;2;1"
+                       dur="2s"
+                       repeatCount="indefinite"/>
+          </circle>
+          
+          <!-- Middle orbit particles -->
+          <circle r="1.5" fill="#ff9900">
+              <animateMotion 
+                  path="M 0,25 A 25,25 0 1,0 0,-25 A 25,25 0 1,0 0,25"
+                  dur="2.5s"
+                  repeatCount="indefinite"/>
+              <animate attributeName="r"
+                       values="1;2;1"
+                       dur="2s"
+                       begin="0.5s"
+                       repeatCount="indefinite"/>
+          </circle>
+          
+          <!-- Inner orbit particles -->
+          <circle r="1.5" fill="#ff9900">
+              <animateMotion 
+                  path="M 0,20 A 20,20 0 1,1 0,-20 A 20,20 0 1,1 0,20"
+                  dur="2s"
+                  repeatCount="indefinite"/>
+              <animate attributeName="r"
+                       values="1;2;1"
+                       dur="2s"
+                       begin="1s"
+                       repeatCount="indefinite"/>
+          </circle>
+      </g>
+  
+      <!-- Central crystallization hexagon -->
+      <g transform="translate(50,50)">
+          <path d="M0,-15 L13,-7.5 L13,7.5 L0,15 L-13,7.5 L-13,-7.5 Z" 
+                fill="none" 
+                stroke="#ff9900" 
+                stroke-width="1">
+              <animate attributeName="stroke-width"
+                       values="0.5;1.5;0.5"
+                       dur="3s"
+                       repeatCount="indefinite"/>
+              <animate attributeName="stroke-dasharray"
+                       values="0,100;100,100"
+                       dur="3s"
+                       repeatCount="indefinite"/>
+          </path>
+      </g>
+  
+      <!-- Energy conversion beams -->
+      <g transform="translate(50,50)">
+          <!-- Converging energy beams -->
+          <line x1="-20" y1="-20" x2="-13" y2="-7.5" 
+                stroke="#ff9900" 
+                stroke-width="0.5" 
+                opacity="0.5">
+              <animate attributeName="opacity"
+                       values="0.2;0.8;0.2"
+                       dur="2s"
+                       repeatCount="indefinite"/>
+          </line>
+          <line x1="20" y1="-20" x2="13" y2="-7.5" 
+                stroke="#ff9900" 
+                stroke-width="0.5" 
+                opacity="0.5">
+              <animate attributeName="opacity"
+                       values="0.2;0.8;0.2"
+                       dur="2s"
+                       begin="0.5s"
+                       repeatCount="indefinite"/>
+          </line>
+          <line x1="-20" y1="20" x2="-13" y2="7.5" 
+                stroke="#ff9900" 
+                stroke-width="0.5" 
+                opacity="0.5">
+              <animate attributeName="opacity"
+                       values="0.2;0.8;0.2"
+                       dur="2s"
+                       begin="1s"
+                       repeatCount="indefinite"/>
+          </line>
+          <line x1="20" y1="20" x2="13" y2="7.5" 
+                stroke="#ff9900" 
+                stroke-width="0.5" 
+                opacity="0.5">
+              <animate attributeName="opacity"
+                       values="0.2;0.8;0.2"
+                       dur="2s"
+                       begin="1.5s"
+                       repeatCount="indefinite"/>
+          </line>
+      </g>
+  </svg>
+   </div>
+
+   <p class="intro-text">
+     Money is deferred time and energy in abstracted form - the crystallization
+     of human potential into transferable form.
+   </p>
+
+   <h3>The Physics of Value</h3>
+   <div class="section-content">
+     <p>
+       Just as Einstein showed us that matter and energy are interchangeable through E=mc², money serves as the mechanism for converting human energy into a storable, transferable form. When you work, create, or provide value to society, you are quite literally transforming your life force - your time, creativity, and physical or mental effort - into an abstract token of that energy.
+     </p>
+     <div class="highlight-box">
+       When you spend eight hours writing code, teaching students, building furniture, or performing surgery, you are converting irreplaceable moments of your finite existence into something that can be stored and later exchanged for the energy of others.
+     </div>
+   </div>
+
+   <h3>The Crystallization of Human Potential</h3>
+   <div class="section-content">
+     <p>
+       What makes money truly remarkable is its ability to crystallize human potential into transferable form. Your knowledge, skills, creativity, and effort - all aspects of your human potential - can be transformed into a medium that others recognize and value.
+     </p>
+     <p>
+       This crystallization process serves several crucial functions:
+     </p>
+     <div class="highlight-box">
+       • Time Translation: Money allows you to store today's energy for future use<br>
+       • Value Portability: Your specialized skills in one domain can be converted into anything else you need<br>
+       • Energy Exchange: Money enables the complex web of human cooperation
+     </div>
+   </div>
+
+   <h3>The Profound Implications</h3>
+   <div class="section-content">
+     <p>
+       Understanding money as crystallized human energy has profound implications. True wealth creation is not about manipulating numbers but about channeling human energy into forms that benefit society. Every honest dollar represents real human effort and ingenuity.
+     </p>
+     <p>
+       If money represents human life energy, then its debasement is not just an economic issue but a moral one. Inflation doesn't just reduce purchasing power - it literally dissipates stored human effort.
+     </p>
+   </div>
+
+   <h3>The Elegant Simplicity</h3>
+   <div class="section-content">
+     <p>
+       The beauty of this understanding lies in its elegant simplicity. While modern financial systems have become incredibly complex, the core truth remains: money is simply deferred time and energy in abstracted form. This simplicity is not a limitation but rather a source of its power.
+     </p>
+     <div class="highlight-box">
+       Consider how this manifests in daily life:<br>
+       • The coffee you buy represents the barista's time and energy<br>
+       • Your salary represents your employer's assessment of your energy contribution<br>
+       • Your savings represent stored energy for future use<br>
+       • Investments represent energy deployed to create more energy
+     </div>
+   </div>
+
+   <h3>Looking Forward</h3>
+   <div class="section-content">
+     <p>
+       Bitcoin makes the energy-money relationship explicit through its proof-of-work system, requiring literal electrical energy to create new units, forming a direct bridge between physical energy and monetary value.
+     </p>
+     <p>
+       Understanding money as crystallized energy helps us evaluate any monetary system by asking: How well does it preserve human energy across time? How fairly does it facilitate energy exchange between parties? How resistant is it to the unauthorized dissipation of stored energy?
+     </p>
+   </div>
+ </section>
+ </div>
+ </div>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Satoshi Notebook | Bitcoin Is Decentralized</title>
+ <link rel="stylesheet" href="/css/shared.css">
+ <script src="/js/nav.js"></script>
+ <script src="/js/transitions.js"></script>
+</head>
+<body>
+ <div class="page-container">
+ <div class="page-content">
+ <section class="content-section">
+   <h2>Bitcoin Is Decentralized</h2>
+   <div class="concept-visualization">
+     <svg viewBox="0 0 100 100">
+       <!-- Central point (representing old systems) fading out -->
+       <circle cx="50" cy="50" r="3" 
+               fill="#ff9900" 
+               opacity="0.2"/>
+       
+       <!-- Distributed nodes -->
+       <g>
+         <!-- Outer ring of nodes -->
+         <g transform="translate(50,50)">
+           <circle cx="25" cy="0" r="2" fill="#ff9900">
+             <animate attributeName="r"
+                      values="1.5;2.5;1.5"
+                      dur="3s"
+                      repeatCount="indefinite"/>
+           </circle>
+           <circle cx="18" cy="18" r="2" fill="#ff9900">
+             <animate attributeName="r"
+                      values="1.5;2.5;1.5"
+                      dur="3s"
+                      begin="0.5s"
+                      repeatCount="indefinite"/>
+           </circle>
+           <circle cx="-18" cy="18" r="2" fill="#ff9900">
+             <animate attributeName="r"
+                      values="1.5;2.5;1.5"
+                      dur="3s"
+                      begin="1s"
+                      repeatCount="indefinite"/>
+           </circle>
+           <circle cx="-25" cy="0" r="2" fill="#ff9900">
+             <animate attributeName="r"
+                      values="1.5;2.5;1.5"
+                      dur="3s"
+                      begin="1.5s"
+                      repeatCount="indefinite"/>
+           </circle>
+           <circle cx="-18" cy="-18" r="2" fill="#ff9900">
+             <animate attributeName="r"
+                      values="1.5;2.5;1.5"
+                      dur="3s"
+                      begin="2s"
+                      repeatCount="indefinite"/>
+           </circle>
+           <circle cx="18" cy="-18" r="2" fill="#ff9900">
+             <animate attributeName="r"
+                      values="1.5;2.5;1.5"
+                      dur="3s"
+                      begin="2.5s"
+                      repeatCount="indefinite"/>
+           </circle>
+         </g>
+       </g>
+       
+       <!-- Network connections -->
+       <g transform="translate(50,50)">
+         <path d="M25,0 A25,25 0 0,1 18,18" 
+               fill="none" 
+               stroke="#ff9900" 
+               stroke-width="0.5">
+           <animate attributeName="stroke-dasharray"
+                    values="0 30; 30 30"
+                    dur="3s"
+                    repeatCount="indefinite"/>
+         </path>
+         <path d="M18,18 A25,25 0 0,1 -18,18" 
+               fill="none" 
+               stroke="#ff9900" 
+               stroke-width="0.5">
+           <animate attributeName="stroke-dasharray"
+                    values="0 40; 40 40"
+                    dur="3s"
+                    begin="0.5s"
+                    repeatCount="indefinite"/>
+         </path>
+         <path d="M-18,18 A25,25 0 0,1 -25,0" 
+               fill="none" 
+               stroke="#ff9900" 
+               stroke-width="0.5">
+           <animate attributeName="stroke-dasharray"
+                    values="0 30; 30 30"
+                    dur="3s"
+                    begin="1s"
+                    repeatCount="indefinite"/>
+         </path>
+         <path d="M-25,0 A25,25 0 0,1 -18,-18" 
+               fill="none" 
+               stroke="#ff9900" 
+               stroke-width="0.5">
+           <animate attributeName="stroke-dasharray"
+                    values="0 30; 30 30"
+                    dur="3s"
+                    begin="1.5s"
+                    repeatCount="indefinite"/>
+         </path>
+         <path d="M-18,-18 A25,25 0 0,1 18,-18" 
+               fill="none" 
+               stroke="#ff9900" 
+               stroke-width="0.5">
+           <animate attributeName="stroke-dasharray"
+                    values="0 40; 40 40"
+                    dur="3s"
+                    begin="2s"
+                    repeatCount="indefinite"/>
+         </path>
+         <path d="M18,-18 A25,25 0 0,1 25,0" 
+               fill="none" 
+               stroke="#ff9900" 
+               stroke-width="0.5">
+           <animate attributeName="stroke-dasharray"
+                    values="0 30; 30 30"
+                    dur="3s"
+                    begin="2.5s"
+                    repeatCount="indefinite"/>
+         </path>
+       </g>
+
+       <!-- Information pulse -->
+       <circle r="1" fill="#ff9900">
+         <animateMotion
+           path="M75,50 A25,25 0 1,1 75,50.1"
+           dur="6s"
+           repeatCount="indefinite"/>
+         <animate attributeName="opacity"
+                  values="0;1;0"
+                  dur="6s"
+                  repeatCount="indefinite"/>
+       </circle>
+     </svg>
+   </div>
+
+   <p class="intro-text">
+     bitcoin achieves true decentralization - not as a feature, but as its fundamental nature. through distributed consensus, shared validation, and elimination of central control, it creates the first truly unstoppable, uncensorable, and uncontrollable monetary network in human history.
+   </p>
+
+   <h3>The Death of Central Power</h3>
+   <div class="section-content">
+     <p>
+       traditional systems concentrate power in central authorities - banks, governments, corporations. bitcoin shatters this paradigm completely:
+     </p>
+     <div class="highlight-box">
+       no single entity can control the network, no authority can change the rules, no power can stop transactions, no center exists to be corrupted or captured. power is distributed across thousands of nodes, each enforcing the same immutable rules.
+     </div>
+   </div>
+
+   <h3>True Distribution</h3>
+   <div class="section-content">
+     <p>
+       bitcoin's decentralization exists at multiple levels:
+     </p>
+     <div class="highlight-box">
+       • nodes validate independently<br>
+       • miners compete openly<br>
+       • developers propose transparently<br>
+       • adoption spreads organically<br>
+       • consensus emerges naturally
+     </div>
+   </div>
+
+   <h3>Unstoppable Network</h3>
+   <div class="section-content">
+     <p>
+       decentralization creates fundamental resilience impossible in centralized systems:
+     </p>
+     <div class="highlight-box">
+       there is no server to shut down, no company to pressure, no CEO to arrest, no headquarters to raid. like the internet itself, bitcoin routes around damage, heals itself, and becomes stronger through each attack attempt.
+     </div>
+   </div>
+
+   <h3>Sovereignty Through Distribution</h3>
+   <div class="section-content">
+     <p>
+       decentralization enables unprecedented individual sovereignty:
+     </p>
+     <div class="highlight-box">
+       • no permission needed to transact<br>
+       • no authority can freeze funds<br>
+       • no middleman can block access<br>
+       • no central point can be compromised<br>
+       • no single entity can change the rules
+     </div>
+   </div>
+
+   <h3>Emergent Order</h3>
+   <div class="section-content">
+     <p>
+       bitcoin proves that order can emerge without central control:
+     </p>
+     <div class="highlight-box">
+       through game theory, cryptography, and economic incentives, bitcoin creates perfect consensus among thousands of independent actors - achieving what central authorities claimed only they could provide.
+     </div>
+   </div>
+
+   <h3>The Power of Distribution</h3>
+   <div class="section-content">
+     <p>
+       true decentralization changes everything. when no one controls the system, everyone can use it freely. when no center exists, no point of failure exists. when power is distributed, corruption becomes impossible.
+     </p>
+     <p>
+       this is not just a technical feature - it is a fundamental revolution in how humans coordinate and transact. bitcoin doesn't just operate in a decentralized way; it proves that decentralization is superior to central control, that order can emerge from freedom rather than force, that humanity can achieve consensus without authority.
+     </p>
+   </div>
+ </section>
+ </div>
+ </div>
+</body>
+</html>

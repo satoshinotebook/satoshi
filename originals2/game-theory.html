@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satoshi Notebook | The Bitcoin Game Theory</title>
+    <link rel="stylesheet" href="/css/shared.css">
+    <script src="/js/nav.js"></script>
+    <script src="/js/transitions.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="page-content">
+            <section class="content-section">
+                <h2>The Bitcoin Game Theory</h2>
+                <div class="concept-visualization">
+                    <svg viewBox="0 0 100 100">
+                        <!-- Central Bitcoin symbol -->
+                        <circle cx="50" cy="50" r="20" 
+                                fill="none" 
+                                stroke="#ff9900" 
+                                stroke-width="1.5">
+                            <animate attributeName="stroke-dasharray"
+                                     values="0 126; 126 126"
+                                     dur="3s"
+                                     repeatCount="indefinite"/>
+                        </circle>
+                        
+                        <!-- Competing entities circling the Bitcoin -->
+                        <g class="competitors">
+                            <!-- Countries -->
+                            <circle cx="50" cy="20" r="3" 
+                                    fill="none" 
+                                    stroke="#ff9900" 
+                                    stroke-width="1">
+                                <animateTransform
+                                    attributeName="transform"
+                                    type="rotate"
+                                    from="0 50 50"
+                                    to="360 50 50"
+                                    dur="10s"
+                                    repeatCount="indefinite"/>
+                            </circle>
+                            
+                            <!-- Institutions -->
+                            <circle cx="50" cy="25" r="2.5" 
+                                    fill="none" 
+                                    stroke="#ff9900" 
+                                    stroke-width="1">
+                                <animateTransform
+                                    attributeName="transform"
+                                    type="rotate"
+                                    from="72 50 50"
+                                    to="432 50 50"
+                                    dur="8s"
+                                    repeatCount="indefinite"/>
+                            </circle>
+                            
+                            <!-- Companies -->
+                            <circle cx="50" cy="30" r="2" 
+                                    fill="none" 
+                                    stroke="#ff9900" 
+                                    stroke-width="1">
+                                <animateTransform
+                                    attributeName="transform"
+                                    type="rotate"
+                                    from="144 50 50"
+                                    to="504 50 50"
+                                    dur="6s"
+                                    repeatCount="indefinite"/>
+                            </circle>
+                            
+                            <!-- Individual investors -->
+                            <circle cx="50" cy="35" r="1.5" 
+                                    fill="none" 
+                                    stroke="#ff9900" 
+                                    stroke-width="1">
+                                <animateTransform
+                                    attributeName="transform"
+                                    type="rotate"
+                                    from="216 50 50"
+                                    to="576 50 50"
+                                    dur="4s"
+                                    repeatCount="indefinite"/>
+                            </circle>
+                        </g>
+                        
+                        <!-- Converging arrows representing competition -->
+                        <g class="competition-arrows" opacity="0.5">
+                            <path d="M20,20 L40,40" 
+                                  stroke="#ff9900" 
+                                  stroke-width="0.5" 
+                                  marker-end="url(#arrowhead)">
+                                <animate attributeName="opacity"
+                                         values="0.2;1;0.2"
+                                         dur="4s"
+                                         repeatCount="indefinite"/>
+                            </path>
+                            <path d="M80,20 L60,40" 
+                                  stroke="#ff9900" 
+                                  stroke-width="0.5" 
+                                  marker-end="url(#arrowhead)">
+                                <animate attributeName="opacity"
+                                         values="0.2;1;0.2"
+                                         dur="4s"
+                                         begin="1s"
+                                         repeatCount="indefinite"/>
+                            </path>
+                            <path d="M20,80 L40,60" 
+                                  stroke="#ff9900" 
+                                  stroke-width="0.5" 
+                                  marker-end="url(#arrowhead)">
+                                <animate attributeName="opacity"
+                                         values="0.2;1;0.2"
+                                         dur="4s"
+                                         begin="2s"
+                                         repeatCount="indefinite"/>
+                            </path>
+                            <path d="M80,80 L60,60" 
+                                  stroke="#ff9900" 
+                                  stroke-width="0.5" 
+                                  marker-end="url(#arrowhead)">
+                                <animate attributeName="opacity"
+                                         values="0.2;1;0.2"
+                                         dur="4s"
+                                         begin="3s"
+                                         repeatCount="indefinite"/>
+                            </path>
+                        </g>
+                        
+                        <!-- Arrow marker definition -->
+                        <defs>
+                            <marker id="arrowhead" 
+                                    markerWidth="10" 
+                                    markerHeight="7" 
+                                    refX="9" 
+                                    refY="3.5" 
+                                    orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" 
+                                         fill="#ff9900"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+
+                <p class="intro-text">
+                    bitcoin's fixed supply of 21 million creates an unprecedented game theoretical scenario: a global race for an irrefutably scarce asset where the winners will be those who understand it first - not those who are most powerful or wealthy.
+                </p>
+
+                <h3>The Mathematics of Scarcity</h3>
+                <div class="section-content">
+                    <p>
+                        the stark reality of bitcoin's scarcity can be understood through simple mathematics: there are 68 million millionaires in the world, but only 21 million bitcoin will ever exist. the implications are profound:
+                    </p>
+                    <div class="highlight-box">
+                        even if every bitcoin were perfectly distributed among only millionaires, there isn't enough for each to own one whole bitcoin. and millionaires aren't the only ones competing - nations, corporations, and institutions are all entering the race.
+                    </div>
+                </div>
+
+                <h3>The Strategic Imperative</h3>
+                <div class="section-content">
+                    <p>
+                        we are witnessing the beginning of a new phenomenon: the emergence of strategic bitcoin reserves at every level of society:
+                    </p>
+                    <div class="highlight-box">
+                        • nations are quietly accumulating bitcoin as a hedge against monetary warfare<br>
+                        • states and cities are creating bitcoin treasury strategies<br>
+                        • corporations are adding bitcoin to their balance sheets<br>
+                        • institutions are building bitcoin exposure for their clients<br>
+                        • individuals are stacking sats before the masses understand
+                    </div>
+                </div>
+
+                <h3>The Game Theory</h3>
+                <div class="section-content">
+                    <p>
+                        the game theory of bitcoin accumulation creates a powerful first-mover advantage:
+                    </p>
+                    <div class="highlight-box">
+                        those who understand bitcoin's scarcity first and act on it will capture the greatest benefit. waiting to accumulate bitcoin until its value is obvious to everyone means competing with the entire world for a strictly limited supply.
+                    </div>
+                </div>
+
+                <h3>The Prisoner's Dilemma</h3>
+                <div class="section-content">
+                    <p>
+                        bitcoin creates a global prisoner's dilemma where every participant must decide:
+                    </p>
+                    <div class="highlight-box">
+                        • accumulate now while others hesitate<br>
+                        • wait and risk others moving first<br>
+                        • ignore bitcoin and hope it fails<br>
+                        • fight against bitcoin's adoption
+                    </div>
+                    <p>
+                        game theory suggests the optimal strategy is to accumulate early, as the cost of being wrong is limited to your investment, while the cost of being right but acting too late is missing a once-in-species opportunity.
+                    </p>
+                </div>
+
+                <h3>The Nash Equilibrium</h3>
+                <div class="section-content">
+                    <p>
+                        we are approaching a nash equilibrium where every participant's optimal strategy becomes obvious:
+                    </p>
+                    <div class="highlight-box">
+                        as more entities build strategic bitcoin reserves, the pressure on others to follow increases exponentially. those who wait risk being permanently priced out of meaningful participation in the bitcoin network.
+                    </div>
+                </div>
+
+                <h3>The Inevitable Outcome</h3>
+                <div class="section-content">
+                    <p>
+                        the game theory of bitcoin's scarcity leads to an inevitable conclusion: every entity capable of understanding bitcoin's value proposition faces increasing pressure to accumulate before others do.
+                    </p>
+                    <p>
+                        this is not just about profit - it's about securing access to the world's first truly scarce digital asset before such access becomes prohibitively expensive or impossible. in this game, understanding the rules early is the greatest advantage anyone can have.
+                    </p>
+                </div>
+            </section>
+            <div class="page-navigation">
+                <a href="#" class="nav-link prev-link">
+                    <svg viewBox="0 0 24 24" width="20" height="20" class="nav-arrow">
+                        <path d="M15 18l-6-6 6-6" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+                    </svg>
+                    <span class="nav-text">previous</span>
+                </a>
+                <a href="#" class="nav-link next-link">
+                    <span class="nav-text">next</span>
+                    <svg viewBox="0 0 24 24" width="20" height="20" class="nav-arrow">
+                        <path d="M9 6l6 6-6 6" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satoshi Notebook | Broken Money</title>
+    <link rel="stylesheet" href="/css/shared.css">
+    <script src="/js/nav.js"></script>
+    <script src="/js/transitions.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="page-content">
+            <section class="content-section">
+                <h2>Our Broken Money</h2>
+                <div class="concept-visualization">
+                    <svg viewBox="0 0 100 100">
+                        <!-- Background grid -->
+                        <defs>
+                            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#ff990022" stroke-width="0.5"/>
+                            </pattern>
+                        </defs>
+                        <rect width="100" height="100" fill="url(#grid)"/>
+
+                        <!-- Money symbols falling/diminishing -->
+                        <g class="falling-money">
+                            <text x="20" y="20" fill="#ff9900" font-size="5">$
+                                <animate attributeName="y" 
+                                        from="0" to="100"
+                                        dur="3s"
+                                        repeatCount="indefinite"/>
+                                <animate attributeName="opacity"
+                                        from="1" to="0"
+                                        dur="3s"
+                                        repeatCount="indefinite"/>
+                            </text>
+                            <text x="40" y="40" fill="#ff9900" font-size="5">$
+                                <animate attributeName="y"
+                                        from="0" to="100"
+                                        dur="3s"
+                                        begin="1s"
+                                        repeatCount="indefinite"/>
+                                <animate attributeName="opacity"
+                                        from="1" to="0"
+                                        dur="3s"
+                                        begin="1s"
+                                        repeatCount="indefinite"/>
+                            </text>
+                            <text x="60" y="30" fill="#ff9900" font-size="5">$
+                                <animate attributeName="y"
+                                        from="0" to="100"
+                                        dur="3s"
+                                        begin="2s"
+                                        repeatCount="indefinite"/>
+                                <animate attributeName="opacity"
+                                        from="1" to="0"
+                                        dur="3s"
+                                        begin="2s"
+                                        repeatCount="indefinite"/>
+                            </text>
+                        </g>
+
+                        <!-- Rising assets -->
+                        <g class="rising-assets">
+                            <!-- House -->
+                            <path d="M 20,70 L 30,60 L 40,70 L 40,80 L 20,80 Z" fill="none" stroke="#ff9900" stroke-width="1">
+                                <animate attributeName="transform"
+                                        attributeType="XML"
+                                        type="translate"
+                                        from="0 0"
+                                        to="0 -40"
+                                        dur="4s"
+                                        repeatCount="indefinite"/>
+                            </path>
+                            
+                            <!-- Stock chart -->
+                            <path d="M 60,75 L 65,70 L 70,72 L 75,65 L 80,60" fill="none" stroke="#ff9900" stroke-width="1">
+                                <animate attributeName="transform"
+                                        attributeType="XML"
+                                        type="translate"
+                                        from="0 0"
+                                        to="0 -40"
+                                        dur="4s"
+                                        repeatCount="indefinite"/>
+                            </path>
+                        </g>
+
+                        <!-- Person running in place -->
+                        <g class="running-person">
+                            <circle cx="50" cy="80" r="2" fill="#ff9900">
+                                <animate attributeName="cy"
+                                        values="80;78;80"
+                                        dur="0.5s"
+                                        repeatCount="indefinite"/>
+                            </circle>
+                            <!-- Legs -->
+                            <line x1="50" y1="82" x2="48" y2="85" stroke="#ff9900" stroke-width="1">
+                                <animate attributeName="x2"
+                                        values="48;52;48"
+                                        dur="0.5s"
+                                        repeatCount="indefinite"/>
+                            </line>
+                            <line x1="50" y1="82" x2="52" y2="85" stroke="#ff9900" stroke-width="1">
+                                <animate attributeName="x2"
+                                        values="52;48;52"
+                                        dur="0.5s"
+                                        repeatCount="indefinite"/>
+                            </line>
+                            <!-- Arms -->
+                            <line x1="50" y1="80" x2="47" y2="82" stroke="#ff9900" stroke-width="1">
+                                <animate attributeName="x2"
+                                        values="47;53;47"
+                                        dur="0.5s"
+                                        repeatCount="indefinite"/>
+                            </line>
+                            <line x1="50" y1="80" x2="53" y2="82" stroke="#ff9900" stroke-width="1">
+                                <animate attributeName="x2"
+                                        values="53;47;53"
+                                        dur="0.5s"
+                                        repeatCount="indefinite"/>
+                            </line>
+                        </g>
+                    </svg>
+                </div>
+
+                <p class="intro-text">
+                    Our current monetary system forces us to run exponentially faster just to stay in place, while real wealth drifts ever further out of reach.
+                </p>
+
+                <h3>The K-Shaped Reality</h3>
+                <div class="section-content">
+                    <p>
+                        We live in a world where Wall Street gets 30% richer doing nothing, while Main Street must work 30% harder just to maintain their position. This isn't a bug in the system - it's a feature. The current monetary paradigm systematically transfers wealth from the many to the few through a process most don't even understand.
+                    </p>
+                    <div class="highlight-box">
+                        A dentist generating 5% more revenue each year for a decade still falls behind when monetary inflation runs at 20% annually. This is the road to serfdom: working exponentially harder for a currency growing exponentially weaker.
+                    </div>
+                </div>
+
+                <h3>The Impossible Game</h3>
+                <div class="section-content">
+                    <p>
+                        Consider these real-world examples from our current system:
+                    </p>
+                    <div class="highlight-box">
+                        • A company generates $50 million in profit but loses $100 million in cash value to inflation<br>
+                        • A million dollars in savings buys 34% less stock than it did just one year ago<br>
+                        • Housing prices rise 27% while wages remain stagnant<br>
+                        • Retirement requires 20x more capital than it did a generation ago
+                    </div>
+                    <p>
+                        This isn't just unfair - it's mathematically impossible for the majority to win. The system forces everyone to become a speculator, gambling in increasingly risky assets just to preserve their purchasing power.
+                    </p>
+                </div>
+
+                <h3>The Forced Gamble</h3>
+                <div class="section-content">
+                    <p>
+                        Today's system forces even conservative savers into becoming unwilling speculators. An 83-year-old retiree must now guess whether Exxon is better than British Petroleum, or if Apple will outperform Google, just to avoid having their life savings evaporate.
+                    </p>
+                    <p>
+                        The choices are stark:
+                    </p>
+                    <div class="highlight-box">
+                        • Keep money in savings at 0.1% interest and lose 20%+ annually to inflation<br>
+                        • Gamble in the stock market and hope you pick winners<br>
+                        • Speculate in real estate and compete with institutional investors<br>
+                        • Watch your purchasing power steadily evaporate
+                    </div>
+                </div>
+
+                <h3>The Global Scale</h3>
+                <div class="section-content">
+                    <p>
+                        This isn't just an American problem. Globally, we see:
+                    </p>
+                    <div class="highlight-box">
+                        • 66 countries have already lost their currency privileges<br>
+                        • Argentina's peso has lost 45-85% of its value in a year<br>
+                        • Venezuela's currency has collapsed 98% in a year<br>
+                        • Lebanon's currency has lost 90% in a year
+                    </div>
+                    <p>
+                        The developing world serves as a preview of what happens when monetary systems fully break down. Without reliable money, entire societies can collapse into chaos.
+                    </p>
+                </div>
+
+                <h3>The Foundation Is Crumbling</h3>
+                <div class="section-content">
+                    <p>
+                        Our current monetary system has turned the very foundation of civilization - sound money - into a game of musical chairs. When the music stops, those without access to hard assets or insider knowledge find themselves without a seat.
+                    </p>
+                    <p>
+                        We need a new foundation. We need money that:
+                    </p>
+                    <div class="highlight-box">
+                        • Cannot be devalued by authorities<br>
+                        • Preserves human time and energy<br>
+                        • Rewards honest work instead of speculation<br>
+                        • Provides true property rights to all
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

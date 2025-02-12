@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satoshi Notebook | Bitcoin Per Person</title>
+    <link rel="stylesheet" href="/css/shared.css">
+    <script src="/js/nav.js"></script>
+    <script src="/js/transitions.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="page-content">
+            <section class="content-section">
+                <h2>Bitcoin Per Person</h2>
+                <div class="concept-visualization">
+                    <svg viewBox="0 0 100 100">
+                        <!-- Population representation -->
+                        <g>
+                            <!-- World population dots -->
+                            <g opacity="0.3">
+                                <circle cx="20" cy="20" r="1" fill="#ff9900"/>
+                                <circle cx="30" cy="25" r="1" fill="#ff9900"/>
+                                <circle cx="40" cy="30" r="1" fill="#ff9900"/>
+                                <circle cx="50" cy="35" r="1" fill="#ff9900"/>
+                                <circle cx="60" cy="40" r="1" fill="#ff9900"/>
+                                <circle cx="70" cy="45" r="1" fill="#ff9900"/>
+                            </g>
+                            
+                            <!-- Bitcoin distribution wave -->
+                            <path d="M10,50 Q50,40 90,50" 
+                                  fill="none" 
+                                  stroke="#ff9900" 
+                                  stroke-width="2">
+                                <animate attributeName="d"
+                                        values="M10,50 Q50,40 90,50;
+                                                M10,50 Q50,60 90,50;
+                                                M10,50 Q50,40 90,50"
+                                        dur="4s"
+                                        repeatCount="indefinite"/>
+                            </path>
+                            
+                            <!-- Distribution points -->
+                            <circle cx="30" cy="50" r="2" fill="#ff9900">
+                                <animate attributeName="r"
+                                        values="1.5;2.5;1.5"
+                                        dur="2s"
+                                        repeatCount="indefinite"/>
+                            </circle>
+                            
+                            <circle cx="50" cy="50" r="2" fill="#ff9900">
+                                <animate attributeName="r"
+                                        values="1.5;2.5;1.5"
+                                        dur="2s"
+                                        begin="0.7s"
+                                        repeatCount="indefinite"/>
+                            </circle>
+                            
+                            <circle cx="70" cy="50" r="2" fill="#ff9900">
+                                <animate attributeName="r"
+                                        values="1.5;2.5;1.5"
+                                        dur="2s"
+                                        begin="1.4s"
+                                        repeatCount="indefinite"/>
+                            </circle>
+                        </g>
+                    </svg>
+                </div>
+
+                <p class="intro-text">
+                    With only 0.00244744 bitcoin available per person globally, we are witnessing an unprecedented scarcity in the evolution of money. This mathematical reality creates powerful implications for future value distribution.
+                </p>
+
+                <h3>Current State of Distribution</h3>
+                <div class="section-content">
+                    <p>
+                        The numbers reveal stark scarcity:
+                    </p>
+                    <div class="highlight-box">
+                        • Total Bitcoin: 19,822,103.125<br>
+                        • World Population: 8,099,103,174<br>
+                        • Bitcoin Per Person: 0.00244744<br>
+                        • Current Value Per Person: $234.95<br>
+                        • Percentage of World Owning Bitcoin: < 1%
+                    </div>
+                </div>
+
+                <h3>Bitcoin Distribution Table</h3>
+                <div class="section-content">
+                    <table style="width:100%; border-collapse: collapse; margin: 20px 0; color: #A0AEC0;">
+                        <tr style="border-bottom: 1px solid #ff9900;">
+                            <th style="text-align: left; padding: 10px; color: #A0AEC0;">Balance Range (BTC)</th>
+                            <th style="text-align: right; padding: 10px; color: #A0AEC0;">Addresses</th>
+                            <th style="text-align: right; padding: 10px; color: #A0AEC0;">% Addresses (Total)</th>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,153,0,0.2);">
+                            <td>100,000 - 1,000,000</td>
+                            <td style="text-align: right;">4</td>
+                            <td style="text-align: right;">0% (0%)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,153,0,0.2);">
+                            <td>10,000 - 100,000</td>
+                            <td style="text-align: right;">91</td>
+                            <td style="text-align: right;">0% (0%)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,153,0,0.2);">
+                            <td>1,000 - 10,000</td>
+                            <td style="text-align: right;">1,942</td>
+                            <td style="text-align: right;">0% (0%)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,153,0,0.2);">
+                            <td>100 - 1,000</td>
+                            <td style="text-align: right;">15,956</td>
+                            <td style="text-align: right;">0.03% (0.03%)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,153,0,0.2);">
+                            <td>10 - 100</td>
+                            <td style="text-align: right;">134,493</td>
+                            <td style="text-align: right;">0.25% (0.28%)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,153,0,0.2);">
+                            <td>1 - 10</td>
+                            <td style="text-align: right;">839,550</td>
+                            <td style="text-align: right;">1.54% (1.82%)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,153,0,0.2);">
+                            <td>0.1 - 1</td>
+                            <td style="text-align: right;">3,471,684</td>
+                            <td style="text-align: right;">6.37% (8.18%)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,153,0,0.2);">
+                            <td>0.01 - 0.1</td>
+                            <td style="text-align: right;">7,890,706</td>
+                            <td style="text-align: right;">14.47% (22.65%)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,153,0,0.2);">
+                            <td>0.001 - 0.01</td>
+                            <td style="text-align: right;">11,494,691</td>
+                            <td style="text-align: right;">21.08% (43.73%)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,153,0,0.2);">
+                            <td>0.0001 - 0.001</td>
+                            <td style="text-align: right;">13,200,265</td>
+                            <td style="text-align: right;">24.2% (67.93%)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,153,0,0.2);">
+                            <td>0.00001 - 0.0001</td>
+                            <td style="text-align: right;">11,286,984</td>
+                            <td style="text-align: right;">20.69% (88.63%)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,153,0,0.2);">
+                            <td>0 - 0.00001</td>
+                            <td style="text-align: right;">6,203,697</td>
+                            <td style="text-align: right;">11.37% (100%)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>The Implication of Scarcity</h3>
+                <div class="section-content">
+                    <p>
+                        Current distribution reveals future potential:
+                    </p>
+                    <div class="highlight-box">
+                        • Only 2,037 addresses hold > 1,000 BTC<br>
+                        • Less than 150,000 addresses hold > 10 BTC<br>
+                        • Majority of holders have < 0.1 BTC<br>
+                        • Institutional adoption barely begun<br>
+                        • Sovereign wealth funds not yet positioned
+                    </div>
+                </div>
+
+                <h3>The Self-Fulfilling Prophecy</h3>
+                <div class="section-content">
+                    <p>
+                        As Satoshi noted:
+                    </p>
+                    <div class="highlight-box">
+                        "It might make sense just to get some in case it catches on. If enough people think the same way, that becomes a self fulfilling prophecy."
+                    </div>
+                </div>
+
+                <h3>Future Distribution Dynamics</h3>
+                <div class="section-content">
+                    <p>
+                        Mathematical realities shape future scenarios:
+                    </p>
+                    <div class="highlight-box">
+                        • Global adoption impossible without higher prices<br>
+                        • Institutional demand will compress available supply<br>
+                        • Sovereign accumulation will accelerate scarcity<br>
+                        • Lost coins increase effective scarcity<br>
+                        • Early distribution can never be replicated
+                    </div>
+                </div>
+
+                <h3>The Mathematical Reality</h3>
+                <div class="section-content">
+                    <p>
+                        These numbers aren't just statistics - they are mathematical proof of unprecedented scarcity. With less than 0.003 bitcoin available per person globally, and far less when accounting for institutional and sovereign demand, we are witnessing the emergence of the scarcest asset in human history.
+                    </p>
+                    <p>
+                        This distribution pattern, combined with Satoshi's early observation about self-fulfilling prophecies, suggests we are in the early stages of a historic redistribution of global wealth based on who recognizes this mathematical reality first.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
