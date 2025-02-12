@@ -107,23 +107,15 @@ function initializeSidebar() {
 }
 
 // Page Navigation initialization
-// Updated Page Navigation initialization
 function initializePageNavigation() {
     // Get all nav items in order
     const navItems = Array.from(document.querySelectorAll('.dot-nav-item'));
     
     // Find current page index
     const currentPath = window.location.pathname;
-    // Normalize the current path (remove trailing slash and .html)
-    const normalizedCurrentPath = currentPath
-        .replace(/\.html$/, '')
-        .replace(/\/$/, '');
-    
     const currentIndex = navItems.findIndex(item => {
-        const itemPath = item.getAttribute('href')
-            .replace(/\.html$/, '')
-            .replace(/\/$/, '');
-        return itemPath === normalizedCurrentPath;
+        const itemPath = item.getAttribute('href');
+        return itemPath === currentPath || itemPath === currentPath + '.html';
     });
 
     const prevLink = document.querySelector('.prev-link');
@@ -140,12 +132,11 @@ function initializePageNavigation() {
         if (currentIndex > 0) {
             const prevItem = navItems[currentIndex - 1];
             const prevLabel = prevItem.getAttribute('data-label');
-            const prevHref = prevItem.getAttribute('href').replace(/\.html$/, '');
-            
-            newPrevLink.href = prevHref;
+            newPrevLink.href = prevItem.getAttribute('href');
             newPrevLink.title = "Previous: " + prevLabel;
             newPrevLink.classList.remove('disabled');
             
+            // Update to use stacked layout with right alignment
             const prevText = newPrevLink.querySelector('.nav-text');
             prevText.classList.add('text-right');
             prevText.innerHTML = `
@@ -154,23 +145,21 @@ function initializePageNavigation() {
             
             newPrevLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                handleNavigation(prevHref);
+                handleNavigation(prevItem.getAttribute('href'));
             });
         } else {
             newPrevLink.classList.add('disabled');
-            newPrevLink.href = '#';
         }
 
         // Set next link
         if (currentIndex < navItems.length - 1) {
             const nextItem = navItems[currentIndex + 1];
             const nextLabel = nextItem.getAttribute('data-label');
-            const nextHref = nextItem.getAttribute('href').replace(/\.html$/, '');
-            
-            newNextLink.href = nextHref;
+            newNextLink.href = nextItem.getAttribute('href');
             newNextLink.title = "Next: " + nextLabel;
             newNextLink.classList.remove('disabled');
             
+            // Update to use stacked layout with left alignment
             const nextText = newNextLink.querySelector('.nav-text');
             nextText.classList.add('text-left');
             nextText.innerHTML = `
@@ -179,11 +168,10 @@ function initializePageNavigation() {
             
             newNextLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                handleNavigation(nextHref);
+                handleNavigation(nextItem.getAttribute('href'));
             });
         } else {
             newNextLink.classList.add('disabled');
-            newNextLink.href = '#';
         }
     }
 }
@@ -426,20 +414,18 @@ window.addEventListener('popstate', () => {
 });
 
 function setActiveNavItem() {
+    console.log('Setting active nav item...');
     const currentPath = window.location.pathname;
-    // Normalize the current path
-    const normalizedCurrentPath = currentPath
-        .replace(/\.html$/, '')
-        .replace(/\/$/, '')
-        .replace(/^\/content\//, '/');
+    const currentPage = currentPath.split('/').pop();
+    console.log('Current page:', currentPage);
 
     document.querySelectorAll('.dot-nav-item').forEach(item => {
-        const itemPath = item.getAttribute('href')
-            .replace(/\.html$/, '')
-            .replace(/\/$/, '')
-            .replace(/^\/content\//, '/');
+        const itemPath = item.getAttribute('href');
+        const itemPage = itemPath.split('/').pop();
+        console.log('Checking item:', itemPage);
 
-        if (normalizedCurrentPath === itemPath) {
+        if (currentPage === itemPage) {
+            console.log('Match found! Setting active:', itemPage);
             item.classList.add('active');
             
             // Expand parent category
