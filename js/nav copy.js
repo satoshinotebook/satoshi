@@ -1,11 +1,3 @@
-// Clean URLs on page load
-if (window.location.pathname.includes('/content/')) {
-    const cleanPath = window.location.pathname
-        .replace('/content/', '/')
-        .replace('.html', '');
-    window.history.replaceState({}, '', cleanPath);
-}
-
 // Main navigation loading function
 async function loadNavigation() {
     try {
@@ -346,14 +338,6 @@ async function handleNavigation(href) {
             // Update URL without reload
             window.history.pushState({}, '', href);
             document.title = doc.title;
-
-            // Clean up URL if it contains /content/
-            if (window.location.pathname.includes('/content/')) {
-                const cleanPath = window.location.pathname
-                    .replace('/content/', '/')
-                    .replace('.html', '');
-                window.history.replaceState({}, '', cleanPath);
-            }
             
             // Update content
             const currentContent = document.querySelector('.page-content');
