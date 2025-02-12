@@ -1,24 +1,19 @@
 {
     "version": 1,
-    "include": [
-      "/*"
-    ],
-    "exclude": [],
-    "rules": [
+    "routes": [
       {
-        "type": "rewrite",
-        "source": "/reality",
-        "destination": "/content/reality.html"
+        "src": "/content/(.*)\\.html",
+        "dst": "/$1"
       },
       {
-        "type": "rewrite",
-        "source": "/scarcity",
-        "destination": "/content/scarcity.html"
+        "src": "/(.*)",
+        "dst": "/content/$1.html",
+        "check": true
       },
       {
-        "type": "rewrite",
-        "source": "/content/*",
-        "destination": "/:splat"
+        "src": "/(.*)",
+        "dst": "/index.html",
+        "status": 200
       }
     ]
   }
