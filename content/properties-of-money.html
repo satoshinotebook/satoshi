@@ -18,38 +18,138 @@
                     <!-- Content will be injected here -->
                     <h2>Properties of Money</h2>
 <div class="concept-visualization">
-<svg viewbox="0 0 100 100">
-<!-- Core hexagon representing money -->
-<path d="M50 20 L70 35 L70 65 L50 80 L30 65 L30 35 Z" fill="none" stroke="#ff9900" stroke-width="2">
-<animate attributename="stroke-dasharray" dur="3s" repeatcount="indefinite" values="0 300; 300 300"></animate>
-</path>
-<!-- Property nodes -->
-<g>
-<!-- Durability -->
-<circle cx="50" cy="25" fill="none" r="3" stroke="#ff9900" stroke-width="1">
-<animate attributename="r" dur="2s" repeatcount="indefinite" values="2;3;2"></animate>
-</circle>
-<!-- Divisibility -->
-<circle cx="65" cy="40" fill="none" r="3" stroke="#ff9900" stroke-width="1">
-<animate attributename="r" begin="0.4s" dur="2s" repeatcount="indefinite" values="2;3;2"></animate>
-</circle>
-<!-- Portability -->
-<circle cx="65" cy="60" fill="none" r="3" stroke="#ff9900" stroke-width="1">
-<animate attributename="r" begin="0.8s" dur="2s" repeatcount="indefinite" values="2;3;2"></animate>
-</circle>
-<!-- Scarcity -->
-<circle cx="50" cy="75" fill="none" r="3" stroke="#ff9900" stroke-width="1">
-<animate attributename="r" begin="1.2s" dur="2s" repeatcount="indefinite" values="2;3;2"></animate>
-</circle>
-<!-- Fungibility -->
-<circle cx="35" cy="60" fill="none" r="3" stroke="#ff9900" stroke-width="1">
-<animate attributename="r" begin="1.6s" dur="2s" repeatcount="indefinite" values="2;3;2"></animate>
-</circle>
-<!-- Verifiability -->
-<circle cx="35" cy="40" fill="none" r="3" stroke="#ff9900" stroke-width="1">
-<animate attributename="r" begin="2s" dur="2s" repeatcount="indefinite" values="2;3;2"></animate>
-</circle>
-</g>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+    <defs>
+        <radialGradient id="nucleusGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ff9900" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#ff9900" stop-opacity="0"/>
+        </radialGradient>
+        
+        <filter id="particleGlow">
+            <feGaussianBlur stdDeviation="1.5" result="glow"/>
+            <feMerge>
+                <feMergeNode in="glow"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Center group -->
+    <g transform="translate(200, 200)">
+        <!-- Nucleus glow -->
+        <circle r="30" fill="url(#nucleusGlow)">
+            <animate attributeName="opacity"
+                    values="0.8;1;0.8"
+                    dur="4s"
+                    repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Core nucleus -->
+        <circle r="15" fill="#ff9900" opacity="0.8" filter="url(#particleGlow)">
+            <animate attributeName="r"
+                    values="15;17;15"
+                    dur="3s"
+                    repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Orbital system -->
+        <g>
+            <animateTransform attributeName="transform"
+                             type="rotate"
+                             from="0 0 0"
+                             to="360 0 0"
+                             dur="30s"
+                             repeatCount="indefinite"/>
+
+            <!-- Orbital paths -->
+            <g opacity="0.2">
+                <ellipse rx="120" ry="60" fill="none" stroke="#ff9900" stroke-width="0.5"/>
+                <ellipse rx="60" ry="120" fill="none" stroke="#ff9900" stroke-width="0.5"/>
+                <ellipse rx="100" ry="100" fill="none" stroke="#ff9900" stroke-width="0.5"/>
+            </g>
+
+            <!-- Orbital particles -->
+            <g filter="url(#particleGlow)">
+                <!-- Particle 1 -->
+                <g>
+                    <circle r="8" fill="#ff9900" opacity="0.8">
+                        <animateMotion dur="6s"
+                                     path="M0,60 A120,60 0 1,1 0,-60 A120,60 0 1,1 0,60"
+                                     repeatCount="indefinite"/>
+                    </circle>
+                </g>
+
+                <!-- Particle 2 -->
+                <g>
+                    <circle r="8" fill="#ff9900" opacity="0.8">
+                        <animateMotion dur="6s"
+                                     path="M60,0 A60,120 0 1,1 -60,0 A60,120 0 1,1 60,0"
+                                     repeatCount="indefinite"/>
+                    </circle>
+                </g>
+
+                <!-- Particle 3 -->
+                <g>
+                    <circle r="8" fill="#ff9900" opacity="0.8">
+                        <animateMotion dur="8s"
+                                     path="M70,70 A100,100 0 1,1 -70,-70 A100,100 0 1,1 70,70"
+                                     repeatCount="indefinite"/>
+                    </circle>
+                </g>
+
+                <!-- Particle 4 -->
+                <g>
+                    <circle r="8" fill="#ff9900" opacity="0.8">
+                        <animateMotion dur="8s"
+                                     path="M-70,70 A100,100 0 1,0 70,-70 A100,100 0 1,0 -70,70"
+                                     repeatCount="indefinite"/>
+                    </circle>
+                </g>
+
+                <!-- Particle 5 -->
+                <g>
+                    <circle r="8" fill="#ff9900" opacity="0.8">
+                        <animateMotion dur="7s"
+                                     path="M0,-60 A120,60 0 1,0 0,60 A120,60 0 1,0 0,-60"
+                                     repeatCount="indefinite"/>
+                    </circle>
+                </g>
+
+                <!-- Particle 6 -->
+                <g>
+                    <circle r="8" fill="#ff9900" opacity="0.8">
+                        <animateMotion dur="7s"
+                                     path="M-60,0 A60,120 0 1,0 60,0 A60,120 0 1,0 -60,0"
+                                     repeatCount="indefinite"/>
+                    </circle>
+                </g>
+            </g>
+
+            <!-- Energy bonds -->
+            <g opacity="0.3">
+                <path d="M-60,0 C-30,-30 30,-30 60,0" fill="none" stroke="#ff9900" stroke-width="1">
+                    <animate attributeName="opacity"
+                            values="0.3;0.6;0.3"
+                            dur="3s"
+                            repeatCount="indefinite"/>
+                </path>
+                <path d="M0,-60 C-30,-30 30,-30 0,60" fill="none" stroke="#ff9900" stroke-width="1">
+                    <animate attributeName="opacity"
+                            values="0.3;0.6;0.3"
+                            dur="3s"
+                            begin="1s"
+                            repeatCount="indefinite"/>
+                </path>
+                <path d="M60,0 C30,30 -30,30 -60,0" fill="none" stroke="#ff9900" stroke-width="1">
+                    <animate attributeName="opacity"
+                            values="0.3;0.6;0.3"
+                            dur="3s"
+                            begin="2s"
+                            repeatCount="indefinite"/>
+                </path>
+            </g>
+        </g>
+    </g>
 </svg>
 </div>
 <p class="intro-text">
