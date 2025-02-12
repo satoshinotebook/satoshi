@@ -1,27 +1,21 @@
 export async function onRequest({ request, next }) {
     const url = new URL(request.url);
     
-    // Define mappings both ways
-    const cleanToContent = {
+    // Simple mapping of clean URLs to content
+    const routes = {
       '/reality': '/content/reality.html'
     };
-    
-    const contentToClean = {
-      '/content/reality': '/reality'
-    };
   
-    // If we hit a content URL, redirect to clean URL
-    if (contentToClean[url.pathname]) {
-      return Response.redirect(`${url.origin}${contentToClean[url.pathname]}`, 301);
+    // If this is a clean URL we want to handle
+    if (routes[url.pathname]) {
+      // Create a new request with the content path
+      const newRequest = new Request(request);
+      newRequest.url = new URL(routes[url.pathname], request.url).toString();
+      
+      // Return the response from the content path
+      return next(newRequest);
     }
   
-    // If we hit a clean URL, do internal rewrite
-    if (cleanToContent[url.pathname]) {
-      const newUrl = new URL(request.url);
-      newUrl.pathname = cleanToContent[url.pathname];
-      return next(new Request(newUrl, request));
-    }
-  
-    // For all other requests, pass through
+    // For all other URLs, pass through unchanged
     return next(request);
   }
