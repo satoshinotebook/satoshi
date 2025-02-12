@@ -18,34 +18,184 @@
                     <!-- Content will be injected here -->
                     <h2>Trust Is A Problem</h2>
 <div class="concept-visualization">
-<svg viewbox="0 0 100 100">
-<!-- Central authority tower -->
-<g class="authority-tower">
-<rect fill="none" height="40" stroke="#ff9900" stroke-width="1" width="10" x="45" y="20">
-<animate attributename="stroke-dasharray" dur="3s" repeatcount="indefinite" values="0 100; 100 100"></animate>
-</rect>
-<!-- Crown symbol -->
-<path d="M 43,20 L 47,15 L 50,20 L 53,15 L 57,20" fill="none" stroke="#ff9900" stroke-width="1">
-<animate attributename="stroke-dasharray" dur="3s" repeatcount="indefinite" values="0 20; 20 20"></animate>
-</path>
-</g>
-<!-- Orbiting coins that fade/debase -->
-<g class="orbiting-coins">
-<circle cx="50" cy="50" fill="none" opacity="0.3" r="25" stroke="#ff9900" stroke-width="0.5"></circle>
-<circle class="coin" fill="#ff9900" r="2">
-<animatemotion dur="4s" path="M 50,25 A 25,25 0 1,1 50,75 A 25,25 0 1,1 50,25" repeatcount="indefinite"></animatemotion>
-<animate attributename="fill-opacity" dur="4s" repeatcount="indefinite" values="1;0.2;1"></animate>
-</circle>
-<circle class="coin" fill="#ff9900" r="2">
-<animatemotion begin="1.3s" dur="4s" path="M 50,25 A 25,25 0 1,1 50,75 A 25,25 0 1,1 50,25" repeatcount="indefinite"></animatemotion>
-<animate attributename="fill-opacity" begin="1.3s" dur="4s" repeatcount="indefinite" values="1;0.2;1"></animate>
-</circle>
-<circle class="coin" fill="#ff9900" r="2">
-<animatemotion begin="2.6s" dur="4s" path="M 50,25 A 25,25 0 1,1 50,75 A 25,25 0 1,1 50,25" repeatcount="indefinite"></animatemotion>
-<animate attributename="fill-opacity" begin="2.6s" dur="4s" repeatcount="indefinite" values="1;0.2;1"></animate>
-</circle>
-</g>
-</svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+        <defs>
+            <linearGradient id="authorityGlow" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stop-color="#ff9900" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#ff9900" stop-opacity="0.1"/>
+            </linearGradient>
+            
+            <filter id="glow">
+                <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+                <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+    
+        <!-- Center Group -->
+        <g transform="translate(200, 200)">
+            <!-- Authority Tower -->
+            <g>
+                <!-- Base -->
+                <path d="M-30,80 L30,80 L20,0 L-20,0 Z" 
+                      fill="none" 
+                      stroke="#ff9900" 
+                      stroke-width="1"
+                      opacity="0.8">
+                    <animate attributeName="opacity"
+                             values="0.8;0.6;0.8"
+                             dur="4s"
+                             repeatCount="indefinite"/>
+                </path>
+    
+                <!-- Tower Body -->
+                <path d="M-20,0 L20,0 L15,-100 L-15,-100 Z" 
+                      fill="none" 
+                      stroke="#ff9900" 
+                      stroke-width="1"
+                      opacity="0.6">
+                    <animate attributeName="opacity"
+                             values="0.6;0.4;0.6"
+                             dur="4s"
+                             repeatCount="indefinite"/>
+                </path>
+    
+                <!-- Crown -->
+                <path d="M-15,-100 L-10,-120 L0,-105 L10,-120 L15,-100" 
+                      fill="none" 
+                      stroke="#ff9900" 
+                      stroke-width="1"
+                      opacity="0.8">
+                    <animate attributeName="opacity"
+                             values="0.8;1;0.8"
+                             dur="2s"
+                             repeatCount="indefinite"/>
+                </path>
+            </g>
+    
+            <!-- Trust Chains (that break) -->
+            <g>
+                <!-- Left Chain -->
+                <g>
+                    <path d="M-60,40 Q-40,20 -20,0" 
+                          stroke="#ff9900" 
+                          stroke-width="1" 
+                          fill="none"
+                          stroke-dasharray="4,2"
+                          opacity="0.6">
+                        <animate attributeName="opacity"
+                                 values="0.6;0.2;0.6"
+                                 dur="3s"
+                                 repeatCount="indefinite"/>
+                    </path>
+                    <circle cx="-60" cy="40" r="4" 
+                            fill="none" 
+                            stroke="#ff9900" 
+                            stroke-width="1">
+                        <animate attributeName="r"
+                                 values="4;5;4"
+                                 dur="3s"
+                                 repeatCount="indefinite"/>
+                    </circle>
+                </g>
+    
+                <!-- Right Chain -->
+                <g>
+                    <path d="M60,40 Q40,20 20,0" 
+                          stroke="#ff9900" 
+                          stroke-width="1" 
+                          fill="none"
+                          stroke-dasharray="4,2"
+                          opacity="0.6">
+                        <animate attributeName="opacity"
+                                 values="0.6;0.2;0.6"
+                                 dur="3s"
+                                 begin="1.5s"
+                                 repeatCount="indefinite"/>
+                    </path>
+                    <circle cx="60" cy="40" r="4" 
+                            fill="none" 
+                            stroke="#ff9900" 
+                            stroke-width="1">
+                        <animate attributeName="r"
+                                 values="4;5;4"
+                                 dur="3s"
+                                 begin="1.5s"
+                                 repeatCount="indefinite"/>
+                    </circle>
+                </g>
+            </g>
+    
+            <!-- Orbiting Value Particles -->
+            <g>
+                <!-- Inner Orbit -->
+                <circle r="80" fill="none" stroke="#ff9900" stroke-width="0.5" opacity="0.2"/>
+                <g>
+                    <circle r="3" fill="#ff9900" opacity="0.8">
+                        <animateMotion dur="8s"
+                                     path="M0,-80 A80,80 0 1,1 0,80 A80,80 0 1,1 0,-80"
+                                     repeatCount="indefinite"/>
+                        <animate attributeName="opacity"
+                                 values="0.8;0.2;0.8"
+                                 dur="8s"
+                                 repeatCount="indefinite"/>
+                    </circle>
+                </g>
+    
+                <!-- Middle Orbit -->
+                <circle r="120" fill="none" stroke="#ff9900" stroke-width="0.5" opacity="0.2"/>
+                <g>
+                    <circle r="3" fill="#ff9900" opacity="0.8">
+                        <animateMotion dur="12s"
+                                     path="M0,-120 A120,120 0 1,1 0,120 A120,120 0 1,1 0,-120"
+                                     repeatCount="indefinite"/>
+                        <animate attributeName="opacity"
+                                 values="0.8;0.2;0.8"
+                                 dur="12s"
+                                 repeatCount="indefinite"/>
+                    </circle>
+                </g>
+    
+                <!-- Outer Orbit -->
+                <circle r="160" fill="none" stroke="#ff9900" stroke-width="0.5" opacity="0.2"/>
+                <g>
+                    <circle r="3" fill="#ff9900" opacity="0.8">
+                        <animateMotion dur="16s"
+                                     path="M0,-160 A160,160 0 1,1 0,160 A160,160 0 1,1 0,-160"
+                                     repeatCount="indefinite"/>
+                        <animate attributeName="opacity"
+                                 values="0.8;0.2;0.8"
+                                 dur="16s"
+                                 repeatCount="indefinite"/>
+                    </circle>
+                </g>
+            </g>
+    
+            <!-- Decay Particles -->
+            <g>
+                <circle r="1" fill="#ff9900" opacity="0.6">
+                    <animateMotion dur="4s"
+                                 path="M0,-100 Q50,0 100,100"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.6;0;0.6"
+                             dur="4s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle r="1" fill="#ff9900" opacity="0.6">
+                    <animateMotion dur="4s"
+                                 path="M0,-100 Q-50,0 -100,100"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.6;0;0.6"
+                             dur="4s"
+                             repeatCount="indefinite"/>
+                </circle>
+            </g>
+        </g>
+    </svg>
 </div>
 <p class="intro-text">
                     Throughout history, every monetary system has shared one fatal flaw: the requirement to trust someone — a ruler, a bank, a government — not to abuse their power over money.

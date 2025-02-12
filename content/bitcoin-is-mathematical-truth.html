@@ -18,36 +18,176 @@
                     <!-- Content will be injected here -->
                     <h2>Bitcoin Is Mathematical Truth</h2>
 <div class="concept-visualization">
-<svg viewbox="0 0 100 100">
-<!-- Code transforming into mathematical constants -->
-<g>
-<!-- Code symbols fading -->
-<text fill="#ff9900" font-size="4" opacity="0.3" x="30" y="30">{}</text>
-<text fill="#ff9900" font-size="4" opacity="0.3" x="40" y="30">[]</text>
-<text fill="#ff9900" font-size="4" opacity="0.3" x="50" y="30">()</text>
-</g>
-<!-- Mathematical constants emerging -->
-<g>
-<!-- Eternal circle -->
-<circle cx="50" cy="50" fill="none" r="20" stroke="#ff9900" stroke-width="2">
-<animate attributename="stroke-dasharray" dur="3s" repeatcount="indefinite" values="0 130; 130 130"></animate>
-</circle>
-<!-- Verification points -->
-<g>
-<circle cx="50" cy="30" fill="#ff9900" r="2">
-<animate attributename="r" dur="2s" repeatcount="indefinite" values="1.5;2.5;1.5"></animate>
-</circle>
-<circle cx="70" cy="50" fill="#ff9900" r="2">
-<animate attributename="r" begin="0.5s" dur="2s" repeatcount="indefinite" values="1.5;2.5;1.5"></animate>
-</circle>
-<circle cx="50" cy="70" fill="#ff9900" r="2">
-<animate attributename="r" begin="1s" dur="2s" repeatcount="indefinite" values="1.5;2.5;1.5"></animate>
-</circle>
-<circle cx="30" cy="50" fill="#ff9900" r="2">
-<animate attributename="r" begin="1.5s" dur="2s" repeatcount="indefinite" values="1.5;2.5;1.5"></animate>
-</circle>
-</g>
-</g>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+    <defs>
+        <radialGradient id="truthGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ff9900" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#ff9900" stop-opacity="0"/>
+        </radialGradient>
+        
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Center Group -->
+    <g transform="translate(200, 200)">
+        <!-- Mathematical Perfect Circle -->
+        <circle r="100" 
+               fill="none" 
+               stroke="#ff9900" 
+               stroke-width="1" 
+               opacity="0.2">
+            <animate attributeName="r"
+                     values="100;105;100"
+                     dur="10s"
+                     repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Golden Ratio Spiral -->
+        <path d="M0,0 A20,20 0 0,1 20,20 A40,40 0 0,1 -20,60 A80,80 0 0,1 -100,0 A160,160 0 0,1 0,-160"
+              fill="none"
+              stroke="#ff9900"
+              stroke-width="1"
+              opacity="0.4">
+            <animate attributeName="stroke-dasharray"
+                     values="0,1000;1000,1000"
+                     dur="8s"
+                     repeatCount="indefinite"/>
+        </path>
+
+        <!-- Mathematical Constants -->
+        <g>
+            <!-- Pi -->
+            <path d="M-40,-40 L-20,-40 L-30,-20 Z" 
+                  fill="#ff9900" 
+                  opacity="0.6">
+                <animate attributeName="opacity"
+                         values="0.6;1;0.6"
+                         dur="4s"
+                         repeatCount="indefinite"/>
+            </path>
+            
+            <!-- Phi -->
+            <path d="M40,-40 L60,-40 L50,-20 Z" 
+                  fill="#ff9900" 
+                  opacity="0.6">
+                <animate attributeName="opacity"
+                         values="0.6;1;0.6"
+                         dur="4s"
+                         begin="1s"
+                         repeatCount="indefinite"/>
+            </path>
+
+            <!-- e -->
+            <path d="M-40,40 L-20,40 L-30,60 Z" 
+                  fill="#ff9900" 
+                  opacity="0.6">
+                <animate attributeName="opacity"
+                         values="0.6;1;0.6"
+                         dur="4s"
+                         begin="2s"
+                         repeatCount="indefinite"/>
+            </path>
+        </g>
+
+        <!-- Flowing Code Particles -->
+        <g filter="url(#glow)">
+            <!-- Particle Streams -->
+            <g>
+                <circle r="2" fill="#ff9900">
+                    <animateMotion dur="6s"
+                                 path="M-150,-150 Q-75,-75 0,0"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="1;0;1"
+                             dur="6s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle r="2" fill="#ff9900">
+                    <animateMotion dur="6s"
+                                 path="M150,-150 Q75,-75 0,0"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="1;0;1"
+                             dur="6s"
+                             begin="2s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle r="2" fill="#ff9900">
+                    <animateMotion dur="6s"
+                                 path="M150,150 Q75,75 0,0"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="1;0;1"
+                             dur="6s"
+                             begin="4s"
+                             repeatCount="indefinite"/>
+                </circle>
+            </g>
+        </g>
+
+        <!-- Central Truth Node -->
+        <g>
+            <circle r="30" 
+                   fill="url(#truthGlow)" 
+                   opacity="0.6">
+                <animate attributeName="r"
+                         values="30;35;30"
+                         dur="4s"
+                         repeatCount="indefinite"/>
+            </circle>
+            
+            <!-- Perfect Geometric Forms -->
+            <path d="M0,-20 L17.3,-10 L17.3,10 L0,20 L-17.3,10 L-17.3,-10 Z" 
+                  fill="none" 
+                  stroke="#ff9900" 
+                  stroke-width="2"
+                  opacity="0.8">
+                <animateTransform attributeName="transform"
+                                type="rotate"
+                                from="0 0 0"
+                                to="360 0 0"
+                                dur="20s"
+                                repeatCount="indefinite"/>
+            </path>
+        </g>
+
+        <!-- Verification Nodes -->
+        <g>
+            <circle cx="0" cy="-80" r="4" fill="#ff9900" opacity="0.6">
+                <animate attributeName="r"
+                         values="4;6;4"
+                         dur="3s"
+                         repeatCount="indefinite"/>
+            </circle>
+            <circle cx="80" cy="0" r="4" fill="#ff9900" opacity="0.6">
+                <animate attributeName="r"
+                         values="4;6;4"
+                         dur="3s"
+                         begin="1s"
+                         repeatCount="indefinite"/>
+            </circle>
+            <circle cx="0" cy="80" r="4" fill="#ff9900" opacity="0.6">
+                <animate attributeName="r"
+                         values="4;6;4"
+                         dur="3s"
+                         begin="2s"
+                         repeatCount="indefinite"/>
+            </circle>
+            <circle cx="-80" cy="0" r="4" fill="#ff9900" opacity="0.6">
+                <animate attributeName="r"
+                         values="4;6;4"
+                         dur="3s"
+                         begin="3s"
+                         repeatCount="indefinite"/>
+            </circle>
+        </g>
+    </g>
 </svg>
 </div>
 <p class="intro-text">

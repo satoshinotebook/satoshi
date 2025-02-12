@@ -18,27 +18,156 @@
                     <!-- Content will be injected here -->
                     <h2>Bitcoin Is Sound Money</h2>
 <div class="concept-visualization">
-<svg viewbox="0 0 100 100">
-<!-- Outer hexagon (representing the unbreakable properties) -->
-<path d="M50 10 L80 25 L80 75 L50 90 L20 75 L20 25 Z" fill="none" stroke="#ff9900" stroke-width="2">
-<animate attributename="stroke-dasharray" dur="3s" repeatcount="indefinite" values="0 300; 300 300"></animate>
-</path>
-<!-- Inner rotating circles (representing the networked consensus) -->
-<g>
-<circle cx="50" cy="50" fill="none" r="15" stroke="#ff9900" stroke-width="1.5">
-<animatetransform attributename="transform" dur="10s" from="0 50 50" repeatcount="indefinite" to="360 50 50" type="rotate"></animatetransform>
-</circle>
-<!-- Nodes on the circle -->
-<circle class="node" fill="#ff9900" r="2">
-<animatemotion dur="10s" path="M 50,35 A 15,15 0 1,1 50,35" repeatcount="indefinite"></animatemotion>
-</circle>
-<circle class="node" fill="#ff9900" r="2">
-<animatemotion begin="3.33s" dur="10s" path="M 50,35 A 15,15 0 1,1 50,35" repeatcount="indefinite"></animatemotion>
-</circle>
-<circle class="node" fill="#ff9900" r="2">
-<animatemotion begin="6.66s" dur="10s" path="M 50,35 A 15,15 0 1,1 50,35" repeatcount="indefinite"></animatemotion>
-</circle>
-</g>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+    <defs>
+        <radialGradient id="purificationGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ff9900" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#ff9900" stop-opacity="0"/>
+        </radialGradient>
+        
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Main Group -->
+    <g transform="translate(200, 200)">
+        <!-- Chaotic Unsound Money -->
+        <g>
+            <!-- Turbulent waves representing instability -->
+            <path d="M-150,50 Q-75,0 0,50 Q75,100 150,50" 
+                  fill="none" 
+                  stroke="#ff9900" 
+                  stroke-width="0.5"
+                  opacity="0.3">
+                <animate attributeName="d"
+                         values="M-150,50 Q-75,0 0,50 Q75,100 150,50;
+                                M-150,0 Q-75,50 0,0 Q75,-50 150,0;
+                                M-150,50 Q-75,0 0,50 Q75,100 150,50"
+                         dur="10s"
+                         repeatCount="indefinite"/>
+            </path>
+            <path d="M-150,0 Q-75,-50 0,0 Q75,50 150,0" 
+                  fill="none" 
+                  stroke="#ff9900" 
+                  stroke-width="0.5"
+                  opacity="0.3">
+                <animate attributeName="d"
+                         values="M-150,0 Q-75,-50 0,0 Q75,50 150,0;
+                                M-150,-50 Q-75,0 0,-50 Q75,-100 150,-50;
+                                M-150,0 Q-75,-50 0,0 Q75,50 150,0"
+                         dur="10s"
+                         begin="2s"
+                         repeatCount="indefinite"/>
+            </path>
+        </g>
+
+        <!-- Crystallization Process -->
+        <g>
+            <!-- Sound money crystal forming -->
+            <path d="M0,-80 L69.3,-40 L69.3,40 L0,80 L-69.3,40 L-69.3,-40 Z" 
+                  fill="none" 
+                  stroke="#ff9900" 
+                  stroke-width="2"
+                  opacity="0.8">
+                <animate attributeName="stroke-dasharray"
+                         values="0,500;500,500"
+                         dur="5s"
+                         repeatCount="indefinite"/>
+            </path>
+
+            <!-- Pure value core -->
+            <circle r="40" 
+                   fill="url(#purificationGlow)" 
+                   opacity="0.6">
+                <animate attributeName="r"
+                         values="40;45;40"
+                         dur="4s"
+                         repeatCount="indefinite"/>
+            </circle>
+        </g>
+
+        <!-- Purification Particles -->
+        <g filter="url(#glow)">
+            <!-- Particles being drawn to pure form -->
+            <g>
+                <circle r="2" fill="#ff9900">
+                    <animateMotion dur="3s"
+                                 path="M-100,100 Q-50,0 0,0"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.2;1;0.2"
+                             dur="3s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle r="2" fill="#ff9900">
+                    <animateMotion dur="3s"
+                                 begin="1s"
+                                 path="M100,100 Q50,0 0,0"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.2;1;0.2"
+                             dur="3s"
+                             begin="1s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle r="2" fill="#ff9900">
+                    <animateMotion dur="3s"
+                                 begin="2s"
+                                 path="M0,-120 Q0,-60 0,0"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.2;1;0.2"
+                             dur="3s"
+                             begin="2s"
+                             repeatCount="indefinite"/>
+                </circle>
+            </g>
+        </g>
+
+        <!-- Perfect Resonance -->
+        <g opacity="0.4">
+            <!-- Harmonic rings -->
+            <circle r="60" fill="none" stroke="#ff9900" stroke-width="0.5">
+                <animate attributeName="r"
+                         values="60;65;60"
+                         dur="6s"
+                         repeatCount="indefinite"/>
+                <animate attributeName="opacity"
+                         values="0.4;0.1;0.4"
+                         dur="6s"
+                         repeatCount="indefinite"/>
+            </circle>
+            <circle r="90" fill="none" stroke="#ff9900" stroke-width="0.5">
+                <animate attributeName="r"
+                         values="90;95;90"
+                         dur="6s"
+                         begin="2s"
+                         repeatCount="indefinite"/>
+                <animate attributeName="opacity"
+                         values="0.4;0.1;0.4"
+                         dur="6s"
+                         begin="2s"
+                         repeatCount="indefinite"/>
+            </circle>
+            <circle r="120" fill="none" stroke="#ff9900" stroke-width="0.5">
+                <animate attributeName="r"
+                         values="120;125;120"
+                         dur="6s"
+                         begin="4s"
+                         repeatCount="indefinite"/>
+                <animate attributeName="opacity"
+                         values="0.4;0.1;0.4"
+                         dur="6s"
+                         begin="4s"
+                         repeatCount="indefinite"/>
+            </circle>
+        </g>
+    </g>
 </svg>
 </div>
 <p class="intro-text">

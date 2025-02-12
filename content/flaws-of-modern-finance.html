@@ -18,40 +18,214 @@
                     <!-- Content will be injected here -->
                     <h2>The Fatal Flaws of Modern Financial Instruments</h2>
 <div class="concept-visualization">
-<svg viewbox="0 0 100 100">
-<!-- Financial System Layers -->
-<g class="system-layers">
-<!-- Base layer (Currency) -->
-<rect fill="none" height="10" opacity="0.3" stroke="#ff9900" stroke-width="0.5" width="60" x="20" y="70">
-<animate attributename="opacity" dur="4s" repeatcount="indefinite" values="0.3;0.6;0.3"></animate>
-</rect>
-<!-- Banking Layer -->
-<rect fill="none" height="10" opacity="0.4" stroke="#ff9900" stroke-width="0.5" width="50" x="25" y="60">
-<animate attributename="opacity" begin="1s" dur="4s" repeatcount="indefinite" values="0.4;0.7;0.4"></animate>
-</rect>
-<!-- Investment Layer -->
-<rect fill="none" height="10" opacity="0.5" stroke="#ff9900" stroke-width="0.5" width="40" x="30" y="50">
-<animate attributename="opacity" begin="2s" dur="4s" repeatcount="indefinite" values="0.5;0.8;0.5"></animate>
-</rect>
-<!-- Derivatives Layer -->
-<rect fill="none" height="10" opacity="0.6" stroke="#ff9900" stroke-width="0.5" width="30" x="35" y="40">
-<animate attributename="opacity" begin="3s" dur="4s" repeatcount="indefinite" values="0.6;0.9;0.6"></animate>
-</rect>
-</g>
-<!-- Vulnerability Points -->
-<g class="vulnerabilities">
-<!-- System cracks -->
-<path d="M20,70 L25,65" opacity="0.5" stroke="#ff9900" stroke-width="0.3">
-<animate attributename="opacity" dur="2s" repeatcount="indefinite" values="0.5;1;0.5"></animate>
-</path>
-<path d="M45,60 L50,55" opacity="0.5" stroke="#ff9900" stroke-width="0.3">
-<animate attributename="opacity" begin="0.5s" dur="2s" repeatcount="indefinite" values="0.5;1;0.5"></animate>
-</path>
-<path d="M70,50 L75,45" opacity="0.5" stroke="#ff9900" stroke-width="0.3">
-<animate attributename="opacity" begin="1s" dur="2s" repeatcount="indefinite" values="0.5;1;0.5"></animate>
-</path>
-</g>
-</svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+        <defs>
+            <linearGradient id="layerGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#ff9900" stop-opacity="0.1"/>
+                <stop offset="50%" stop-color="#ff9900" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#ff9900" stop-opacity="0.1"/>
+            </linearGradient>
+            
+            <filter id="glow">
+                <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+                <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+    
+        <!-- System Layers -->
+        <g transform="translate(50, 50)">
+            <!-- Layer 1: Currency Base -->
+            <g>
+                <rect x="0" y="250" width="300" height="50" 
+                      fill="url(#layerGlow)" 
+                      stroke="#ff9900" 
+                      stroke-width="1"
+                      opacity="0.8">
+                    <animate attributeName="opacity"
+                             values="0.8;0.6;0.8"
+                             dur="4s"
+                             repeatCount="indefinite"/>
+                </rect>
+                
+                <!-- Stress points -->
+                <g>
+                    <circle cx="75" cy="275" r="2" fill="#ff9900" opacity="0.6">
+                        <animate attributeName="r"
+                                 values="2;3;2"
+                                 dur="2s"
+                                 repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="225" cy="275" r="2" fill="#ff9900" opacity="0.6">
+                        <animate attributeName="r"
+                                 values="2;3;2"
+                                 dur="2s"
+                                 begin="1s"
+                                 repeatCount="indefinite"/>
+                    </circle>
+                </g>
+            </g>
+    
+            <!-- Layer 2: Banking System -->
+            <g>
+                <rect x="25" y="190" width="250" height="40" 
+                      fill="url(#layerGlow)" 
+                      stroke="#ff9900" 
+                      stroke-width="1"
+                      opacity="0.7">
+                    <animate attributeName="opacity"
+                             values="0.7;0.5;0.7"
+                             dur="4s"
+                             repeatCount="indefinite"/>
+                </rect>
+                
+                <!-- Connection lines to base -->
+                <line x1="75" y1="230" x2="75" y2="250" 
+                      stroke="#ff9900" 
+                      stroke-width="0.5" 
+                      opacity="0.3">
+                    <animate attributeName="opacity"
+                             values="0.3;0.6;0.3"
+                             dur="3s"
+                             repeatCount="indefinite"/>
+                </line>
+                <line x1="225" y1="230" x2="225" y2="250" 
+                      stroke="#ff9900" 
+                      stroke-width="0.5" 
+                      opacity="0.3">
+                    <animate attributeName="opacity"
+                             values="0.3;0.6;0.3"
+                             dur="3s"
+                             begin="1.5s"
+                             repeatCount="indefinite"/>
+                </line>
+            </g>
+    
+            <!-- Layer 3: Investment Products -->
+            <g>
+                <rect x="50" y="130" width="200" height="40" 
+                      fill="url(#layerGlow)" 
+                      stroke="#ff9900" 
+                      stroke-width="1"
+                      opacity="0.6">
+                    <animate attributeName="opacity"
+                             values="0.6;0.4;0.6"
+                             dur="4s"
+                             repeatCount="indefinite"/>
+                </rect>
+                
+                <!-- Fracture lines -->
+                <path d="M100,130 L90,190" 
+                      stroke="#ff9900" 
+                      stroke-width="0.5" 
+                      opacity="0.2" 
+                      stroke-dasharray="2,2">
+                    <animate attributeName="opacity"
+                             values="0.2;0.4;0.2"
+                             dur="3s"
+                             repeatCount="indefinite"/>
+                </path>
+                <path d="M200,130 L210,190" 
+                      stroke="#ff9900" 
+                      stroke-width="0.5" 
+                      opacity="0.2" 
+                      stroke-dasharray="2,2">
+                    <animate attributeName="opacity"
+                             values="0.2;0.4;0.2"
+                             dur="3s"
+                             begin="1.5s"
+                             repeatCount="indefinite"/>
+                </path>
+            </g>
+    
+            <!-- Layer 4: Derivatives -->
+            <g>
+                <rect x="75" y="70" width="150" height="40" 
+                      fill="url(#layerGlow)" 
+                      stroke="#ff9900" 
+                      stroke-width="1"
+                      opacity="0.5">
+                    <animate attributeName="opacity"
+                             values="0.5;0.3;0.5"
+                             dur="4s"
+                             repeatCount="indefinite"/>
+                </rect>
+                
+                <!-- Risk particles -->
+                <g>
+                    <circle cx="100" cy="90" r="1" fill="#ff9900">
+                        <animate attributeName="opacity"
+                                 values="1;0;1"
+                                 dur="2s"
+                                 repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="150" cy="90" r="1" fill="#ff9900">
+                        <animate attributeName="opacity"
+                                 values="1;0;1"
+                                 dur="2s"
+                                 begin="0.67s"
+                                 repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="200" cy="90" r="1" fill="#ff9900">
+                        <animate attributeName="opacity"
+                                 values="1;0;1"
+                                 dur="2s"
+                                 begin="1.33s"
+                                 repeatCount="indefinite"/>
+                    </circle>
+                </g>
+            </g>
+    
+            <!-- Cascade Effect Particles -->
+            <g>
+                <circle r="1" fill="#ff9900" opacity="0.6">
+                    <animateMotion dur="4s"
+                                 path="M100,90 Q150,160 200,230"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.6;0;0.6"
+                             dur="4s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle r="1" fill="#ff9900" opacity="0.6">
+                    <animateMotion dur="4s"
+                                 begin="2s"
+                                 path="M200,90 Q150,160 100,230"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.6;0;0.6"
+                             dur="4s"
+                             begin="2s"
+                             repeatCount="indefinite"/>
+                </circle>
+            </g>
+    
+            <!-- System Stress Lines -->
+            <g opacity="0.2">
+                <path d="M50,70 L25,300" 
+                      stroke="#ff9900" 
+                      stroke-width="0.5" 
+                      stroke-dasharray="2,2">
+                    <animate attributeName="opacity"
+                             values="0.2;0.4;0.2"
+                             dur="5s"
+                             repeatCount="indefinite"/>
+                </path>
+                <path d="M250,70 L275,300" 
+                      stroke="#ff9900" 
+                      stroke-width="0.5" 
+                      stroke-dasharray="2,2">
+                    <animate attributeName="opacity"
+                             values="0.2;0.4;0.2"
+                             dur="5s"
+                             begin="2.5s"
+                             repeatCount="indefinite"/>
+                </path>
+            </g>
+        </g>
+    </svg>
 </div>
 <p class="intro-text">
                     modern financial instruments are increasingly complex layers built upon an unstable foundation. each layer adds new vulnerabilities while masking the fundamental flaws of the system beneath.

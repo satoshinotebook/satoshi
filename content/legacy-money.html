@@ -18,88 +18,271 @@
                     <!-- Content will be injected here -->
                     <h2>Legacy Money</h2>
 <div class="concept-visualization">
-    <svg viewBox="0 0 100 100">
-        <!-- Timeline base -->
-        <line x1="10" y1="80" x2="90" y2="80" 
-              stroke="#ff9900" 
-              stroke-width="0.5" 
-              opacity="0.3"/>
-        
-        <!-- Primitive Money Era -->
-        <g class="primitive-money">
-            <circle cx="20" cy="70" r="3" 
-                    fill="none" 
-                    stroke="#ff9900" 
-                    stroke-width="1">
-                <animate attributeName="opacity"
-                         values="1;0.3;1"
-                         dur="4s"
-                         repeatCount="indefinite"/>
-            </circle>
-            <!-- Beads representation -->
-            <circle cx="20" cy="65" r="1" fill="#ff9900"/>
-            <circle cx="23" cy="65" r="1" fill="#ff9900"/>
-            <circle cx="17" cy="65" r="1" fill="#ff9900"/>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+        <defs>
+            <linearGradient id="decayGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ff9900" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#ff9900" stop-opacity="0"/>
+            </linearGradient>
+            
+            <filter id="glow">
+                <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+                <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+    
+        <!-- Decay Particles System -->
+        <g transform="translate(200, 100)">
+            <!-- Falling particles left side -->
+            <g>
+                <circle r="1" fill="#ff9900" opacity="0.4">
+                    <animateMotion dur="8s"
+                                 path="M-120,-80 Q-100,0 -80,80"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.4;0;0.4"
+                             dur="8s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle r="1" fill="#ff9900" opacity="0.4">
+                    <animateMotion dur="6s"
+                                 path="M-100,-60 Q-80,0 -60,60"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.4;0;0.4"
+                             dur="6s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle r="1" fill="#ff9900" opacity="0.4">
+                    <animateMotion dur="7s"
+                                 path="M-80,-70 Q-60,0 -40,70"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.4;0;0.4"
+                             dur="7s"
+                             repeatCount="indefinite"/>
+                </circle>
+            </g>
+    
+            <!-- Falling particles center -->
+            <g>
+                <circle r="1" fill="#ff9900" opacity="0.4">
+                    <animateMotion dur="8s"
+                                 path="M-20,-80 Q0,0 20,80"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.4;0;0.4"
+                             dur="8s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle r="1" fill="#ff9900" opacity="0.4">
+                    <animateMotion dur="6s"
+                                 path="M0,-60 Q20,0 40,60"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.4;0;0.4"
+                             dur="6s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle r="1" fill="#ff9900" opacity="0.4">
+                    <animateMotion dur="7s"
+                                 path="M20,-70 Q40,0 60,70"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.4;0;0.4"
+                             dur="7s"
+                             repeatCount="indefinite"/>
+                </circle>
+            </g>
+    
+            <!-- Falling particles right side -->
+            <g>
+                <circle r="1" fill="#ff9900" opacity="0.4">
+                    <animateMotion dur="8s"
+                                 path="M80,-80 Q100,0 120,80"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.4;0;0.4"
+                             dur="8s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle r="1" fill="#ff9900" opacity="0.4">
+                    <animateMotion dur="6s"
+                                 path="M100,-60 Q120,0 140,60"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.4;0;0.4"
+                             dur="6s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle r="1" fill="#ff9900" opacity="0.4">
+                    <animateMotion dur="7s"
+                                 path="M120,-70 Q140,0 160,70"
+                                 repeatCount="indefinite"/>
+                    <animate attributeName="opacity"
+                             values="0.4;0;0.4"
+                             dur="7s"
+                             repeatCount="indefinite"/>
+                </circle>
+            </g>
+    
+            <!-- Floating decay patterns -->
+            <g opacity="0.2">
+                <path d="M-140,-40 Q-70,0 0,40" fill="none" stroke="#ff9900" stroke-width="0.5">
+                    <animate attributeName="opacity"
+                             values="0.2;0.1;0.2"
+                             dur="10s"
+                             repeatCount="indefinite"/>
+                </path>
+                <path d="M140,-40 Q70,0 0,40" fill="none" stroke="#ff9900" stroke-width="0.5">
+                    <animate attributeName="opacity"
+                             values="0.2;0.1;0.2"
+                             dur="10s"
+                             begin="5s"
+                             repeatCount="indefinite"/>
+                </path>
+            </g>
+    
+            <!-- Additional particle streams -->
+            <g>
+                <circle r="0.5" fill="#ff9900" opacity="0.3">
+                    <animateMotion dur="15s"
+                                 path="M-160,-20 Q-80,40 0,100"
+                                 repeatCount="indefinite"/>
+                </circle>
+                <circle r="0.5" fill="#ff9900" opacity="0.3">
+                    <animateMotion dur="15s"
+                                 path="M160,-20 Q80,40 0,100"
+                                 repeatCount="indefinite"/>
+                </circle>
+            </g>
         </g>
-        
-        <!-- Precious Metals Era -->
-        <g class="metals-era">
-            <rect x="35" y="60" width="10" height="10" 
-                  fill="none" 
+    
+        <!-- Original Timeline Content -->
+        <g transform="translate(50, 200)">
+            <!-- [Previous timeline content remains exactly the same] -->
+            <line x1="0" y1="100" x2="300" y2="100" 
                   stroke="#ff9900" 
-                  stroke-width="1">
-                <animate attributeName="opacity"
-                         values="1;0.3;1"
-                         dur="4s"
-                         begin="1s"
-                         repeatCount="indefinite"/>
-            </rect>
-        </g>
-        
-        <!-- Fiat Era -->
-        <g class="fiat-era">
-            <rect x="55" y="55" width="8" height="15" 
-                  fill="none" 
-                  stroke="#ff9900" 
-                  stroke-width="1">
-                <animate attributeName="height"
-                         values="15;12;15"
-                         dur="3s"
-                         repeatCount="indefinite"/>
-            </rect>
-        </g>
-        
-        <!-- Digital Fiat Era -->
-        <g class="digital-era">
-            <path d="M75,65 L80,60 L85,65 L80,70 Z" 
-                  fill="none" 
-                  stroke="#ff9900" 
-                  stroke-width="1">
-                <animate attributeName="opacity"
-                         values="1;0.3;1"
-                         dur="2s"
-                         repeatCount="indefinite"/>
-            </path>
-        </g>
-        
-        <!-- Decay indicators -->
-        <g class="decay-markers">
-            <line x1="20" y1="70" x2="20" y2="80" 
-                  stroke="#ff9900" 
-                  stroke-width="0.5" 
+                  stroke-width="1" 
                   opacity="0.3"/>
-            <line x1="40" y1="65" x2="40" y2="80" 
-                  stroke="#ff9900" 
-                  stroke-width="0.5" 
-                  opacity="0.3"/>
-            <line x1="60" y1="62" x2="60" y2="80" 
-                  stroke="#ff9900" 
-                  stroke-width="0.5" 
-                  opacity="0.3"/>
-            <line x1="80" y1="65" x2="80" y2="80" 
-                  stroke="#ff9900" 
-                  stroke-width="0.5" 
-                  opacity="0.3"/>
+    
+            <!-- Primitive Money Era -->
+            <g transform="translate(50, 0)">
+                <!-- [Same as before] -->
+                <path d="M-15,0 L15,0 L0,100" 
+                      fill="url(#decayGradient)" 
+                      opacity="0.2"/>
+                
+                <circle cx="-8" cy="20" r="4" fill="none" stroke="#ff9900" stroke-width="1">
+                    <animate attributeName="opacity"
+                             values="1;0.3;1"
+                             dur="4s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle cx="0" cy="15" r="4" fill="none" stroke="#ff9900" stroke-width="1">
+                    <animate attributeName="opacity"
+                             values="1;0.3;1"
+                             dur="4s"
+                             begin="1s"
+                             repeatCount="indefinite"/>
+                </circle>
+                <circle cx="8" cy="20" r="4" fill="none" stroke="#ff9900" stroke-width="1">
+                    <animate attributeName="opacity"
+                             values="1;0.3;1"
+                             dur="4s"
+                             begin="2s"
+                             repeatCount="indefinite"/>
+                </circle>
+            </g>
+    
+            <!-- [Rest of timeline elements remain the same] -->
+            <!-- Precious Metals Era -->
+            <g transform="translate(125, 0)">
+                <!-- [Same content] -->
+                <path d="M-15,20 L15,20 L0,100" 
+                      fill="url(#decayGradient)" 
+                      opacity="0.2"/>
+                
+                <rect x="-12" y="20" width="24" height="24" 
+                      fill="none" 
+                      stroke="#ff9900" 
+                      stroke-width="1.5">
+                    <animate attributeName="opacity"
+                             values="1;0.4;1"
+                             dur="5s"
+                             repeatCount="indefinite"/>
+                </rect>
+            </g>
+    
+            <!-- Paper Money Era -->
+            <g transform="translate(200, 0)">
+                <!-- [Same content] -->
+                <path d="M-15,40 L15,40 L0,100" 
+                      fill="url(#decayGradient)" 
+                      opacity="0.2"/>
+                
+                <rect x="-10" y="40" width="20" height="30" 
+                      fill="none" 
+                      stroke="#ff9900" 
+                      stroke-width="1">
+                    <animate attributeName="height"
+                             values="30;25;30"
+                             dur="3s"
+                             repeatCount="indefinite"/>
+                </rect>
+            </g>
+    
+            <!-- Digital Era -->
+            <g transform="translate(275, 0)">
+                <!-- [Same content] -->
+                <path d="M-15,60 L15,60 L0,100" 
+                      fill="url(#decayGradient)" 
+                      opacity="0.2"/>
+                
+                <g filter="url(#glow)">
+                    <path d="M-10,60 L0,50 L10,60 L0,70 Z" 
+                          fill="none" 
+                          stroke="#ff9900" 
+                          stroke-width="1">
+                        <animate attributeName="opacity"
+                                 values="1;0.3;1"
+                                 dur="2s"
+                                 repeatCount="indefinite"/>
+                    </path>
+                    
+                    <circle cx="0" cy="55" r="1" fill="#ff9900">
+                        <animate attributeName="opacity"
+                                 values="1;0;1"
+                                 dur="1s"
+                                 repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="5" cy="60" r="1" fill="#ff9900">
+                        <animate attributeName="opacity"
+                                 values="1;0;1"
+                                 dur="1s"
+                                 begin="0.33s"
+                                 repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="-5" cy="60" r="1" fill="#ff9900">
+                        <animate attributeName="opacity"
+                                 values="1;0;1"
+                                 dur="1s"
+                                 begin="0.66s"
+                                 repeatCount="indefinite"/>
+                    </circle>
+                </g>
+            </g>
+    
+            <!-- Decay indicators -->
+            <g opacity="0.3">
+                <line x1="50" y1="0" x2="50" y2="100" stroke="#ff9900" stroke-width="0.5"/>
+                <line x1="125" y1="20" x2="125" y2="100" stroke="#ff9900" stroke-width="0.5"/>
+                <line x1="200" y1="40" x2="200" y2="100" stroke="#ff9900" stroke-width="0.5"/>
+                <line x1="275" y1="60" x2="275" y2="100" stroke="#ff9900" stroke-width="0.5"/>
+            </g>
         </g>
     </svg>
 </div>

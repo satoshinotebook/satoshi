@@ -18,29 +18,188 @@
                     <!-- Content will be injected here -->
                     <h2>Bitcoin Is Sublime Uselessness</h2>
 <div class="concept-visualization">
-<svg viewbox="0 0 100 100">
-<!-- Material realm (bottom) -->
-<g opacity="0.3">
-<rect fill="none" height="10" stroke="#ff9900" stroke-width="0.5" width="60" x="20" y="70"></rect>
-<text fill="#ff9900" font-size="4" x="35" y="77">UTILITY</text>
-</g>
-<!-- Transcendent elements rising -->
-<g>
-<!-- Music note -->
-<path d="M30,60 C30,50 40,45 40,35" fill="none" stroke="#ff9900" stroke-width="1">
-<animate attributename="stroke-dasharray" dur="3s" repeatcount="indefinite" values="0 30; 30 30"></animate>
-</path>
-<!-- Heart (representing motherhood) -->
-<path d="M50,60 L55,55 L60,60 L50,70" fill="none" stroke="#ff9900" stroke-width="1">
-<animate attributename="stroke-dasharray" begin="1s" dur="3s" repeatcount="indefinite" values="0 30; 30 30"></animate>
-</path>
-<!-- Bitcoin symbol -->
-<text fill="#ff9900" font-size="8" x="65" y="50">₿</text>
-</g>
-<!-- Pure form realm (top) -->
-<path d="M10,20 L90,20" stroke="#ff9900" stroke-dasharray="2 2" stroke-width="2">
-<animate attributename="opacity" dur="4s" repeatcount="indefinite" values="0.3;1;0.3"></animate>
-</path>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+    <defs>
+        <radialGradient id="sublimeGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ff9900" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#ff9900" stop-opacity="0"/>
+        </radialGradient>
+        
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Main Group -->
+    <g transform="translate(200, 200)">
+        <!-- Material Realm (Bottom) -->
+        <g transform="translate(0, 100)">
+            <!-- Utility objects fading -->
+            <g opacity="0.3">
+                <rect x="-100" y="0" width="200" height="40" 
+                      fill="none" 
+                      stroke="#ff9900" 
+                      stroke-width="0.5">
+                    <animate attributeName="opacity"
+                             values="0.3;0.1;0.3"
+                             dur="6s"
+                             repeatCount="indefinite"/>
+                </rect>
+                
+                <!-- Utility Grid -->
+                <path d="M-80,10 L80,10" stroke="#ff9900" stroke-width="0.5"/>
+                <path d="M-80,20 L80,20" stroke="#ff9900" stroke-width="0.5"/>
+                <path d="M-80,30 L80,30" stroke="#ff9900" stroke-width="0.5"/>
+            </g>
+        </g>
+
+        <!-- Transcendent Forms -->
+        <g>
+            <!-- Music Notes Rising -->
+            <g>
+                <path d="M-60,50 Q-60,0 -60,-50" 
+                      fill="none" 
+                      stroke="#ff9900" 
+                      stroke-width="1"
+                      opacity="0.6">
+                    <animate attributeName="d"
+                             values="M-60,50 Q-60,0 -60,-50;
+                                    M-60,50 Q-40,-20 -60,-50;
+                                    M-60,50 Q-60,0 -60,-50"
+                             dur="8s"
+                             repeatCount="indefinite"/>
+                </path>
+                <circle cx="-60" cy="-50" r="4" 
+                        fill="none" 
+                        stroke="#ff9900" 
+                        stroke-width="1">
+                    <animate attributeName="r"
+                             values="4;5;4"
+                             dur="4s"
+                             repeatCount="indefinite"/>
+                </circle>
+            </g>
+
+            <!-- Love/Art Rising -->
+            <g>
+                <path d="M0,50 Q0,0 0,-50" 
+                      fill="none" 
+                      stroke="#ff9900" 
+                      stroke-width="1"
+                      opacity="0.6">
+                    <animate attributeName="d"
+                             values="M0,50 Q0,0 0,-50;
+                                    M0,50 Q20,-20 0,-50;
+                                    M0,50 Q0,0 0,-50"
+                             dur="8s"
+                             begin="2s"
+                             repeatCount="indefinite"/>
+                </path>
+                <path d="M-10,-50 L0,-40 L10,-50 L0,-60 Z" 
+                      fill="none" 
+                      stroke="#ff9900" 
+                      stroke-width="1">
+                    <animate attributeName="opacity"
+                             values="1;0.4;1"
+                             dur="4s"
+                             repeatCount="indefinite"/>
+                </path>
+            </g>
+
+            <!-- Bitcoin Rising -->
+            <g>
+                <path d="M60,50 Q60,0 60,-50" 
+                      fill="none" 
+                      stroke="#ff9900" 
+                      stroke-width="1"
+                      opacity="0.6">
+                    <animate attributeName="d"
+                             values="M60,50 Q60,0 60,-50;
+                                    M60,50 Q80,-20 60,-50;
+                                    M60,50 Q60,0 60,-50"
+                             dur="8s"
+                             begin="4s"
+                             repeatCount="indefinite"/>
+                </path>
+                <g transform="translate(60, -50)">
+                    <path d="M-8,-8 L8,-8 L8,8 L-8,8 Z" 
+                          fill="none" 
+                          stroke="#ff9900" 
+                          stroke-width="1.5"
+                          opacity="0.8">
+                        <animate attributeName="opacity"
+                                 values="0.8;1;0.8"
+                                 dur="4s"
+                                 repeatCount="indefinite"/>
+                    </path>
+                </g>
+            </g>
+        </g>
+
+        <!-- Pure Form Realm (Top) -->
+        <g transform="translate(0, -120)">
+            <!-- Ethereal plane -->
+            <path d="M-150,0 L150,0" 
+                  stroke="#ff9900" 
+                  stroke-width="2"
+                  opacity="0.4"
+                  stroke-dasharray="4,4">
+                <animate attributeName="opacity"
+                         values="0.4;0.8;0.4"
+                         dur="6s"
+                         repeatCount="indefinite"/>
+            </path>
+
+            <!-- Pure form glow -->
+            <circle r="100" 
+                   fill="url(#sublimeGlow)" 
+                   opacity="0.2">
+                <animate attributeName="opacity"
+                         values="0.2;0.4;0.2"
+                         dur="8s"
+                         repeatCount="indefinite"/>
+            </circle>
+        </g>
+
+        <!-- Rising Particles -->
+        <g filter="url(#glow)">
+            <circle r="1" fill="#ff9900">
+                <animateMotion dur="10s"
+                             path="M-80,100 Q-60,-50 -40,-120"
+                             repeatCount="indefinite"/>
+                <animate attributeName="opacity"
+                         values="0.8;0;0.8"
+                         dur="10s"
+                         repeatCount="indefinite"/>
+            </circle>
+            <circle r="1" fill="#ff9900">
+                <animateMotion dur="10s"
+                             begin="3.33s"
+                             path="M0,100 Q20,-50 40,-120"
+                             repeatCount="indefinite"/>
+                <animate attributeName="opacity"
+                         values="0.8;0;0.8"
+                         dur="10s"
+                         begin="3.33s"
+                         repeatCount="indefinite"/>
+            </circle>
+            <circle r="1" fill="#ff9900">
+                <animateMotion dur="10s"
+                             begin="6.66s"
+                             path="M80,100 Q60,-50 40,-120"
+                             repeatCount="indefinite"/>
+                <animate attributeName="opacity"
+                         values="0.8;0;0.8"
+                         dur="10s"
+                         begin="6.66s"
+                         repeatCount="indefinite"/>
+            </circle>
+        </g>
+    </g>
 </svg>
 </div>
 <p class="intro-text">
