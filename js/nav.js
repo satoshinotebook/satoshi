@@ -4,11 +4,18 @@ async function loadNavigation() {
         const response = await fetch('/components/nav.html');
         const html = await response.text();
         document.body.insertAdjacentHTML('beforeend', html);
+        
+        // Wait for a frame to ensure DOM is updated
+        await new Promise(resolve => requestAnimationFrame(resolve));
+        
         initializeNavigationHandlers();
         initializeScrollHandlers();
         initializeCategoryToggles();
         initializeSidebar();
-        initializePageNavigation(); // Add this line
+        
+        // Add a small delay to ensure all DOM elements are properly rendered
+        await new Promise(resolve => setTimeout(resolve, 100));
+        initializePageNavigation();
     } catch (error) {
         console.error('Error loading navigation:', error);
     }
@@ -313,33 +320,27 @@ async function handleNavigation(href) {
         const container = document.querySelector('.page-container');
         const nav = document.querySelector('.dot-nav');
         
-        // Prevent multiple transitions from running
         if (container.classList.contains('transitioning')) return;
         
-        // Add transitioning class
         container.classList.add('transitioning');
-        
-        // Start fade out
         container.style.opacity = '0';
         
-        // Wait for fade out
         await new Promise(resolve => setTimeout(resolve, 300));
         
-        // Fetch new content
         const response = await fetch(href);
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
         
-        // Get the new content
         const newContent = doc.querySelector('.page-content');
         
         if (newContent) {
-            // Update URL without reload
-            window.history.pushState({}, '', href);
+            // Only update URL if it's different from current
+            if (window.location.pathname !== href) {
+                window.history.pushState({}, '', href);
+            }
             document.title = doc.title;
             
-            // Update content
             const currentContent = document.querySelector('.page-content');
             if (currentContent) {
                 currentContent.replaceWith(newContent);
@@ -347,7 +348,6 @@ async function handleNavigation(href) {
                 container.appendChild(newContent);
             }
             
-            // Handle frosted glass effect
             const isHomePage = href === '/' || href.endsWith('index.html');
             if (isHomePage) {
                 container.classList.add('home');
@@ -363,48 +363,36 @@ async function handleNavigation(href) {
                 container.style.borderLeft = '1px solid rgba(255, 255, 255, 0.1)';
             }
             
-            // Update navigation
             setActiveNavItem();
             
-            // Ensure navigation links are properly initialized
-            await new Promise(resolve => {
-                setTimeout(() => {
-                    initializePageNavigation();
-                    resolve();
-                }, 50);
-            });
+            // Ensure navigation is initialized after content update
+            await new Promise(resolve => requestAnimationFrame(resolve));
+            initializePageNavigation();
             
-            // Close mobile menu if open
             if (window.innerWidth <= 768) {
                 nav.classList.remove('open');
                 document.querySelector('.sidebar-overlay')?.classList.remove('active');
                 container.style.transform = 'none';
             }
             
-            // Ensure DOM is updated before fade in
             await new Promise(resolve => requestAnimationFrame(resolve));
-            
-            // Fade in
             container.style.opacity = '1';
-
-            // Scroll to top of the page after navigation
+            
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
             
-            // Remove transitioning class after animation
             setTimeout(() => {
                 container.classList.remove('transitioning');
             }, 300);
         }
     } catch (error) {
         console.error('Navigation error:', error);
-        // Reset state on error
         const container = document.querySelector('.page-container');
         container.style.opacity = '1';
         container.classList.remove('transitioning');
-        window.location.href = href; // Fallback to regular navigation
+        window.location.href = href;
     }
 }
 
@@ -443,9 +431,20 @@ function setActiveNavItem() {
     });
 }
 
+// Add this new function for re-initialization
+function reinitializeNavigation() {
+    requestAnimationFrame(() => {
+        setActiveNavItem();
+        initializePageNavigation();
+    });
+}
+
 // Initialize
-document.addEventListener('DOMContentLoaded', loadNavigation);
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadNavigation();
+    reinitializeNavigation();
+});
+
 window.addEventListener('popstate', () => {
-    setActiveNavItem();
-    initializePageNavigation(); // Add this line
+    handleNavigation(window.location.pathname);
 });
