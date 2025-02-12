@@ -20,22 +20,18 @@ Satoshi Notebook is an open-source educational platform that presents Bitcoin-re
 satoshi/
 ├── components/          # Reusable HTML components
 │   └── nav.html        # Navigation component
-├── content/            # Generated HTML pages
 ├── css/               # Stylesheets
 │   ├── shared.css     # Main stylesheet
-│   └── shared.copy.css # Backup stylesheet
 ├── js/                # JavaScript modules
 │   ├── content-loader.js
 │   ├── matrix.js      # Matrix animation
 │   ├── nav.js         # Navigation functionality
 │   ├── shared-layout.js
 │   └── transitions.js # Page transition effects
-├── originals/         # Source content files
 ├── about.html         # About page
-├── build.js          # Static site generator
 ├── favicon.png       # Site favicon
 ├── index.html        # Main entry point
-└── template.html     # Page template
+└── #all notes (#.html)   # Notes
 ```
 
 ## Getting Started
