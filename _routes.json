@@ -2,17 +2,13 @@
     "version": 1,
     "routes": [
       {
-        "src": "/content/(.*)\\.html",
-        "dst": "/$1"
+        "src": "/content/(.+)\\.html",
+        "dst": "/$1",
+        "status": 301
       },
       {
-        "src": "/(.*)",
+        "src": "/(.+)",
         "dst": "/content/$1.html",
-        "check": true
-      },
-      {
-        "src": "/(.*)",
-        "dst": "/index.html",
         "status": 200
       }
     ]
