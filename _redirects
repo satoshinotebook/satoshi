@@ -1,4 +1,9 @@
-/content/*  /:splat  200
+# Specific pages first (most performant)
 /reality   /content/reality.html  200
 /scarcity  /content/scarcity.html  200
-/*  /index.html  200
+
+# Then the content directory handler
+/content/*  /:splat  200
+
+# Then handle SPA routing without html extension
+/* /index.html 301
