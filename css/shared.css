@@ -945,11 +945,17 @@ canvas#matrix {
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    color: #FF9F1C;
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
     margin-top: 2rem;
     font-family: Menlo, monospace;
+}
+
+.begin-journey-link,
+.begin-journey-link:visited,
+.begin-journey-link:hover,
+.begin-journey-link:active {
+    color: #FF9F1C;
+    opacity: 0.8;
+    text-decoration: none;
 }
 
 .begin-journey-link:hover {
