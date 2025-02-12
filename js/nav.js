@@ -108,82 +108,106 @@ function initializeSidebar() {
 
 // Page Navigation initialization
 // Updated Page Navigation initialization
-function initializePageNavigation() {
-    // Get all nav items in order
+async function initializePageNavigation() {
     const navItems = Array.from(document.querySelectorAll('.dot-nav-item'));
-    
-    // Find current page index
+    if (!navItems.length) {
+        console.warn('No navigation items found');
+        return;
+    }
+
     const currentPath = window.location.pathname;
-    // Normalize the current path (remove trailing slash and .html)
     const normalizedCurrentPath = currentPath
         .replace(/\.html$/, '')
-        .replace(/\/$/, '');
+        .replace(/\/$/, '')
+        .replace(/^\/content\//, '/');
     
     const currentIndex = navItems.findIndex(item => {
         const itemPath = item.getAttribute('href')
             .replace(/\.html$/, '')
-            .replace(/\/$/, '');
+            .replace(/\/$/, '')
+            .replace(/^\/content\//, '/');
         return itemPath === normalizedCurrentPath;
     });
 
+    if (currentIndex === -1) {
+        console.warn('Current page not found in navigation');
+        return;
+    }
+
+    // Setup navigation links
     const prevLink = document.querySelector('.prev-link');
     const nextLink = document.querySelector('.next-link');
 
-    if (prevLink && nextLink) {
-        // First, remove any existing click listeners
-        const newPrevLink = prevLink.cloneNode(true);
-        const newNextLink = nextLink.cloneNode(true);
-        prevLink.parentNode.replaceChild(newPrevLink, prevLink);
-        nextLink.parentNode.replaceChild(newNextLink, nextLink);
+    if (!prevLink || !nextLink) {
+        console.warn('Navigation links not found');
+        return;
+    }
+
+    // Previous link
+    if (currentIndex > 0) {
+        const prevItem = navItems[currentIndex - 1];
+        const prevLabel = prevItem.getAttribute('data-label');
+        const prevHref = prevItem.getAttribute('href').replace(/\.html$/, '');
         
-        // Set previous link
-        if (currentIndex > 0) {
-            const prevItem = navItems[currentIndex - 1];
-            const prevLabel = prevItem.getAttribute('data-label');
-            const prevHref = prevItem.getAttribute('href').replace(/\.html$/, '');
-            
-            newPrevLink.href = prevHref;
-            newPrevLink.title = "Previous: " + prevLabel;
-            newPrevLink.classList.remove('disabled');
-            
-            const prevText = newPrevLink.querySelector('.nav-text');
+        prevLink.href = prevHref;
+        prevLink.title = "Previous: " + prevLabel;
+        prevLink.classList.remove('disabled');
+        
+        const prevText = prevLink.querySelector('.nav-text');
+        if (prevText) {
             prevText.classList.add('text-right');
             prevText.innerHTML = `
                 <span class="nav-direction">previous</span>
                 <span class="nav-page-name">${prevLabel}</span>`;
-            
-            newPrevLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                handleNavigation(prevHref);
-            });
-        } else {
-            newPrevLink.classList.add('disabled');
-            newPrevLink.href = '#';
         }
+        
+        // Remove old listener and add new one
+        const newPrevLink = prevLink.cloneNode(true);
+        prevLink.parentNode.replaceChild(newPrevLink, prevLink);
+        newPrevLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            handleNavigation(prevHref);
+        });
+    } else {
+        prevLink.classList.add('disabled');
+        prevLink.href = '#';
+        const prevText = prevLink.querySelector('.nav-text');
+        if (prevText) {
+            prevText.innerHTML = '<span class="nav-direction">previous</span>';
+        }
+    }
 
-        // Set next link
-        if (currentIndex < navItems.length - 1) {
-            const nextItem = navItems[currentIndex + 1];
-            const nextLabel = nextItem.getAttribute('data-label');
-            const nextHref = nextItem.getAttribute('href').replace(/\.html$/, '');
-            
-            newNextLink.href = nextHref;
-            newNextLink.title = "Next: " + nextLabel;
-            newNextLink.classList.remove('disabled');
-            
-            const nextText = newNextLink.querySelector('.nav-text');
+    // Next link
+    if (currentIndex < navItems.length - 1) {
+        const nextItem = navItems[currentIndex + 1];
+        const nextLabel = nextItem.getAttribute('data-label');
+        const nextHref = nextItem.getAttribute('href').replace(/\.html$/, '');
+        
+        nextLink.href = nextHref;
+        nextLink.title = "Next: " + nextLabel;
+        nextLink.classList.remove('disabled');
+        
+        const nextText = nextLink.querySelector('.nav-text');
+        if (nextText) {
             nextText.classList.add('text-left');
             nextText.innerHTML = `
                 <span class="nav-direction">next</span>
                 <span class="nav-page-name">${nextLabel}</span>`;
-            
-            newNextLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                handleNavigation(nextHref);
-            });
-        } else {
-            newNextLink.classList.add('disabled');
-            newNextLink.href = '#';
+        }
+        
+        // Remove old listener and add new one
+        const newNextLink = nextLink.cloneNode(true);
+        nextLink.parentNode.replaceChild(newNextLink, nextLink);
+        newNextLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            handleNavigation(nextHref);
+        });
+    } else {
+        nextLink.classList.add('disabled');
+        nextLink.href = '#';
+        const nextText = nextLink.querySelector('.nav-text');
+        if (nextText) {
+            nextText.innerHTML = '<span class="nav-direction">next</span>';
         }
     }
 }
@@ -348,7 +372,7 @@ async function handleNavigation(href) {
         
         if (newContent) {
             // Update URL without reload
-            window.history.pushState({}, '', href);
+            window.history.pushState({path: href}, '', href);
             document.title = doc.title;
             
             // Update content
@@ -375,16 +399,11 @@ async function handleNavigation(href) {
                 container.style.borderLeft = '1px solid rgba(255, 255, 255, 0.1)';
             }
             
-            // Update navigation
+            // Update navigation - IMPORTANT: This happens before fade in
             setActiveNavItem();
             
-            // Ensure navigation links are properly initialized
-            await new Promise(resolve => {
-                setTimeout(() => {
-                    initializePageNavigation();
-                    resolve();
-                }, 50);
-            });
+            // Initialize page navigation BEFORE fade in and ensure it completes
+            await initializePageNavigation();
             
             // Close mobile menu if open
             if (window.innerWidth <= 768) {
@@ -416,7 +435,6 @@ async function handleNavigation(href) {
         const container = document.querySelector('.page-container');
         container.style.opacity = '1';
         container.classList.remove('transitioning');
-        window.location.href = href; // Fallback to regular navigation
     }
 }
 
