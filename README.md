@@ -78,7 +78,7 @@ MIT License - feel free to use this code for your own projects.
 ## Support
 
 If you find this project valuable, consider supporting it:
-`bc1qynz6j3ggww65qte227u2yfzpcr2ulr5n0plngw`
+`bc1q87xnypfcycfd9rlq4xs4xuqsmrcf7csc9gnqlu`
 
 ## Contact
 
