@@ -33,17 +33,6 @@ class PageTransitionManager {
             const targetPath = window.location.pathname;
             this.handleTransition(targetPath);
         });
-
-        // Add begin journey link listener
-        this.initBeginJourneyListener();
-    }
-
-    initBeginJourneyListener() {
-        const beginJourneyLink = document.querySelector('.begin-journey-link');
-        if (beginJourneyLink && !beginJourneyLink.hasAttribute('data-has-listener')) {
-            beginJourneyLink.addEventListener('click', this.handleClick.bind(this));
-            beginJourneyLink.setAttribute('data-has-listener', 'true');
-        }
     }
 
     initNavigationListeners() {
@@ -62,8 +51,12 @@ class PageTransitionManager {
             link.setAttribute('data-has-listener', 'true');
         });
 
-        // Begin journey listener (moved to separate method)
-        this.initBeginJourneyListener();
+        // Begin journey listener
+        const beginJourney = document.querySelector('.begin-journey');
+        if (beginJourney && !beginJourney.hasAttribute('data-has-listener')) {
+            beginJourney.addEventListener('click', this.handleClick.bind(this));
+            beginJourney.setAttribute('data-has-listener', 'true');
+        }
     }
 
     removeExistingListeners() {
@@ -91,7 +84,6 @@ class PageTransitionManager {
             // Start fade out
             const container = document.querySelector('.page-container');
             container.style.opacity = '0';
-            container.style.transition = 'opacity 0.4s ease';
 
             // Wait for fade out to complete
             await new Promise(resolve => setTimeout(resolve, 400));
