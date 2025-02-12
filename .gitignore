@@ -1,0 +1,18 @@
+# macOS Icon files
+Icon
+Icon?
+Icon\r
+# The above three lines cover the various ways Icon files can appear on macOS
+
+# Windows icon files
+*.ico
+
+# Windows icon cache
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Linux hidden files that might contain icon data
+.directory
+.hidden
