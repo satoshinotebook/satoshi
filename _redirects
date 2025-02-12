@@ -1,11 +1,11 @@
-# First cleanly redirect all content URLs
+# First cleanly redirect all content URLs to clean URLs
 /content/*  /:splat  301
 
-# Then handle clean URLs to serve content
-/reality    /content/reality.html  200
-/scarcity   /content/scarcity.html  200
-/reality.html    /content/reality.html  200
-/scarcity.html   /content/scarcity.html  200
+# Then serve clean URLs from their content location
+/:page  /content/:page.html  200
+
+# Handle direct .html access
+/:page.html  /content/:page.html  200
 
 # SPA fallback
 /*    /index.html   200

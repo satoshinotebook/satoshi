@@ -343,17 +343,16 @@ async function handleNavigation(href) {
         const newContent = doc.querySelector('.page-content');
         
         if (newContent) {
-            // Update URL without reload
-            window.history.pushState({}, '', href);
-            document.title = doc.title;
-
-            // Clean up URL if it contains /content/
-            if (window.location.pathname.includes('/content/')) {
-                const cleanPath = window.location.pathname
+            // Update URL without reload - clean it first if needed
+            if (href.includes('/content/')) {
+                const cleanPath = href
                     .replace('/content/', '/')
                     .replace('.html', '');
-                window.history.replaceState({}, '', cleanPath);
+                window.history.pushState({}, '', cleanPath);
+            } else {
+                window.history.pushState({}, '', href);
             }
+            document.title = doc.title;
             
             // Update content
             const currentContent = document.querySelector('.page-content');
