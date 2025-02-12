@@ -108,25 +108,21 @@ function initializeSidebar() {
 
 // Page Navigation initialization
 function initializePageNavigation() {
+    // Get all nav items in order
     const navItems = Array.from(document.querySelectorAll('.dot-nav-item'));
-    const currentPath = window.location.pathname;
     
-    // Enhanced path comparison logic
+    // Find current page index
+    const currentPath = window.location.pathname;
     const currentIndex = navItems.findIndex(item => {
         const itemPath = item.getAttribute('href');
-        const itemPage = itemPath === '/' ? 'index.html' : itemPath.split('/').pop();
-        const currentPage = currentPath === '/' ? 'index.html' : currentPath.split('/').pop();
-        
-        return itemPage === currentPage || 
-               (currentPage === '' && itemPage === 'index.html') ||
-               (currentPath === itemPath);
+        return itemPath === currentPath || itemPath === currentPath + '.html';
     });
 
     const prevLink = document.querySelector('.prev-link');
     const nextLink = document.querySelector('.next-link');
 
     if (prevLink && nextLink) {
-        // Create fresh elements to avoid event listener buildup
+        // First, remove any existing click listeners
         const newPrevLink = prevLink.cloneNode(true);
         const newNextLink = nextLink.cloneNode(true);
         prevLink.parentNode.replaceChild(newPrevLink, prevLink);
@@ -140,13 +136,12 @@ function initializePageNavigation() {
             newPrevLink.title = "Previous: " + prevLabel;
             newPrevLink.classList.remove('disabled');
             
+            // Update to use stacked layout with right alignment
             const prevText = newPrevLink.querySelector('.nav-text');
-            if (prevText) {
-                prevText.classList.add('text-right');
-                prevText.innerHTML = `
-                    <span class="nav-direction">previous</span>
-                    <span class="nav-page-name">${prevLabel}</span>`;
-            }
+            prevText.classList.add('text-right');
+            prevText.innerHTML = `
+                <span class="nav-direction">previous</span>
+                <span class="nav-page-name">${prevLabel}</span>`;
             
             newPrevLink.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -164,13 +159,12 @@ function initializePageNavigation() {
             newNextLink.title = "Next: " + nextLabel;
             newNextLink.classList.remove('disabled');
             
+            // Update to use stacked layout with left alignment
             const nextText = newNextLink.querySelector('.nav-text');
-            if (nextText) {
-                nextText.classList.add('text-left');
-                nextText.innerHTML = `
-                    <span class="nav-direction">next</span>
-                    <span class="nav-page-name">${nextLabel}</span>`;
-            }
+            nextText.classList.add('text-left');
+            nextText.innerHTML = `
+                <span class="nav-direction">next</span>
+                <span class="nav-page-name">${nextLabel}</span>`;
             
             newNextLink.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -420,32 +414,28 @@ window.addEventListener('popstate', () => {
 });
 
 function setActiveNavItem() {
+    console.log('Setting active nav item...');
     const currentPath = window.location.pathname;
-    // Handle root path special case
-    const currentPage = currentPath === '/' ? 'index.html' : currentPath.split('/').pop();
+    const currentPage = currentPath.split('/').pop();
+    console.log('Current page:', currentPage);
 
     document.querySelectorAll('.dot-nav-item').forEach(item => {
         const itemPath = item.getAttribute('href');
-        // Handle both root path and regular paths
-        const itemPage = itemPath === '/' ? 'index.html' : itemPath.split('/').pop();
+        const itemPage = itemPath.split('/').pop();
+        console.log('Checking item:', itemPage);
 
-        if (currentPage === itemPage || 
-            (currentPage === '' && itemPage === 'index.html') || 
-            (currentPath === itemPath)) {
+        if (currentPage === itemPage) {
+            console.log('Match found! Setting active:', itemPage);
             item.classList.add('active');
             
             // Expand parent category
             const categoryGroup = item.closest('.category-group');
             if (categoryGroup) {
                 const categoryToggle = categoryGroup.querySelector('.category-toggle');
-                if (categoryToggle) {
-                    categoryToggle.setAttribute('aria-expanded', 'true');
-                    const categoryItems = categoryToggle.nextElementSibling;
-                    if (categoryItems) {
-                        categoryItems.style.maxHeight = categoryItems.scrollHeight + 'px';
-                        categoryItems.style.opacity = '1';
-                    }
-                }
+                categoryToggle.setAttribute('aria-expanded', 'true');
+                const categoryItems = categoryToggle.nextElementSibling;
+                categoryItems.style.maxHeight = categoryItems.scrollHeight + 'px';
+                categoryItems.style.opacity = '1';
             }
         } else {
             item.classList.remove('active');
