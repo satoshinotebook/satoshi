@@ -1,2 +1,11 @@
-/reality    /content/reality.html    200
-/scarcity   /content/scarcity.html   200
+# First cleanly redirect all content URLs
+/content/*  /:splat  301
+
+# Then handle clean URLs to serve content
+/reality    /content/reality.html  200
+/scarcity   /content/scarcity.html  200
+/reality.html    /content/reality.html  200
+/scarcity.html   /content/scarcity.html  200
+
+# SPA fallback
+/*    /index.html   200
