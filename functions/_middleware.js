@@ -1,4 +1,4 @@
-export async function onRequest({ request, next }) {
+export async function onRequest({ request, env, next }) {
     const url = new URL(request.url);
     
     // Simple mapping of clean URLs to content
@@ -8,12 +8,12 @@ export async function onRequest({ request, next }) {
   
     // If this is a clean URL we want to handle
     if (routes[url.pathname]) {
-      // Create a new request with the content path
-      const newRequest = new Request(request);
-      newRequest.url = new URL(routes[url.pathname], request.url).toString();
+      // Create a new URL object with the content path
+      const newUrl = new URL(url.href);
+      newUrl.pathname = routes[url.pathname];
       
-      // Return the response from the content path
-      return next(newRequest);
+      // Create a new request with the modified URL
+      return fetch(new Request(newUrl, request));
     }
   
     // For all other URLs, pass through unchanged
