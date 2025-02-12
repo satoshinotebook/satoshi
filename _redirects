@@ -1,6 +1,6 @@
-# Convert /content/scarcity.html to /scarcity (for clean URLs)
-/content/*  /:splat  301
-
-# Handle clean URLs by pointing back to the actual files
+# Specific routes first (more performant)
 /reality    /content/reality.html    200
 /scarcity   /content/scarcity.html   200
+
+# Then the general content directory handler
+/content/*  /:splat  301
