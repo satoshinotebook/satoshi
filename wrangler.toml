@@ -1,5 +1,9 @@
-[
-configuration
-]
-routes = []
+name = "satoshi-notebook"
+compatibility_date = "2024-02-12"
+
+[site]
+bucket = "./"
+pages_build_output_dir = "/"
+
+[configuration]
 cleanUrls = true
