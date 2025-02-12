@@ -1,11 +1,3 @@
-// Clean URLs on page load
-if (window.location.pathname.includes('/content/')) {
-    const cleanPath = window.location.pathname
-        .replace('/content/', '/')
-        .replace('.html', '');
-    window.history.replaceState({}, '', cleanPath);
-}
-
 // Main navigation loading function
 async function loadNavigation() {
     try {
@@ -343,15 +335,8 @@ async function handleNavigation(href) {
         const newContent = doc.querySelector('.page-content');
         
         if (newContent) {
-            // Update URL without reload - clean it first if needed
-            if (href.includes('/content/')) {
-                const cleanPath = href
-                    .replace('/content/', '/')
-                    .replace('.html', '');
-                window.history.pushState({}, '', cleanPath);
-            } else {
-                window.history.pushState({}, '', href);
-            }
+            // Update URL without reload
+            window.history.pushState({}, '', href);
             document.title = doc.title;
             
             // Update content
