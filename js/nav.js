@@ -1,9 +1,3 @@
-// Function to clean URL
-function getCleanUrl(path) {
-    // Remove /content/ and .html
-    return path.replace('/content/', '/').replace('.html', '');
-}
-
 // Main navigation loading function
 async function loadNavigation() {
     try {
@@ -319,29 +313,33 @@ async function handleNavigation(href) {
         const container = document.querySelector('.page-container');
         const nav = document.querySelector('.dot-nav');
         
+        // Prevent multiple transitions from running
         if (container.classList.contains('transitioning')) return;
+        
+        // Add transitioning class
         container.classList.add('transitioning');
+        
+        // Start fade out
         container.style.opacity = '0';
         
+        // Wait for fade out
         await new Promise(resolve => setTimeout(resolve, 300));
         
-        // Always use the content path for fetching
-        const fetchPath = `/content${href}.html`;
-        
-        const response = await fetch(fetchPath);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        
+        // Fetch new content
+        const response = await fetch(href);
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
         
+        // Get the new content
         const newContent = doc.querySelector('.page-content');
         
         if (newContent) {
-            // Update URL (keep it clean)
+            // Update URL without reload
             window.history.pushState({}, '', href);
             document.title = doc.title;
             
+            // Update content
             const currentContent = document.querySelector('.page-content');
             if (currentContent) {
                 currentContent.replaceWith(newContent);
@@ -349,7 +347,8 @@ async function handleNavigation(href) {
                 container.appendChild(newContent);
             }
             
-            const isHomePage = href === '/' || href.endsWith('index');
+            // Handle frosted glass effect
+            const isHomePage = href === '/' || href.endsWith('index.html');
             if (isHomePage) {
                 container.classList.add('home');
                 container.style.background = 'none';
@@ -364,8 +363,10 @@ async function handleNavigation(href) {
                 container.style.borderLeft = '1px solid rgba(255, 255, 255, 0.1)';
             }
             
+            // Update navigation
             setActiveNavItem();
             
+            // Ensure navigation links are properly initialized
             await new Promise(resolve => {
                 setTimeout(() => {
                     initializePageNavigation();
@@ -373,30 +374,37 @@ async function handleNavigation(href) {
                 }, 50);
             });
             
+            // Close mobile menu if open
             if (window.innerWidth <= 768) {
                 nav.classList.remove('open');
                 document.querySelector('.sidebar-overlay')?.classList.remove('active');
                 container.style.transform = 'none';
             }
             
+            // Ensure DOM is updated before fade in
             await new Promise(resolve => requestAnimationFrame(resolve));
-            container.style.opacity = '1';
             
+            // Fade in
+            container.style.opacity = '1';
+
+            // Scroll to top of the page after navigation
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
             
+            // Remove transitioning class after animation
             setTimeout(() => {
                 container.classList.remove('transitioning');
             }, 300);
         }
     } catch (error) {
         console.error('Navigation error:', error);
+        // Reset state on error
+        const container = document.querySelector('.page-container');
         container.style.opacity = '1';
         container.classList.remove('transitioning');
-        // On error, stay at the current URL
-        console.error(`Failed to load: ${href}`);
+        window.location.href = href; // Fallback to regular navigation
     }
 }
 
@@ -405,16 +413,19 @@ window.addEventListener('popstate', () => {
     handleNavigation(window.location.pathname);
 });
 
-// Update setActiveNavItem function
 function setActiveNavItem() {
+    console.log('Setting active nav item...');
     const currentPath = window.location.pathname;
     const currentPage = currentPath.split('/').pop();
-    
+    console.log('Current page:', currentPage);
+
     document.querySelectorAll('.dot-nav-item').forEach(item => {
-        const itemPath = getCleanUrl(item.getAttribute('href'));
+        const itemPath = item.getAttribute('href');
         const itemPage = itemPath.split('/').pop();
-        
+        console.log('Checking item:', itemPage);
+
         if (currentPage === itemPage) {
+            console.log('Match found! Setting active:', itemPage);
             item.classList.add('active');
             
             // Expand parent category
