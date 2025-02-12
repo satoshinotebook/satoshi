@@ -939,3 +939,33 @@ canvas#matrix {
     color: white; /* Changes to white on hover */
     transform: scale(1.02); /* Subtle scale effect */
 }
+
+.begin-journey-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #FF9F1C;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    margin-top: 2rem;
+    font-family: Menlo, monospace;
+}
+
+.begin-journey-link:hover {
+    opacity: 1;
+}
+
+.journey-text {
+    font-size: 0.875rem;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+}
+
+.journey-arrow {
+    transition: transform 0.5s ease;
+}
+
+.begin-journey-link:hover .journey-arrow {
+    transform: translateX(8px);
+}
