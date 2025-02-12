@@ -109,80 +109,91 @@ function initializeSidebar() {
 // Page Navigation initialization
 // Updated Page Navigation initialization
 function initializePageNavigation() {
+    console.log('Starting navigation initialization');
+    
     // Get all nav items and find current page index
     const navItems = Array.from(document.querySelectorAll('.dot-nav-item'));
+    console.log('Found nav items:', navItems.length);
+    
     const currentPath = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
+    console.log('Current path:', currentPath);
     
     // Find our position in the navigation
-    let currentIndex = navItems.findIndex(item => {
+    const currentIndex = navItems.findIndex(item => {
         const itemPath = item.getAttribute('href').replace(/\.html$/, '').replace(/\/$/, '');
+        console.log('Comparing:', itemPath, 'with', currentPath);
         return itemPath === currentPath;
     });
+    
+    console.log('Current index:', currentIndex);
 
     // Get navigation links
     const prevLink = document.querySelector('.prev-link');
     const nextLink = document.querySelector('.next-link');
     
-    if (!prevLink || !nextLink) return;
+    if (!prevLink || !nextLink) {
+        console.error('Navigation links not found!');
+        return;
+    }
 
-    // Clear existing links
-    prevLink.innerHTML = `
-        <svg viewBox="0 0 24 24" width="20" height="20" class="nav-arrow">
-            <path d="M15 18l-6-6 6-6" stroke="#FF9F1C" stroke-width="2" fill="none"/>
-        </svg>
-        <span class="nav-text"></span>
-    `;
-    nextLink.innerHTML = `
-        <span class="nav-text"></span>
-        <svg viewBox="0 0 24 24" width="20" height="20" class="nav-arrow">
-            <path d="M9 6l6 6-6 6" stroke="#FF9F1C" stroke-width="2" fill="none"/>
-        </svg>
-    `;
-
-    // Setup previous link
+    // Handle previous link
     if (currentIndex > 0) {
         const prevItem = navItems[currentIndex - 1];
         const prevLabel = prevItem.getAttribute('data-label');
         const prevHref = prevItem.getAttribute('href').replace(/\.html$/, '');
         
-        prevLink.querySelector('.nav-text').innerHTML = `
-            <span class="nav-direction">previous</span>
-            <span class="nav-page-name">${prevLabel}</span>
+        console.log('Setting up prev link:', prevLabel, prevHref);
+        
+        prevLink.innerHTML = `
+            <svg viewBox="0 0 24 24" width="20" height="20" class="nav-arrow">
+                <path d="M15 18l-6-6 6-6" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+            </svg>
+            <span class="nav-text">
+                <span class="nav-direction">previous</span>
+                <span class="nav-page-name">${prevLabel}</span>
+            </span>
         `;
         prevLink.href = prevHref;
         prevLink.classList.remove('disabled');
-        
         prevLink.onclick = (e) => {
             e.preventDefault();
+            console.log('Navigating to prev:', prevHref);
             handleNavigation(prevHref);
         };
     } else {
+        console.log('No previous page available');
         prevLink.classList.add('disabled');
         prevLink.href = '#';
-        prevLink.onclick = null;
     }
 
-    // Setup next link
+    // Handle next link
     if (currentIndex < navItems.length - 1) {
         const nextItem = navItems[currentIndex + 1];
         const nextLabel = nextItem.getAttribute('data-label');
         const nextHref = nextItem.getAttribute('href').replace(/\.html$/, '');
         
-        nextLink.querySelector('.nav-text').innerHTML = `
-            <span class="nav-direction">next</span>
-            <span class="nav-page-name">${nextLabel}</span>
+        console.log('Setting up next link:', nextLabel, nextHref);
+        
+        nextLink.innerHTML = `
+            <span class="nav-text">
+                <span class="nav-direction">next</span>
+                <span class="nav-page-name">${nextLabel}</span>
+            </span>
+            <svg viewBox="0 0 24 24" width="20" height="20" class="nav-arrow">
+                <path d="M9 6l6 6-6 6" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+            </svg>
         `;
         nextLink.href = nextHref;
         nextLink.classList.remove('disabled');
-        
         nextLink.onclick = (e) => {
             e.preventDefault();
+            console.log('Navigating to next:', nextHref);
             handleNavigation(nextHref);
         };
     } else {
+        console.log('No next page available');
         nextLink.classList.add('disabled');
         nextLink.href = '#';
-        nextLink.onclick = null;
     }
 }
 
@@ -319,17 +330,22 @@ function initializeNavigationHandlers() {
 }
 
 async function handleNavigation(href) {
+    console.log('Starting navigation to:', href);
+    
     try {
         const container = document.querySelector('.page-container');
-        if (container.classList.contains('transitioning')) return;
+        if (container.classList.contains('transitioning')) {
+            console.log('Already transitioning, aborting');
+            return;
+        }
         
+        console.log('Starting transition');
         container.classList.add('transitioning');
         container.style.opacity = '0';
         
-        // Wait for fade out
         await new Promise(resolve => setTimeout(resolve, 300));
         
-        // Fetch and parse new content
+        console.log('Fetching new content');
         const response = await fetch(href);
         const html = await response.text();
         const parser = new DOMParser();
@@ -337,26 +353,30 @@ async function handleNavigation(href) {
         const newContent = doc.querySelector('.page-content');
         
         if (newContent) {
-            // Update URL and title
+            console.log('Updating content');
             window.history.pushState({}, '', href);
             document.title = doc.title;
             
-            // Replace content
-            document.querySelector('.page-content').replaceWith(newContent);
+            const currentContent = document.querySelector('.page-content');
+            currentContent.replaceWith(newContent);
             
-            // Update active state and navigation
+            console.log('Updating navigation');
             setActiveNavItem();
-            initializePageNavigation();
             
-            // Ensure DOM update
+            // Initialize navigation after a short delay to ensure DOM is ready
+            setTimeout(() => {
+                console.log('Initializing navigation');
+                initializePageNavigation();
+            }, 50);
+            
             requestAnimationFrame(() => {
+                console.log('Fading in content');
                 container.style.opacity = '1';
                 setTimeout(() => {
                     container.classList.remove('transitioning');
                 }, 300);
             });
 
-            // Scroll to top
             window.scrollTo(0, 0);
         }
     } catch (error) {
