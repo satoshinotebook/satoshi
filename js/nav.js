@@ -1,29 +1,14 @@
-// Unified initialization function
-function reinitializeNavigation() {
-    return new Promise(resolve => {
-        requestAnimationFrame(() => {
-            setActiveNavItem();
-            initializePageNavigation();
-            resolve();
-        });
-    });
-}
-
 // Main navigation loading function
 async function loadNavigation() {
     try {
         const response = await fetch('/components/nav.html');
         const html = await response.text();
         document.body.insertAdjacentHTML('beforeend', html);
-        
-        // Initialize all components
         initializeNavigationHandlers();
         initializeScrollHandlers();
         initializeCategoryToggles();
         initializeSidebar();
-        
-        // Ensure navigation is properly initialized
-        await reinitializeNavigation();
+        initializePageNavigation(); // Add this line
     } catch (error) {
         console.error('Error loading navigation:', error);
     }
@@ -36,18 +21,17 @@ function initializeSidebar() {
     const overlay = document.querySelector('.sidebar-overlay');
     const pageContainer = document.querySelector('.page-container');
     
-    if (!nav || !pageContainer) return;
-    
     function toggleMobileMenu(show) {
         if (show) {
             nav.classList.add('open');
-            overlay?.classList.add('active');
+            overlay.classList.add('active');
+            // Let the transition handle the transform
             requestAnimationFrame(() => {
                 pageContainer.style.transform = 'translateX(350px)';
             });
         } else {
             nav.classList.remove('open');
-            overlay?.classList.remove('active');
+            overlay.classList.remove('active');
             requestAnimationFrame(() => {
                 pageContainer.style.transform = 'translateX(0)';
             });
@@ -81,7 +65,7 @@ function initializeSidebar() {
         toggleMobileMenu(false);
     });
 
-    // Handle window resize with debounce
+    // Handle window resize
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
@@ -98,7 +82,7 @@ function initializeSidebar() {
                 }
             } else {
                 nav.classList.remove('open');
-                overlay?.classList.remove('active');
+                overlay.classList.remove('active');
                 pageContainer.style.transform = 'translateX(0)';
                 if (!nav.classList.contains('collapsed')) {
                     pageContainer.style.marginLeft = '350px';
@@ -112,7 +96,7 @@ function initializeSidebar() {
     const isMobile = window.innerWidth <= 768;
     if (isMobile) {
         nav.classList.remove('open');
-        overlay?.classList.remove('active');
+        overlay.classList.remove('active');
         pageContainer.style.transform = 'translateX(0)';
     } else {
         nav.classList.remove('open');
@@ -122,34 +106,33 @@ function initializeSidebar() {
     }
 }
 
-// Page Navigation initialization with retry logic
-function initializePageNavigation(retryCount = 0, maxRetries = 3) {
+// Page Navigation initialization
+function initializePageNavigation() {
     const navItems = Array.from(document.querySelectorAll('.dot-nav-item'));
-    const prevLink = document.querySelector('.prev-link');
-    const nextLink = document.querySelector('.next-link');
-    
-    // Check if required elements exist
-    if ((!prevLink || !nextLink || navItems.length === 0) && retryCount < maxRetries) {
-        console.log(`Retrying navigation initialization (${retryCount + 1}/${maxRetries})`);
-        setTimeout(() => {
-            initializePageNavigation(retryCount + 1, maxRetries);
-        }, Math.min(100 * Math.pow(2, retryCount), 1000));
-        return;
-    }
-
-    // Find current page index
     const currentPath = window.location.pathname;
+    
+    // Enhanced path comparison logic
     const currentIndex = navItems.findIndex(item => {
         const itemPath = item.getAttribute('href');
-        return itemPath === currentPath || itemPath === currentPath + '.html';
+        const itemPage = itemPath === '/' ? 'index.html' : itemPath.split('/').pop();
+        const currentPage = currentPath === '/' ? 'index.html' : currentPath.split('/').pop();
+        
+        return itemPage === currentPage || 
+               (currentPage === '' && itemPage === 'index.html') ||
+               (currentPath === itemPath);
     });
+
+    const prevLink = document.querySelector('.prev-link');
+    const nextLink = document.querySelector('.next-link');
 
     if (prevLink && nextLink) {
         // Create fresh elements to avoid event listener buildup
         const newPrevLink = prevLink.cloneNode(true);
         const newNextLink = nextLink.cloneNode(true);
+        prevLink.parentNode.replaceChild(newPrevLink, prevLink);
+        nextLink.parentNode.replaceChild(newNextLink, nextLink);
         
-        // Set up previous link
+        // Set previous link
         if (currentIndex > 0) {
             const prevItem = navItems[currentIndex - 1];
             const prevLabel = prevItem.getAttribute('data-label');
@@ -173,7 +156,7 @@ function initializePageNavigation(retryCount = 0, maxRetries = 3) {
             newPrevLink.classList.add('disabled');
         }
 
-        // Set up next link
+        // Set next link
         if (currentIndex < navItems.length - 1) {
             const nextItem = navItems[currentIndex + 1];
             const nextLabel = nextItem.getAttribute('data-label');
@@ -196,10 +179,6 @@ function initializePageNavigation(retryCount = 0, maxRetries = 3) {
         } else {
             newNextLink.classList.add('disabled');
         }
-
-        // Replace old elements with new ones
-        prevLink.parentNode.replaceChild(newPrevLink, prevLink);
-        nextLink.parentNode.replaceChild(newNextLink, nextLink);
     }
 }
 
@@ -216,34 +195,26 @@ function initializeCategoryToggles() {
             toggle.setAttribute('aria-expanded', !isExpanded);
             
             const categoryItems = toggle.nextElementSibling;
-            if (categoryItems) {
-                if (isExpanded) {
-                    categoryItems.style.maxHeight = '0';
-                    categoryItems.style.opacity = '0';
-                } else {
-                    categoryItems.style.maxHeight = categoryItems.scrollHeight + 'px';
-                    categoryItems.style.opacity = '1';
-                }
-                
-                const categoryId = toggle.querySelector('.category-name')?.textContent;
-                if (categoryId) {
-                    localStorage.setItem(`category-${categoryId}`, !isExpanded);
-                }
+            if (isExpanded) {
+                categoryItems.style.maxHeight = '0';
+                categoryItems.style.opacity = '0';
+            } else {
+                categoryItems.style.maxHeight = categoryItems.scrollHeight + 'px';
+                categoryItems.style.opacity = '1';
             }
+            
+            const categoryId = toggle.querySelector('.category-name').textContent;
+            localStorage.setItem(`category-${categoryId}`, !isExpanded);
         });
         
         // Initialize state from localStorage
-        const categoryId = toggle.querySelector('.category-name')?.textContent;
-        if (categoryId) {
-            const isExpanded = localStorage.getItem(`category-${categoryId}`) === 'true';
-            if (isExpanded) {
-                toggle.setAttribute('aria-expanded', 'true');
-                const categoryItems = toggle.nextElementSibling;
-                if (categoryItems) {
-                    categoryItems.style.maxHeight = categoryItems.scrollHeight + 'px';
-                    categoryItems.style.opacity = '1';
-                }
-            }
+        const categoryId = toggle.querySelector('.category-name').textContent;
+        const isExpanded = localStorage.getItem(`category-${categoryId}`) === 'true';
+        if (isExpanded) {
+            toggle.setAttribute('aria-expanded', 'true');
+            const categoryItems = toggle.nextElementSibling;
+            categoryItems.style.maxHeight = categoryItems.scrollHeight + 'px';
+            categoryItems.style.opacity = '1';
         }
     });
 }
@@ -251,7 +222,6 @@ function initializeCategoryToggles() {
 // Scroll handling
 function initializeScrollHandlers() {
     const navContent = document.querySelector('.nav-content');
-    if (!navContent) return;
     
     function checkScrollable() {
         if (navContent.scrollHeight > navContent.clientHeight) {
@@ -308,12 +278,12 @@ function initializeNavigationHandlers() {
     const nav = document.querySelector('.dot-nav');
     const pageContainer = document.querySelector('.page-container');
 
-    if (!nav || !pageContainer) return;
-
     document.querySelectorAll('.dot-nav-item').forEach(item => {
         item.setAttribute('tabindex', '0');
-        
-        item.addEventListener('click', async (e) => {
+    });
+
+    document.querySelectorAll('.dot-nav-item').forEach(item => {
+        item.addEventListener('click', (e) => {
             e.preventDefault();
             
             document.querySelectorAll('.dot-nav-item').forEach(i => {
@@ -324,44 +294,58 @@ function initializeNavigationHandlers() {
 
             const href = item.getAttribute('href');
             if (href) {
-                await handleNavigation(href);
+                handleNavigation(href).then(() => {
+                    // Add this: Initialize page navigation after content is loaded
+                    setTimeout(() => {
+                        initializePageNavigation();
+                    }, 50);
+                });
             }
 
             if (window.innerWidth <= 768) {
                 nav.classList.remove('open');
-                document.querySelector('.sidebar-overlay')?.classList.remove('active');
+                document.querySelector('.sidebar-overlay').classList.remove('active');
                 pageContainer.style.transform = 'none';
             }
         });
     });
 
+    // Set active nav item based on current page
     setActiveNavItem();
 }
 
-// Handle navigation with proper state management
 async function handleNavigation(href) {
     try {
         const container = document.querySelector('.page-container');
-        if (!container || container.classList.contains('transitioning')) return;
+        const nav = document.querySelector('.dot-nav');
         
+        // Prevent multiple transitions from running
+        if (container.classList.contains('transitioning')) return;
+        
+        // Add transitioning class
         container.classList.add('transitioning');
+        
+        // Start fade out
         container.style.opacity = '0';
         
+        // Wait for fade out
         await new Promise(resolve => setTimeout(resolve, 300));
         
+        // Fetch new content
         const response = await fetch(href);
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
         
+        // Get the new content
         const newContent = doc.querySelector('.page-content');
         
         if (newContent) {
-            if (window.location.pathname !== href) {
-                window.history.pushState({}, '', href);
-            }
+            // Update URL without reload
+            window.history.pushState({}, '', href);
             document.title = doc.title;
             
+            // Update content
             const currentContent = document.querySelector('.page-content');
             if (currentContent) {
                 currentContent.replaceWith(newContent);
@@ -369,61 +353,85 @@ async function handleNavigation(href) {
                 container.appendChild(newContent);
             }
             
+            // Handle frosted glass effect
             const isHomePage = href === '/' || href.endsWith('index.html');
-            container.classList.toggle('home', isHomePage);
-            
-            if (!isHomePage) {
-                container.style.background = 'rgba(38, 38, 38, 0.5)';
-                container.style.backdropFilter = 'blur(8px)';
-                container.style.webkitBackdropFilter = 'blur(8px)';
-                container.style.borderLeft = '1px solid rgba(255, 255, 255, 0.1)';
-            } else {
+            if (isHomePage) {
+                container.classList.add('home');
                 container.style.background = 'none';
                 container.style.backdropFilter = 'none';
                 container.style.webkitBackdropFilter = 'none';
                 container.style.borderLeft = 'none';
+            } else {
+                container.classList.remove('home');
+                container.style.background = 'rgba(38, 38, 38, 0.5)';
+                container.style.backdropFilter = 'blur(8px)';
+                container.style.webkitBackdropFilter = 'blur(8px)';
+                container.style.borderLeft = '1px solid rgba(255, 255, 255, 0.1)';
             }
             
-            await reinitializeNavigation();
+            // Update navigation
+            setActiveNavItem();
             
+            // Ensure navigation links are properly initialized
+            await new Promise(resolve => {
+                setTimeout(() => {
+                    initializePageNavigation();
+                    resolve();
+                }, 50);
+            });
+            
+            // Close mobile menu if open
             if (window.innerWidth <= 768) {
-                const nav = document.querySelector('.dot-nav');
-                nav?.classList.remove('open');
+                nav.classList.remove('open');
                 document.querySelector('.sidebar-overlay')?.classList.remove('active');
                 container.style.transform = 'none';
             }
             
+            // Ensure DOM is updated before fade in
             await new Promise(resolve => requestAnimationFrame(resolve));
-            container.style.opacity = '1';
             
+            // Fade in
+            container.style.opacity = '1';
+
+            // Scroll to top of the page after navigation
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
             
+            // Remove transitioning class after animation
             setTimeout(() => {
                 container.classList.remove('transitioning');
             }, 300);
         }
     } catch (error) {
         console.error('Navigation error:', error);
+        // Reset state on error
         const container = document.querySelector('.page-container');
         container.style.opacity = '1';
         container.classList.remove('transitioning');
-        window.location.href = href;
+        window.location.href = href; // Fallback to regular navigation
     }
 }
 
-// Set active navigation item
+// Add popstate handler for browser back/forward buttons
+window.addEventListener('popstate', () => {
+    handleNavigation(window.location.pathname);
+});
+
 function setActiveNavItem() {
     const currentPath = window.location.pathname;
-    const currentPage = currentPath.split('/').pop();
+    // Handle root path special case
+    const currentPage = currentPath === '/' ? 'index.html' : currentPath.split('/').pop();
 
     document.querySelectorAll('.dot-nav-item').forEach(item => {
         const itemPath = item.getAttribute('href');
-        const itemPage = itemPath.split('/').pop();
+        // Handle both root path and regular paths
+        const itemPage = itemPath === '/' ? 'index.html' : itemPath.split('/').pop();
 
-        if (currentPage === itemPage) {
+        if (currentPage === itemPage || 
+            (currentPage === '' && itemPage === 'index.html') || 
+            (currentPath === itemPath)) {
             item.classList.add('active');
             
             // Expand parent category
@@ -445,37 +453,9 @@ function setActiveNavItem() {
     });
 }
 
-// Setup navigation observer for dynamic content
-function setupNavigationObserver() {
-    const observer = new MutationObserver((mutations) => {
-        for (const mutation of mutations) {
-            if (mutation.type === 'childList' || mutation.type === 'attributes') {
-                requestAnimationFrame(() => {
-                    initializePageNavigation();
-                });
-                break;
-            }
-        }
-    });
-
-    const navContainer = document.querySelector('.page-container');
-    if (navContainer) {
-        observer.observe(navContainer, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ['class', 'style']
-        });
-    }
-}
-
-// Event Listeners
-document.addEventListener('DOMContentLoaded', async () => {
-    await loadNavigation();
-    setupNavigationObserver();
-});
-
-// Single popstate handler for browser back/forward
+// Initialize
+document.addEventListener('DOMContentLoaded', loadNavigation);
 window.addEventListener('popstate', () => {
-    handleNavigation(window.location.pathname);
+    setActiveNavItem();
+    initializePageNavigation(); // Add this line
 });
