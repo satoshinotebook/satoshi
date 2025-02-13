@@ -4,31 +4,15 @@ async function loadNavigation() {
         const response = await fetch('/components/nav.html');
         const html = await response.text();
         document.body.insertAdjacentHTML('beforeend', html);
-        
-        // Wait for DOM to be ready
-        await new Promise(resolve => setTimeout(resolve, 100));
-        
         initializeNavigationHandlers();
         initializeScrollHandlers();
         initializeCategoryToggles();
         initializeSidebar();
-        
-        // Initialize page navigation last
-        const checkNav = () => {
-            const prevLink = document.querySelector('.prev-link');
-            const nextLink = document.querySelector('.next-link');
-            if (prevLink && nextLink) {
-                initializePageNavigation();
-            } else {
-                setTimeout(checkNav, 50);
-            }
-        };
-        checkNav();
+        initializePageNavigation(); // Add this line
     } catch (error) {
         console.error('Error loading navigation:', error);
     }
 }
-
 
 // Sidebar initialization
 function initializeSidebar() {
@@ -124,75 +108,68 @@ function initializeSidebar() {
 
 // Page Navigation initialization
 function initializePageNavigation() {
+    // Get all nav items in order
     const navItems = Array.from(document.querySelectorAll('.dot-nav-item'));
     
+    // Find current page index
     const currentPath = window.location.pathname;
-    const normalizedCurrentPath = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
     const currentIndex = navItems.findIndex(item => {
         const itemPath = item.getAttribute('href');
-        const normalizedItemPath = itemPath?.endsWith('/') ? itemPath.slice(0, -1) : itemPath;
-        return normalizedItemPath === normalizedCurrentPath || 
-               normalizedItemPath === normalizedCurrentPath + '.html' ||
-               normalizedItemPath === '/' + normalizedCurrentPath;
+        return itemPath === currentPath || itemPath === currentPath + '.html';
     });
 
     const prevLink = document.querySelector('.prev-link');
     const nextLink = document.querySelector('.next-link');
 
     if (prevLink && nextLink) {
+        // First, remove any existing click listeners
         const newPrevLink = prevLink.cloneNode(true);
         const newNextLink = nextLink.cloneNode(true);
         prevLink.parentNode.replaceChild(newPrevLink, prevLink);
         nextLink.parentNode.replaceChild(newNextLink, nextLink);
         
+        // Set previous link
         if (currentIndex > 0) {
             const prevItem = navItems[currentIndex - 1];
             const prevLabel = prevItem.getAttribute('data-label');
-            const prevHref = prevItem.getAttribute('href');
+            newPrevLink.href = prevItem.getAttribute('href');
+            newPrevLink.title = "Previous: " + prevLabel;
+            newPrevLink.classList.remove('disabled');
             
-            if (prevHref && prevHref !== '#') {
-                newPrevLink.href = prevHref;
-                newPrevLink.title = "Previous: " + prevLabel;
-                newPrevLink.classList.remove('disabled');
-                
-                const prevText = newPrevLink.querySelector('.nav-text');
-                prevText.classList.add('text-right');
-                prevText.innerHTML = `
-                    <span class="nav-direction">previous</span>
-                    <span class="nav-page-name">${prevLabel}</span>`;
-                
-                newPrevLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleNavigation(prevHref);
-                });
-            }
+            // Update to use stacked layout with right alignment
+            const prevText = newPrevLink.querySelector('.nav-text');
+            prevText.classList.add('text-right');
+            prevText.innerHTML = `
+                <span class="nav-direction">previous</span>
+                <span class="nav-page-name">${prevLabel}</span>`;
+            
+            newPrevLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleNavigation(prevItem.getAttribute('href'));
+            });
         } else {
             newPrevLink.classList.add('disabled');
         }
 
+        // Set next link
         if (currentIndex < navItems.length - 1) {
             const nextItem = navItems[currentIndex + 1];
             const nextLabel = nextItem.getAttribute('data-label');
-            const nextHref = nextItem.getAttribute('href');
+            newNextLink.href = nextItem.getAttribute('href');
+            newNextLink.title = "Next: " + nextLabel;
+            newNextLink.classList.remove('disabled');
             
-            if (nextHref && nextHref !== '#') {
-                newNextLink.href = nextHref;
-                newNextLink.title = "Next: " + nextLabel;
-                newNextLink.classList.remove('disabled');
-                
-                const nextText = newNextLink.querySelector('.nav-text');
-                nextText.classList.add('text-left');
-                nextText.innerHTML = `
-                    <span class="nav-direction">next</span>
-                    <span class="nav-page-name">${nextLabel}</span>`;
-                
-                newNextLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleNavigation(nextHref);
-                });
-            }
+            // Update to use stacked layout with left alignment
+            const nextText = newNextLink.querySelector('.nav-text');
+            nextText.classList.add('text-left');
+            nextText.innerHTML = `
+                <span class="nav-direction">next</span>
+                <span class="nav-page-name">${nextLabel}</span>`;
+            
+            newNextLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleNavigation(nextItem.getAttribute('href'));
+            });
         } else {
             newNextLink.classList.add('disabled');
         }
@@ -295,26 +272,24 @@ function initializeNavigationHandlers() {
     const nav = document.querySelector('.dot-nav');
     const pageContainer = document.querySelector('.page-container');
 
-    // Handle navigation for both dot-nav-items and navigation links
-    document.querySelectorAll('.dot-nav-item, .prev-link, .next-link').forEach(item => {
-        if (item.classList.contains('dot-nav-item')) {
-            item.setAttribute('tabindex', '0');
-        }
+    document.querySelectorAll('.dot-nav-item').forEach(item => {
+        item.setAttribute('tabindex', '0');
+    });
 
+    document.querySelectorAll('.dot-nav-item').forEach(item => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
-            e.stopPropagation();
             
-            if (item.classList.contains('dot-nav-item')) {
-                document.querySelectorAll('.dot-nav-item').forEach(i => {
-                    i.classList.remove('active');
-                });
-                item.classList.add('active');
-            }
+            document.querySelectorAll('.dot-nav-item').forEach(i => {
+                i.classList.remove('active');
+            });
+            
+            item.classList.add('active');
 
             const href = item.getAttribute('href');
-            if (href && href !== '#') {
+            if (href) {
                 handleNavigation(href).then(() => {
+                    // Add this: Initialize page navigation after content is loaded
                     setTimeout(() => {
                         initializePageNavigation();
                     }, 50);
@@ -323,12 +298,13 @@ function initializeNavigationHandlers() {
 
             if (window.innerWidth <= 768) {
                 nav.classList.remove('open');
-                document.querySelector('.sidebar-overlay')?.classList.remove('active');
+                document.querySelector('.sidebar-overlay').classList.remove('active');
                 pageContainer.style.transform = 'none';
             }
         });
     });
 
+    // Set active nav item based on current page
     setActiveNavItem();
 }
 
