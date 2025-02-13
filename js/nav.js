@@ -357,7 +357,7 @@ async function handleNavigation(href) {
                 container.style.borderLeft = 'none';
             } else {
                 container.classList.remove('home');
-                container.style.background = 'rgba(0, 0, 0, 0.5)';
+                container.style.background = 'rgba(38, 38, 38, 0.5)';
                 container.style.backdropFilter = 'blur(8px)';
                 container.style.webkitBackdropFilter = 'blur(8px)';
                 container.style.borderLeft = '1px solid rgba(255, 255, 255, 0.1)';
