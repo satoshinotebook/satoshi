@@ -9,7 +9,8 @@ body {
 
 /* Colors */
 :root {
-    --background-primary: #2D2D2D;
+   /* --background-primary: #2D2D2D; */
+   --background-primary: #070707;
     --background-secondary: #1a1a1a;
     --text-primary: #d7ccbd;
     --text-secondary: #808080;
@@ -565,7 +566,8 @@ p {
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    background: rgba(38, 38, 38, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+    /* background: rgba(38, 38, 38, 0.5); */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-left: 1px solid rgba(255, 255, 255, 0.1);
