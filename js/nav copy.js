@@ -347,7 +347,7 @@ async function handleNavigation(href) {
                 container.appendChild(newContent);
             }
             
-            // Handle page-specific setup
+            // Handle frosted glass effect
             const isHomePage = href === '/' || href.endsWith('index.html');
             if (isHomePage) {
                 container.classList.add('home');
@@ -361,32 +361,20 @@ async function handleNavigation(href) {
                 container.style.backdropFilter = 'blur(8px)';
                 container.style.webkitBackdropFilter = 'blur(8px)';
                 container.style.borderLeft = '1px solid rgba(255, 255, 255, 0.1)';
-                
-                // Ensure navigation elements exist for content pages
-                const contentSection = document.querySelector('.content-section');
-                if (contentSection && !document.querySelector('.page-navigation')) {
-                    // Add navigation after content section using templates
-                    const navElement = document.createElement('div');
-                    navElement.innerHTML = templates.navigation();
-                    contentSection.parentNode.insertBefore(
-                        navElement.firstElementChild,
-                        contentSection.nextSibling
-                    );
-                }
             }
             
-            // Initialize navigation and update active states
+            // Update navigation
+            setActiveNavItem();
+            
+            // Ensure navigation links are properly initialized
             await new Promise(resolve => {
                 setTimeout(() => {
-                    setActiveNavItem();
-                    if (!isHomePage) {
-                        initializePageNavigation();
-                    }
+                    initializePageNavigation();
                     resolve();
                 }, 50);
             });
             
-            // Handle mobile menu
+            // Close mobile menu if open
             if (window.innerWidth <= 768) {
                 nav.classList.remove('open');
                 document.querySelector('.sidebar-overlay')?.classList.remove('active');
@@ -398,7 +386,7 @@ async function handleNavigation(href) {
             
             // Fade in
             container.style.opacity = '1';
-            
+
             // Scroll to top of the page after navigation
             window.scrollTo({
                 top: 0,
