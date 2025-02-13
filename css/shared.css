@@ -828,7 +828,8 @@ canvas#matrix {
 
 /* Page Navigation Styles */
 .page-navigation {
-    display: flex;
+    /* display: flex; */
+    display: none !important;
     justify-content: space-between;
     align-items: center;
     padding: 2rem 0;
