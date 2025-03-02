@@ -32,7 +32,7 @@
         .category-toggle:hover .category-icon *,
         .category-toggle[aria-expanded="true"] .category-icon * {
             stroke: var(--accent);
-            stroke-width: 2.5;
+            stroke-width: 2.0;
         }
         
         /* Category Items Transition */
@@ -68,9 +68,9 @@
         
         .category-toggle:hover,
         .category-toggle[aria-expanded="true"] {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
+    /* border-color: var(--accent); */ /* Removed the orange border on hover */
+    color: var(--accent);
+}
         
         /* Enhanced Mobile Styles */
         @media (max-width: 768px) {
@@ -111,7 +111,7 @@
 <div class="category-group">
   <button class="category-toggle" aria-expanded="false">
       <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
-          <circle cx="12" cy="12" r="9" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+          <circle cx="12" cy="12" r="9" stroke="#FF9F1C" stroke-width="1" fill="none"/>
           <circle cx="12" cy="12" r="3" fill="#FF9F1C"/>
       </svg>
       <span class="category-name">part 1: what is reality</span>
@@ -128,8 +128,8 @@
 <div class="category-group">
   <button class="category-toggle" aria-expanded="false">
       <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
-          <circle cx="12" cy="12" r="10" stroke="#FF9F1C" stroke-width="2" fill="none"/>
-          <path d="M12 6L12 18M8 14L12 18L16 14" stroke="#FF9F1C" stroke-width="2"/>
+          <circle cx="12" cy="12" r="10" stroke="#FF9F1C" stroke-width="1" fill="none"/>
+          <path d="M12 6L12 18M8 14L12 18L16 14" stroke="#FF9F1C" stroke-width="1"/>
       </svg>
       <span class="category-name">part 2: evolution of money</span>
   </button>
@@ -146,8 +146,8 @@
 <div class="category-group">
     <button class="category-toggle" aria-expanded="false">
         <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
-            <path d="M12 4L4 20H20L12 4Z" stroke="#FF9F1C" stroke-width="2" fill="none"/>
-            <line x1="12" y1="10" x2="12" y2="14" stroke="#FF9F1C" stroke-width="2"/>
+            <path d="M12 4L4 20H20L12 4Z" stroke="#FF9F1C" stroke-width="1" fill="none"/>
+            <line x1="12" y1="10" x2="12" y2="14" stroke="#FF9F1C" stroke-width="1"/>
             <circle cx="12" cy="17" r="1" fill="#FF9F1C"/>
         </svg>
         <span class="category-name">part 3: problems with current systems</span>
@@ -166,8 +166,8 @@
   <div class="category-group">
     <button class="category-toggle" aria-expanded="false">
         <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
-            <rect x="4" y="4" width="16" height="16" stroke="#FF9F1C" stroke-width="2" fill="none"/>
-            <path d="M9 8h6a2 2 0 0 1 0 4H9h6a2 2 0 0 1 0 4H9" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+            <rect x="4" y="4" width="16" height="16" stroke="#FF9F1C" stroke-width="1" fill="none"/>
+            <path d="M9 8h6a2 2 0 0 1 0 4H9h6a2 2 0 0 1 0 4H9" stroke="#FF9F1C" stroke-width="1" fill="none"/>
         </svg>
         <span class="category-name">part 4: bitcoin fundamentals</span>
     </button>
@@ -187,10 +187,10 @@
   <div class="category-group">
     <button class="category-toggle" aria-expanded="false">
         <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
-            <rect x="3" y="3" width="7" height="7" stroke="#FF9F1C" stroke-width="2" fill="none"/>
-            <rect x="14" y="3" width="7" height="7" stroke="#FF9F1C" stroke-width="2" fill="none"/>
-            <rect x="3" y="14" width="7" height="7" stroke="#FF9F1C" stroke-width="2" fill="none"/>
-            <rect x="14" y="14" width="7" height="7" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+            <rect x="3" y="3" width="7" height="7" stroke="#FF9F1C" stroke-width="1" fill="none"/>
+            <rect x="14" y="3" width="7" height="7" stroke="#FF9F1C" stroke-width="1" fill="none"/>
+            <rect x="3" y="14" width="7" height="7" stroke="#FF9F1C" stroke-width="1" fill="none"/>
+            <rect x="14" y="14" width="7" height="7" stroke="#FF9F1C" stroke-width="1" fill="none"/>
         </svg>
         <span class="category-name">part 5: properties of bitcoin</span>
     </button>
@@ -217,7 +217,7 @@
   <div class="category-group">
     <button class="category-toggle" aria-expanded="false">
         <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
-            <path d="M4 18L8 14L12 16L20 6" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+            <path d="M4 18L8 14L12 16L20 6" stroke="#FF9F1C" stroke-width="1" fill="none"/>
         </svg>
         <span class="category-name">part 6: value and economics</span>
     </button>
@@ -234,8 +234,8 @@
   <div class="category-group">
     <button class="category-toggle" aria-expanded="false">
         <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
-            <circle cx="12" cy="8" r="4" stroke="#FF9F1C" stroke-width="2" fill="none"/>
-            <path d="M4 20C4 16.6863 7.58172 14 12 14C16.4183 14 20 16.6863 20 20" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+            <circle cx="12" cy="8" r="4" stroke="#FF9F1C" stroke-width="1" fill="none"/>
+            <path d="M4 20C4 16.6863 7.58172 14 12 14C16.4183 14 20 16.6863 20 20" stroke="#FF9F1C" stroke-width="1" fill="none"/>
         </svg>
         <span class="category-name">part 7: social impact</span>
     </button>
@@ -255,7 +255,7 @@
   <div class="category-group">
     <button class="category-toggle" aria-expanded="false">
         <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
-            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="#FF9F1C" stroke-width="1" fill="none"/>
         </svg>
         <span class="category-name">part 8: future implications</span>
     </button>
@@ -275,8 +275,8 @@
     <button class="category-toggle" aria-expanded="false">
         <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
             <!-- Price chart icon -->
-            <path d="M3 3v18h18" stroke="#FF9F1C" stroke-width="2" fill="none"/>
-            <path d="M5 14l4-4 4 4 6-6" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+            <path d="M3 3v18h18" stroke="#FF9F1C" stroke-width="1" fill="none"/>
+            <path d="M5 14l4-4 4 4 6-6" stroke="#FF9F1C" stroke-width="1" fill="none"/>
         </svg>
         <span class="category-name">part 9: future price action</span>
     </button>
@@ -293,7 +293,7 @@
     <button class="category-toggle" aria-expanded="false">
         <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
             <!-- Trophy/crown icon -->
-            <path d="M12 2l3 5h5l-3 5 2 8h-14l2-8-3-5h5z" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+            <path d="M12 2l3 5h5l-3 5 2 8h-14l2-8-3-5h5z" stroke="#FF9F1C" stroke-width="1" fill="none"/>
         </svg>
         <span class="category-name">part 10: There Is No Second Best</span>
     </button>
@@ -311,8 +311,8 @@
     <button class="category-toggle" aria-expanded="false">
         <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
             <!-- Question mark icon -->
-            <circle cx="12" cy="12" r="9" stroke="#FF9F1C" stroke-width="2" fill="none"/>
-            <path d="M12 17v-1m0-3.5a3 3 0 1 1 0-6" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+            <circle cx="12" cy="12" r="9" stroke="#FF9F1C" stroke-width="1" fill="none"/>
+            <path d="M12 17v-1m0-3.5a3 3 0 1 1 0-6" stroke="#FF9F1C" stroke-width="1" fill="none"/>
         </svg>
         <span class="category-name">part 11: common concerns</span>
     </button>
@@ -331,8 +331,8 @@
     <button class="category-toggle" aria-expanded="false">
         <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
             <!-- Rocket launch icon -->
-            <path d="M12 2L8 6v4l4 2 4-2V6z" stroke="#FF9F1C" stroke-width="2" fill="none"/>
-            <path d="M8 10l-4 8h16l-4-8" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+            <path d="M12 2L8 6v4l4 2 4-2V6z" stroke="#FF9F1C" stroke-width="1" fill="none"/>
+            <path d="M8 10l-4 8h16l-4-8" stroke="#FF9F1C" stroke-width="1" fill="none"/>
         </svg>
         <span class="category-name">part 12: getting started with bitcoin</span>
     </button>
@@ -351,8 +351,8 @@
     <button class="category-toggle" aria-expanded="false">
         <svg class="category-icon" viewBox="0 0 24 24" width="20" height="20">
             <!-- Mind/thought icon -->
-            <circle cx="12" cy="12" r="5" stroke="#FF9F1C" stroke-width="2" fill="none"/>
-            <path d="M12 2v5m0 10v5M2 12h5m10 0h5" stroke="#FF9F1C" stroke-width="2" fill="none"/>
+            <circle cx="12" cy="12" r="5" stroke="#FF9F1C" stroke-width="1" fill="none"/>
+            <path d="M12 2v5m0 10v5M2 12h5m10 0h5" stroke="#FF9F1C" stroke-width="1" fill="none"/>
         </svg>
         <span class="category-name">part 13: satoshi's philosophy</span>
     </button>
